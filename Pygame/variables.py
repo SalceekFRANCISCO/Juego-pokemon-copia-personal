@@ -3,11 +3,7 @@ from Logica.Consola_1_MP import *
 
 pygame.init()
 
-tamaño_ventana = (1300,700)
-nombre_ventana = "Pokemon Cards"
-
-ventana = pygame.display.set_mode(tamaño_ventana)
-pygame.display.set_caption(nombre_ventana)
+ventana = inicializar_ventana()
 
 NEGRO = (0,0,0)
 ROJO = (255,0,0)
