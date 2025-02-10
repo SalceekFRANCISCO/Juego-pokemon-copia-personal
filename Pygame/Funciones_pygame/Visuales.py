@@ -1,70 +1,7 @@
 import pygame
-# from Logica.Consola_2_FG import *
+from Funciones_pygame.Dibujo import *
 # from Funciones_pygame.Dicc_interaccion import *
 
-#! para las funciones que reciben colores me gustaría, que se pase el diccionario y el color puntual
-#! para que busque esa clave en ese diccionario
-
-#region (solo dibujar)
-def dibujar(diccionario:dict,tipo_dibujo):#? me encanta
-    """Descripcion: Dibuja el elemento que se le pase por parametro junto con su respectivo orden.
-
-    Args:
-        diccionario (dict): diccionario de donde se sacan los datos
-        tipo_dibujo (_type_): funcion que dibujara los elementos del diccionario
-    """
-
-    tipo_dibujo(diccionario)
-
-def dibujar_cuadrados(cuadrado:dict):
-    """
-    Dibuja un cuadrado en la ventana.
-
-    Args:
-        cuadrado (dict): Diccionario con los datos del cuadrado.
-    """
-    pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
-
-def dibujar_solo_texto(texto:dict):
-    """Muestra solo texto en la ventana.
-
-    Args:
-        texto (dict): Diccionario con datos del texto.
-    """
-    texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
-
-def dibujar_tiempo(tiempo_final:dict):
-    """
-    Muestra el tiempo en la ventana.
-
-    Args:
-        tiempo_final (dict): Diccionario con datos del temporizador.
-    """
-    tiempo_final["ventana"].blit(tiempo_final["texto"],(tiempo_final["rectangulo"].x, tiempo_final["rectangulo"].y))
-
-def dibujar_imagenes(imagen:dict):
-    """
-    Dibuja una imagen en la ventana en sus coordenadas asignadas.
-
-    Args:
-        imagen (dict): Diccionario con los datos de la imagen.
-    """
-    imagen["ventana"].blit(imagen["imagen_final"],imagen["coordenadas"])
-
-def rellenar_superficie(pantalla:dict):
-    """
-    Llena toda la superficie de la ventana con un color.
-
-    Args:
-        ventana (Surface): Superficie de Pygame que se llena.
-        color (tuple): Color en formato RGB.
-    """
-    pantalla["ventana"].fill(pantalla["color_ventana"])
-#endregion
-############################################################# 
-
-#region dibujar
-########################### DIBUJAR ########################### 
 def setear_pantalla(pantalla,colores):
     """
     Configura y dibuja los elementos principales en la pantalla.
@@ -93,17 +30,6 @@ def setear_pantalla(pantalla,colores):
     
     dibujar_rectangulo_cartas(pantalla["carta_1"],pantalla["carta_2"])
 
-def dibujar_pantalla(ventana, elemento, coordenadas:tuple):
-    """
-    Dibuja un elemento en la ventana en las coordenadas especificadas.
-
-    Args:
-        ventana (Surface): Superficie de Pygame donde se dibuja el elemento.
-        elemento (Surface): Elemento a dibujar.
-        coordenadas (tuple): Coordenadas (x, y) para dibujar el elemento.
-    """
-    ventana.blit(elemento,coordenadas)
-
 def dibujar_lista_cuadrados(lista_cuadrados:list):
     """
     Dibuja una lista de cuadrados en la pantalla.
@@ -116,17 +42,6 @@ def dibujar_lista_cuadrados(lista_cuadrados:list):
     """
     for cuadrado in lista_cuadrados:
         dibujar_cuadrados(cuadrado)
-
-def dibujar_rectangulo_cartas(carta_1,carta_2):
-    """
-    Dibuja dos rectángulos que representan cartas.
-
-    Args:
-        carta_1 (dict): Diccionario de la primera carta.
-        carta_2 (dict): Diccionario de la segunda carta.
-    """
-    dibujar(carta_1,dibujar_cuadrados)
-    dibujar(carta_2,dibujar_cuadrados)
 
 def dibujar_cuadrado_con_texto(input):
     """
@@ -182,11 +97,11 @@ def mostrar_foto_pokemon(ventana, pokemon:str, escala_poke_imagen: tuple, coorde
     
     dibujar(imagen_final,dibujar_imagenes)
 
-#endregion
-############################################################# 
-
-#region texto #?ESTA BIEN
-########################### TEXTO ########################### 
+def actualizar():
+    """
+    Actualiza la pantalla con los cambios realizados.
+    """
+    pygame.display.update()
 
 def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):
     texto = {}
@@ -217,11 +132,6 @@ def renderizar_mensaje(fuente:tuple, mensaje: str, color_texto: tuple,color_fond
 
     return texto_definitivo
 
-#endregion
-############################################################# 
-
-#region imagenes #?ESTA BIEN
-########################### IMAGENES ########################### 
 def crear_diccionario_imagen(ventana, path, coordenadas, dimensiones)->dict:
     """
     Crea una imagen escalada y la asocia a una ventana.
@@ -259,11 +169,6 @@ def cargar_imagenes(path: str, coordenadas:tuple):
 
     return imagen_Escalada
 
-#endregion
-############################################################# 
-
-#region tiempo #?ESTA BIEN
-########################### TIEMPO ########################### 
 def obtener_tiempo(tiempo_actual, tiempo_inicial):
     """
     Calcula el tiempo transcurrido en segundos.
@@ -329,12 +234,6 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):
 
         # Mostrar el tiempo en pantalla
         dibujar(tiempo_final,dibujar_tiempo)
-
-#endregion
-############################################################# 
-
-#region final
-#region funciones pequeñas/individuales #?ESTA BIEN
 
 def cargar_imagen(path:str):
     """
@@ -404,8 +303,11 @@ def actualizar():
     Actualiza la pantalla con los cambios realizados.
     """
     pygame.display.update()
-#endregion
-############################################################# 
+
+def mostrar_texbox_pantalla(input):
+    superficie = input["fuente"].render(input["texto_escritura"],False,"Black")
+    input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
+    pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
 
 #region cosas que no se usan
 
@@ -437,27 +339,3 @@ def actualizar():
 
 
 #endregion
-############################################################# 
-#endregion
-
-
-
-
-#region nuevas funciones para escribir por pantalla
-############################################################# 
-def mostrar_texbox_pantalla(input):
-    superficie = input["fuente"].render(input["texto_escritura"],False,"Black")
-    input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y + 7))
-    pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
-
-# def dibujar_texto(input:dict): #*sirve para mostrar el texto en pantalla
-#     superficie = input["fuente"].render(input["contenido_texto"],False,"Black")
-#     input["ventana"].blit(superficie,input["posicion"])
-
-# def dibujar(input):#*sirve para mostrar texbox (cuadrado) en pantalla
-#     superficie = input["fuente"].render(input["texto"],False,"Black")
-#     input["ventana"].blit(superficie,(input["rectangulo"].x+5,input["rectangulo"].y + 7))
-#     pygame.draw.rect(input["ventana"],input["color_actual"],input["rectangulo"],2)
-
-#endregion
-

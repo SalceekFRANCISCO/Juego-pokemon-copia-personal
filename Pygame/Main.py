@@ -4,7 +4,12 @@ from Logica.Consola_1_MP import *
 # from Funciones_pygame.Visuales import *
 # from Funciones_pygame.Dicc_interaccion import *
 
+#region mierda
 # actualizacion
+
+#! para las funciones que reciben colores me gustaría, que se pase el diccionario y el color puntual
+#! para que busque esa clave en ese diccionario
+
 #borre el return cuadrado de visuales 
 #en  dibuajr texto usamos   dibujar_cuadrados(input)
 #La funcion dibujar(input) no es necesaria, ni se usa
@@ -13,6 +18,8 @@ from Logica.Consola_1_MP import *
 # se modifico casi completo mostrar texto
 # ya no se sortea la pokefoto
 # hay textbox en pantalla
+
+#endregion
 
 pygame.init() 
 
