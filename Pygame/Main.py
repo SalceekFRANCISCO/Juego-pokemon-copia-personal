@@ -47,13 +47,13 @@ boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,""
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 
 boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
-pokebola = crear_diccionario_imagen(ventana,"pokebola.png",(370,145),(530,425))
+pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
 reemplazo_boton = False
 
 pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_boton,
                                       boton_reinicio,pokebola,carta_1,carta_2,jugadores,
-                                      "Resultados.json","Pokemon_Cards_Pygame.csv",
+                                      "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 
 listas = crear_diccionario_listas()
@@ -76,7 +76,7 @@ accion_b = None
 
 # musica = reproducir_musica("Atrapalos Ya!.mp3", -1, 0.1)
 
-
+#region
 # mostrar ganador partida #!OK
 # mejorar la organizacion #! va queriendo
 # mostrar atributo sorteado  #!OK
