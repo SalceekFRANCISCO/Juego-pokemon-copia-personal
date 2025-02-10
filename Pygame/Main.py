@@ -37,6 +37,7 @@ jugadores = ["pepe","roberto"]
 
 colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
+#botones con accion
 boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
 boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
@@ -46,7 +47,7 @@ boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",
 # peen = crear_diccionario_texto(pantalla,fuente,"Ganador partida",colores["negro"],(1027,60),None)
 
 
-
+#botones con texto
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
