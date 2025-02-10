@@ -41,6 +41,7 @@ ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"G
 
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
+
 boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
