@@ -1,14 +1,17 @@
 import pygame
 from variables import *
 from Logica.Consola_1_MP import *
+
+#region cambios y ocsas que ocupan espacio 
 # from Funciones_pygame.Visuales import *
 # from Funciones_pygame.Dicc_interaccion import *
 
-#region mierda
 # actualizacion
 
 #! para las funciones que reciben colores me gustaría, que se pase el diccionario y el color puntual
 #! para que busque esa clave en ese diccionario
+
+
 
 #borre el return cuadrado de visuales 
 #en  dibuajr texto usamos   dibujar_cuadrados(input)
@@ -23,18 +26,9 @@ from Logica.Consola_1_MP import *
 
 pygame.init() 
 
-#region A
-
-matriz_jerarquias_mezclada = [["Agua", ("Fuego", "Tierra")],
-                    [("Electricidad", "Fuego"),"Tierra"],
-                    ["Aire",("Tierra","Agua")],
-                    [("Aire", "Hielo"),"Fuego"],
-                    ["Electricidad",("Agua", "Hielo")], 
-                    [("Normal", "Fuego"),"Psíquico"],
-                    ["Normal",("Agua", "Aire")],
-                    [("Tierra", "Aire"),"Hielo"]]
-
 ventana = inicializar_ventana()
+
+matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
 
 fuente = ("Arial",20)
 
@@ -42,18 +36,20 @@ fuente = ("Arial",20)
 jugadores = ["pepe","roberto"]
 
 colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
+
 boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
+boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
+boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
+boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
+
+# pantalla = ""
+# peen = crear_diccionario_texto(pantalla,fuente,"Ganador partida",colores["negro"],(1027,60),None)
+
+
 
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
-
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
-
-boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
-
-boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
-
-boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
 pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
 reemplazo_boton = False
@@ -68,20 +64,17 @@ listas["lista_cartas"] = obtener_datos(pantalla)
 
 mezclar_mazo_cartas(listas)
 repartir_cartas(listas)
-ordenar_matriz(matriz_jerarquias_mezclada)
+ordenar_matriz(matriz_jerarquias_mezcladas)
 
 clock = pygame.time.Clock()
 
 tiempo_inicial = None
 cronometro_activo = False
-
 bandera = True
 bandera_dos = False
 bandera_tres = False
 accion_a = None
 accion_b = None
-
-# musica = reproducir_musica("Atrapalos Ya!.mp3", -1, 0.1)
 
 #region
 # mostrar ganador partida #!OK
@@ -97,40 +90,16 @@ accion_b = None
 
 #endregion
 
-# def sexo (pantalla,fuente,colores,boton_nombre_dos,(797,629),evento,texto_fondo):
-
-#     texto_pantalla_dos= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,texto_fondo)
-#     bandera_tres = True
-#     accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
-    
-#     return accion_b
-
-def crear_diccionario_acciones(bandera,texto_pantalla):
-        accion = {}
-        accion["bandera"] = bandera
-        accion["texto_pantalla"] = texto_pantalla
-
-        return accion
-
-def setear_accion_pantalla(accion):
-    if accion != None:
-        if accion["bandera"]:
-            dibujar_solo_texto(accion["texto_pantalla"])
-
-def setear_acciones_pantalla(accion_a,accion_b):
-        setear_accion_pantalla(accion_a)
-
-        setear_accion_pantalla(accion_b)
-
 juego_terminado = False
+
 while bandera: 
     lista_eventos = pygame.event.get()
     for evento in lista_eventos:
         if evento.type == pygame.QUIT:
             bandera = False
-        elif evento.type == pygame.MOUSEMOTION:
-            x,y = evento.pos
-            # print(x,y) #Saber que cordenadas son en la pantalla
+        # elif evento.type == pygame.MOUSEMOTION:
+        #     x,y = evento.pos
+        #     # print(x,y) #Saber que cordenadas son en la pantalla
 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             if boton_jugar["cuadrado"].collidepoint(evento.pos): 
@@ -138,16 +107,16 @@ while bandera:
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
-            if boton_nombre_uno["cuadrado"].collidepoint(evento.pos):
+            elif boton_nombre_uno["cuadrado"].collidepoint(evento.pos):
                 cambio_color(boton_nombre_uno)
 
-            if boton_nombre_dos["cuadrado"].collidepoint(evento.pos):
+            elif boton_nombre_dos["cuadrado"].collidepoint(evento.pos):
                 cambio_color(boton_nombre_dos)
 
             if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
                 cambio_color(boton_reinicio)
                 
-                nueva_version_jugar(5, matriz_jerarquias_mezclada, listas, pantalla, 
+                nueva_version_jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
                                         colores, cronometro_activo, tiempo_inicial)
                 juego_terminado = True
 
@@ -156,7 +125,7 @@ while bandera:
                 
                 if juego_terminado == False:
 
-                    nueva_version_jugar(5, matriz_jerarquias_mezclada, listas, pantalla, 
+                    nueva_version_jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
                                         colores, cronometro_activo, tiempo_inicial)
                     juego_terminado = True
 

@@ -130,6 +130,13 @@ def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reem
 
     return pantalla
 
+def crear_diccionario_acciones(bandera,texto_pantalla):
+    accion = {}
+    accion["bandera"] = bandera
+    accion["texto_pantalla"] = texto_pantalla
+
+    return accion
+
 def crear_diccionario_listas() -> dict:
     """
     Crea un diccionario para almacenar listas relacionadas con el juego.
@@ -159,41 +166,6 @@ def cambio_color(input_1):
         input_1["color_actual"] = input_1["color_activo"] 
     else:
         input_1["color_actual"] = input_1["color_inactivo"]
-
-def escribir_teclado(input_1, evento):
-    """
-    Permite modificar el texto de un campo de entrada según la interacción del usuario.
-
-    Args:
-        input_1 (dict): Diccionario del campo de entrada.
-        evento: Evento de teclado capturado por Pygame.
-    """
-    if input_1["activo"]:
-        if evento.key == pygame.K_BACKSPACE:
-            input_1["texto"] = input_1["texto"][:-1]
-        elif evento.key == pygame.K_SPACE:
-            input_1["texto"] += ""
-        else:
-            input_1["texto"] += evento.unicode
-
-#region musica
-############################################################# 
-def reproducir_musica (musica: str, repeticion: int, volumen: float):
-    """Descripción: Reproduce la musica que se le pasa por parametro.
-
-    Args:
-        musica (str): path del archivo
-        repeticion (int): Cuantas veces va a repetirse la cancion
-        volumen (float): el volumen de la cancion
-    """
-    pygame.mixer.music.load(musica)
-    pygame.mixer.music.play(repeticion)
-    pygame.mixer.music.set_volume(volumen)
-
-# Si repeticion = 0: la pista se reproduce una sola vez.
-# Si repeticion = 1: la pista se reproduce una vez más después de terminar, es decir, en total se reproduce dos veces.
-# Si repeticion = -1: la pista se reproduce en bucle infinito.
-#endregion
 
 def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):
     texto = {}
@@ -251,14 +223,6 @@ def dibujar_solo_texto(texto:dict):
     """
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
 
-# def setear_acciones_pantalla(acciones):
-#     if acciones != None:
-#         if acciones["bandera_dos"]:
-#             dibujar_solo_texto(acciones["texto_pantalla"])
-
-#         if acciones["bandera_tres"]:
-#             dibujar_solo_texto(acciones["texto_pantalla_dos"])
-
 def inicializar_ventana():
     ANCHO_VENTANA = 1300
     ALTO_VENTANA = 700
@@ -271,6 +235,19 @@ def inicializar_ventana():
     pygame.display.set_caption("Pokemon Cards")
 
     return ventana
+
+def crear_matriz_jerarquias():
+
+    matriz_jerarquias_mezclada = [["Agua", ("Fuego", "Tierra")],
+                    [("Electricidad", "Fuego"),"Tierra"],
+                    ["Aire",("Tierra","Agua")],
+                    [("Aire", "Hielo"),"Fuego"],
+                    ["Electricidad",("Agua", "Hielo")], 
+                    [("Normal", "Fuego"),"Psíquico"],
+                    ["Normal",("Agua", "Aire")],
+                    [("Tierra", "Aire"),"Hielo"]]
+
+    return matriz_jerarquias_mezclada
 
 
 #region nuevas funciones para escribir por pantalla
@@ -304,11 +281,4 @@ def guardar_texto(pantalla:dict,fuente:tuple,color_texto,boton_nombre:dict,posic
             
     return texto_pantalla
 
-# def escribir_full(boton_nombre:dict, posicion_texto: tuple,evento,ventana):
-#     texto_pantalla = ""
-#     nombre_final = escribir_teclado(boton_nombre,evento)
-
-#     texto_pantalla = crear_texto(ventana,("consolas",20),"Black",nombre_final,posicion_texto)
-            
-#     return texto_pantalla
 #endregion

@@ -66,6 +66,34 @@ def dibujar_pantalla(ventana, elemento, coordenadas:tuple):
     """
     ventana.blit(elemento,coordenadas)
 
+def dibujar_lista_cuadrados(lista_cuadrados:list):
+    """
+    Dibuja una lista de cuadrados en la pantalla.
+
+    Args:
+        lista_cuadrados (list): Lista de diccionarios que representan los cuadrados.
+
+    Returns:
+        dict: Último cuadrado dibujado de la lista.
+    """
+    for cuadrado in lista_cuadrados:
+        dibujar_cuadrados(cuadrado)
+
+def dibujar_cuadrado_con_texto(input):
+    """
+    Dibuja un botón rectangular con un texto centrado.
+
+    Args:
+        input (dict): Diccionario con los datos del botón.
+    """
+    superficie = input["fuente"].render(input["texto"], True, "Black")
+    
+    rectangulo_texto = superficie.get_rect(center=input["cuadrado"].center)
+    
+    dibujar(input,dibujar_cuadrados)
+    
+    dibujar_pantalla(input["ventana"],superficie,rectangulo_texto.topleft)
+
 def dibujar_rectangulo_cartas(carta_1,carta_2):
     """
     Dibuja dos rectángulos que representan cartas.

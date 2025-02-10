@@ -2,6 +2,16 @@ import pygame
 from Funciones_pygame.Dibujo import *
 # from Funciones_pygame.Dicc_interaccion import *
 
+def setear_accion_pantalla(accion):
+    if accion != None:
+        if accion["bandera"]:
+            dibujar_solo_texto(accion["texto_pantalla"])
+
+def setear_acciones_pantalla(accion_a,accion_b):
+        setear_accion_pantalla(accion_a)
+
+        setear_accion_pantalla(accion_b)
+
 def setear_pantalla(pantalla,colores):
     """
     Configura y dibuja los elementos principales en la pantalla.
@@ -29,34 +39,6 @@ def setear_pantalla(pantalla,colores):
     dibujar_imagenes(pantalla["pokebola"])
     
     dibujar_rectangulo_cartas(pantalla["carta_1"],pantalla["carta_2"])
-
-def dibujar_lista_cuadrados(lista_cuadrados:list):
-    """
-    Dibuja una lista de cuadrados en la pantalla.
-
-    Args:
-        lista_cuadrados (list): Lista de diccionarios que representan los cuadrados.
-
-    Returns:
-        dict: Último cuadrado dibujado de la lista.
-    """
-    for cuadrado in lista_cuadrados:
-        dibujar_cuadrados(cuadrado)
-
-def dibujar_cuadrado_con_texto(input):
-    """
-    Dibuja un botón rectangular con un texto centrado.
-
-    Args:
-        input (dict): Diccionario con los datos del botón.
-    """
-    superficie = input["fuente"].render(input["texto"], True, "Black")
-    
-    rectangulo_texto = superficie.get_rect(center=input["cuadrado"].center)
-    
-    dibujar(input,dibujar_cuadrados)
-    
-    dibujar_pantalla(input["ventana"],superficie,rectangulo_texto.topleft)
 
 def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
     """
@@ -297,12 +279,6 @@ def renderizar_texto(fuente_creada: str, mensaje: str, color_texto: tuple, color
         texto = fuente_creada.render(mensaje,False,color_texto)
 
     return texto
-
-def actualizar():
-    """
-    Actualiza la pantalla con los cambios realizados.
-    """
-    pygame.display.update()
 
 def mostrar_texbox_pantalla(input):
     superficie = input["fuente"].render(input["texto_escritura"],False,"Black")
