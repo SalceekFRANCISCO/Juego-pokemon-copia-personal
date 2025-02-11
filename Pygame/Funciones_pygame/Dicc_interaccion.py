@@ -235,6 +235,9 @@ def inicializar_ventana():
 
     pygame.display.set_caption("Pokemon Cards")
 
+    icono = pygame.image.load("Poke_fotos\pokebola.png")
+    pygame.display.set_icon(icono)
+
     return ventana
 
 def crear_matriz_jerarquias():
