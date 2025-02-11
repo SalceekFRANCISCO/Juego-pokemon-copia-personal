@@ -46,8 +46,29 @@ boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,""
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
 
-# pantalla = ""
-# peen = crear_diccionario_texto(pantalla,fuente,"Ganador partida",colores["negro"],(1027,60),None)
+def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,texto_del_boton=None) -> dict:
+    boton = {}
+    boton["ventana"] = ventana
+    boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    boton["color_activo"] = colores["dorado"]
+    boton["color_inactivo"] = colores["blanco"]
+    boton["activo"] = False
+    boton["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
+    boton["color_actual"] = colores["blanco"]
+    boton["accion"] = accion
+
+    if texto_del_boton != None:
+        boton["texto_del_boton"] = texto_del_boton
+
+
+    return boton
+
+nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),nueva_version_jugar,"JUGAR")
+
+
+
+
+
 
 
 #botones con texto
@@ -101,9 +122,22 @@ while bandera:
         #     x,y = evento.pos
         #     # print(x,y) #Saber que cordenadas son en la pantalla
 
+        elif evento.type == pygame.KEYDOWN:
+            if boton_nombre_uno["activo"]:
+                texto_pantalla= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
+                bandera_dos = True
+                accion_a = crear_diccionario_acciones(bandera_dos,texto_pantalla)
+           
+            if boton_nombre_dos["activo"]:
+                texto_pantalla_dos= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)
+                bandera_tres = True
+                accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
+
+                
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             if boton_jugar["cuadrado"].collidepoint(evento.pos): 
                 cambio_color(boton_jugar)
+                nuevo_boton_jugar["accion"]()
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
@@ -129,16 +163,6 @@ while bandera:
                                         colores, cronometro_activo, tiempo_inicial)
                     juego_terminado = True
 
-        elif evento.type == pygame.KEYDOWN:
-            if boton_nombre_uno["activo"]:
-                texto_pantalla= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
-                bandera_dos = True
-                accion_a = crear_diccionario_acciones(bandera_dos,texto_pantalla)
-           
-            if boton_nombre_dos["activo"]:
-                texto_pantalla_dos= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)
-                bandera_tres = True
-                accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
 
 
     setear_pantalla(pantalla,colores)
