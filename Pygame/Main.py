@@ -58,6 +58,8 @@ pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),
 
 reemplazo_boton = False
 
+
+
 pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_boton,
                                       boton_reinicio,pokebola,carta_1,carta_2,jugadores,
                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
