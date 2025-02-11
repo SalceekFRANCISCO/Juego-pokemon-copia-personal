@@ -1,6 +1,7 @@
 import pygame
 from Logica.Consola_1_MP import *
 
+
 pygame.init()
 
 ventana = inicializar_ventana()
