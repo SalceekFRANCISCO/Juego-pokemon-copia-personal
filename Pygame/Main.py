@@ -8,6 +8,9 @@ from Logica.Consola_1_MP import *
 
 # actualizacion
 
+
+# esto lo probe desde la pc de mi MAMÁ
+
 #! para las funciones que reciben colores me gustaría, que se pase el diccionario y el color puntual
 #! para que busque esa clave en ese diccionario
 
