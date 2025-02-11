@@ -65,12 +65,24 @@ pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,r
                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 
+def activar_cartas(listas):
+
+    mezclar_mazo_cartas(listas)
+    repartir_cartas(listas)
+    ordenar_matriz(matriz_jerarquias_mezcladas)
+
+def guardar_cartas():
+
+
+
 listas = crear_diccionario_listas()
 listas["lista_cartas"] = obtener_datos(pantalla)
 
-mezclar_mazo_cartas(listas)
-repartir_cartas(listas)
-ordenar_matriz(matriz_jerarquias_mezcladas)
+activar_cartas(listas)
+
+# mezclar_mazo_cartas(listas)
+# repartir_cartas(listas)
+# ordenar_matriz(matriz_jerarquias_mezcladas)
 
 clock = pygame.time.Clock()
 
