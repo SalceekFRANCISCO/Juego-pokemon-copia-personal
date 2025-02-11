@@ -16,6 +16,21 @@ def identificar_usuarios(cantidad_usuarios:int)->list[str]:
     
     return jugadores
 
+def guardar_cartas(pantalla:dict,funcion)->dict:
+    """Descripcion: crea un diccionario de listas vacias y en una de ellas carga los datos necesarios 
+
+    Args:
+        pantalla (dict): Donde sacamos los datos
+        funcion (_type_): la funcion para crear el diccionario de listas
+
+    Returns:
+        dict: _description_
+    """
+    listas = funcion()
+    listas["lista_cartas"] = obtener_datos(pantalla)
+    
+    return listas
+
 def activar_cartas(listas:dict,matriz_jerarquias_mezcladas:list[list]):
     """Descripcion: mezcla, reparte cartas y ordena la matriz de jerarquias
 

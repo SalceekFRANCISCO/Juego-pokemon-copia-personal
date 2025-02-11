@@ -58,32 +58,13 @@ pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),
 
 reemplazo_boton = False
 
-
 pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_boton,
                                       boton_reinicio,pokebola,carta_1,carta_2,jugadores,
                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 
-
-
-def guardar_cartas():
-
-    listas = crear_diccionario_listas()
-    listas["lista_cartas"] = obtener_datos(pantalla)
-
-    return listas
-
-
-listas = guardar_cartas()
+listas = guardar_cartas(pantalla,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
-
-# listas = crear_diccionario_listas()
-# listas["lista_cartas"] = obtener_datos(pantalla)
-
-
-# mezclar_mazo_cartas(listas)
-# repartir_cartas(listas)
-# ordenar_matriz(matriz_jerarquias_mezcladas)
 
 clock = pygame.time.Clock()
 
