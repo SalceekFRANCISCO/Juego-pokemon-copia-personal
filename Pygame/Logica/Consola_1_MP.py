@@ -42,7 +42,7 @@ def cargar_ganador_y_puntaje(pantalla:dict,resultado:str,contador_jugador_1:int,
 
     return puntajes
 
-def nueva_version_jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
+def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
                         pantalla, colores,cronometro_activo,tiempo_inicial):
     contador = 0
     contador_jugador_1 = 0

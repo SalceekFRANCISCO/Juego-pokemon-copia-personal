@@ -46,6 +46,8 @@ boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,""
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
 
+
+#region algunas funciones que hize
 def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,texto_del_boton=None) -> dict:
     boton = {}
     boton["ventana"] = ventana
@@ -63,7 +65,19 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
 
     return boton
 
-nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),nueva_version_jugar,"JUGAR")
+nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,"JUGAR")
+
+
+lista_x = [boton_nombre_uno,boton_nombre_dos,boton_reinicio]
+
+
+def detectar_cambio_color(lista_x,evento):
+    for boton in lista_x:
+        if boton["cuadrado"].collidepoint(evento.pos):
+            cambio_color(boton)
+
+#endregion
+
 
 
 
@@ -137,20 +151,22 @@ while bandera:
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             if boton_jugar["cuadrado"].collidepoint(evento.pos): 
                 cambio_color(boton_jugar)
-                nuevo_boton_jugar["accion"]()
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
-            elif boton_nombre_uno["cuadrado"].collidepoint(evento.pos):
-                cambio_color(boton_nombre_uno)
+            # elif boton_nombre_uno["cuadrado"].collidepoint(evento.pos):
+            #     cambio_color(boton_nombre_uno)
 
-            elif boton_nombre_dos["cuadrado"].collidepoint(evento.pos):
-                cambio_color(boton_nombre_dos)
+            # elif boton_nombre_dos["cuadrado"].collidepoint(evento.pos):
+            #     cambio_color(boton_nombre_dos)
+
+            detectar_cambio_color(lista_x,evento)
+
 
             if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
                 cambio_color(boton_reinicio)
                 
-                nueva_version_jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
+                jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
                                         colores, cronometro_activo, tiempo_inicial)
                 juego_terminado = True
 
@@ -159,7 +175,7 @@ while bandera:
                 
                 if juego_terminado == False:
 
-                    nueva_version_jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
+                    jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
                                         colores, cronometro_activo, tiempo_inicial)
                     juego_terminado = True
 
