@@ -66,7 +66,7 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
 
     return boton
 
-nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,"JUGAR")
+
 
 
 lista_x = [boton_nombre_uno,boton_nombre_dos,boton_reinicio]
@@ -111,6 +111,30 @@ bandera_dos = False
 bandera_tres = False
 accion_a = None
 accion_b = None
+
+
+
+
+
+
+parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
+
+nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
+nuevo_boton_reinicio = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"REINICIO")
+
+lista_botones = [nuevo_boton_jugar,nuevo_boton_reinicio]
+
+
+
+def detectar_jugabilidad(lista_botones,evento):
+    for boton in lista_botones:
+        if boton["cuadrado"].collidepoint(evento.pos):
+            boton["accion"](boton["lista_parametros"])
+
+
+
+
+
 
 #region
 # mostrar ganador partida #!OK
