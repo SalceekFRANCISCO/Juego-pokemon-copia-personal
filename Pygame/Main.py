@@ -42,7 +42,6 @@ colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
 #botones con accion
 boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
-boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
 boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 
@@ -69,7 +68,7 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
 
 
 
-lista_x = [boton_nombre_uno,boton_nombre_dos,boton_reinicio,boton_jugar]
+lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
 
 
 def detectar_cambio_color(lista_x,evento):
@@ -96,7 +95,7 @@ pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),
 reemplazo_nombre = False
 
 pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
-                                      boton_reinicio,pokebola,carta_1,carta_2,jugadores,
+                                      pokebola,carta_1,carta_2,jugadores,
                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 
@@ -115,16 +114,11 @@ accion_b = None
 
 
 
-
-
-
 parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
 
 nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
-nuevo_boton_reinicio = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"REINICIO")
 
-lista_botones = [nuevo_boton_jugar,nuevo_boton_reinicio]
-
+lista_botones = [nuevo_boton_jugar]
 
 
 def detectar_jugabilidad(lista_botones,evento):
@@ -153,6 +147,7 @@ def detectar_jugabilidad(lista_botones,evento):
 
 juego_terminado = False
 
+
 while bandera: 
     lista_eventos = pygame.event.get()
     for evento in lista_eventos:
@@ -162,7 +157,7 @@ while bandera:
         #     x,y = evento.pos
         #     # print(x,y) #Saber que cordenadas son en la pantalla
 
-        elif evento.type == pygame.KEYDOWN:
+        if evento.type == pygame.KEYDOWN:
             if boton_nombre_uno["activo"]:
                 texto_pantalla= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
                 bandera_dos = True
@@ -212,13 +207,6 @@ while bandera:
 
 
     setear_pantalla(pantalla,colores)
-
-    # if pantalla["reemplazo_nombre"] == True:
-    #     boton_jugar["texto_del_boton"] = "REINICIO"
-    #     dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
-
-
-
 
     setear_acciones_pantalla(accion_a,accion_b)
 

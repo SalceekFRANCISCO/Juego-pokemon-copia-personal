@@ -1,33 +1,35 @@
 # def inicializar_ventana():
-#     ANCHO_VENTANA = 800
-#     ALTO_VENTANA = 400
+#   
+# def manejador_eventos(lista_botones):
+#     flag_run = True
+#     for evento in pygame.event.get():
+#         if evento.type == pygame.QUIT:
+#             flag_run = False
+#         elif evento.type == pygame.MOUSEBUTTONDOWN:
+#             checkear_accion_botones(lista_botones, evento)
 
-#     pygame.init()
-#     pygame.mixer.init()
-
-#     ventana_ppal = pygame.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA))
-    
-#     pygame.display.set_caption("GERpotify")
-    
-#     icono = pygame.image.load(r"IMG\spo.png")
-#     pygame.display.set_icon(icono)
-
-#     fondo = pygame.image.load(r"IMG\fondo.png")
-#     fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
-
-#     return ventana_ppal, fondo
-
+#     return flag_run
 import pygame
 
-def inicializar_ventana():
-    ANCHO_VENTANA = 1300
-    ALTO_VENTANA = 700
-
-    pygame.init()
-    pygame.mixer.init()
-
-    ventana = pygame.display.set_mode(ANCHO_VENTANA,ALTO_VENTANA)
-
-    pygame.display.set_caption("Pokemon Cards")
-
-    return ventana
+#
+def manejador_eventos():
+    bandera_correr = True
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            bandera_correr = False
+        # elif evento.type == pygame.MOUSEMOTION:
+        #     x,y = evento.pos
+        #     print(x,y) #Saber que cordenadas son en la pantalla
+    
+    return bandera_correr
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#

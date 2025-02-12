@@ -89,7 +89,7 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
     return colores
 
 def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
-                               boton_reinicio, pokebola, carta_1, carta_2, jugadores, 
+                               pokebola, carta_1, carta_2, jugadores, 
                                path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
     """
     Crea un diccionario que almacena los datos principales de la pantalla.
@@ -116,7 +116,7 @@ def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reem
     pantalla["lista_cuadrados"] = lista_cuadrados
     pantalla["boton_jugar"] = boton_jugar
     pantalla["reemplazo_nombre"] = reemplazo_boton
-    pantalla["boton_reinicio"] = boton_reinicio
+    # pantalla["boton_reinicio"] = boton_reinicio
     pantalla["pokebola"] = pokebola
     pantalla["carta_1"] = carta_1
     pantalla["carta_2"] = carta_2
