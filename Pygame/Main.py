@@ -191,8 +191,9 @@ while bandera:
             if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
                 cambio_color(boton_reinicio)
                 
-                jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
-                                        colores, cronometro_activo, tiempo_inicial)
+                # jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
+                #                         colores, cronometro_activo, tiempo_inicial)
+                detectar_jugabilidad(lista_botones,evento)
                 juego_terminado = True
 
         elif boton_jugar["activo"]: 
@@ -200,8 +201,10 @@ while bandera:
                 
                 if juego_terminado == False:
 
-                    jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
-                                        colores, cronometro_activo, tiempo_inicial)
+                    # jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
+                    #                     colores, cronometro_activo, tiempo_inicial)
+                    
+                    detectar_jugabilidad(lista_botones,evento)
                     juego_terminado = True
 
 

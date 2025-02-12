@@ -42,8 +42,59 @@ def cargar_ganador_y_puntaje(pantalla:dict,resultado:str,contador_jugador_1:int,
 
     return puntajes
 
-def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
-                        pantalla, colores,cronometro_activo,tiempo_inicial):
+# def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
+#                         pantalla, colores,cronometro_activo,tiempo_inicial):
+#     contador = 0
+#     contador_jugador_1 = 0
+#     contador_jugador_2 = 0
+
+#     while contador < cantidad_rondas or jugador_sin_cartas:
+#         jugador_sin_cartas = Determinar_algun_jugador_sin_cartas(listas)
+#         contador += 1
+
+#         mostrar_cronometro(pantalla, cronometro_activo,tiempo_inicial,colores)
+
+#         cargar_cartas(listas,pantalla,colores)
+        
+#         atributo = sortear_atributos(listas["lista_cartas"])
+#         mostrar_texto(pantalla, ("Arial", 50),atributo,colores["negro"], (1024,539),None)
+
+#         resultado = comparar_atributos(listas, matriz_jerarquias_mezclada,atributo)
+#         agregar_cartas(resultado,listas)
+
+#         puntuacion = cargar_ganador_y_puntaje(pantalla,resultado,contador_jugador_1,contador_jugador_2,colores)
+#         contador_jugador_1 = puntuacion[0]
+#         contador_jugador_2 = puntuacion[1]
+
+#         actualizar()
+
+#         setear_pantalla(pantalla,colores)
+
+#         pygame.time.delay(1000)
+
+#     ganador_partida = determinar_ganador_partida(pantalla,listas)
+#     mostrar_texto(pantalla, ("Arial", 50),ganador_partida,colores["negro"], (1063,139),None)
+#     actualizar()
+
+#     puntaje = calcular_puntaje(listas,pantalla, ganador_partida)
+#     guardar_resultados(pantalla, puntaje, ganador_partida)
+
+
+# parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
+
+
+def jugar(parametros):
+    
+    cantidad_rondas = parametros[0]
+    matriz_jerarquias_mezclada = parametros[1]
+    listas = parametros[2]
+    pantalla = parametros[3]
+    colores = parametros[4]
+    cronometro_activo = parametros[5]
+    tiempo_inicial = parametros[6]
+
+# def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
+#                         pantalla, colores,cronometro_activo,tiempo_inicial):
     contador = 0
     contador_jugador_1 = 0
     contador_jugador_2 = 0
@@ -75,9 +126,6 @@ def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas,
     ganador_partida = determinar_ganador_partida(pantalla,listas)
     mostrar_texto(pantalla, ("Arial", 50),ganador_partida,colores["negro"], (1063,139),None)
     actualizar()
-    # print(f"se mostro: {ganador_partida}")
-    # pygame.time.delay(1000)
-    # setear_pantalla(pantalla,colores)
 
     puntaje = calcular_puntaje(listas,pantalla, ganador_partida)
     guardar_resultados(pantalla, puntaje, ganador_partida)
