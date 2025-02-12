@@ -69,13 +69,14 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
 
 
 
-lista_x = [boton_nombre_uno,boton_nombre_dos,boton_reinicio]
+lista_x = [boton_nombre_uno,boton_nombre_dos,boton_reinicio,boton_jugar]
 
 
 def detectar_cambio_color(lista_x,evento):
     for boton in lista_x:
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
+            # print("se cambio el color")
 
 #endregion
 
@@ -92,9 +93,9 @@ atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sort
 
 pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
-reemplazo_boton = False
+reemplazo_nombre = False
 
-pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_boton,
+pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
                                       boton_reinicio,pokebola,carta_1,carta_2,jugadores,
                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
@@ -175,7 +176,7 @@ while bandera:
                 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             if boton_jugar["cuadrado"].collidepoint(evento.pos): 
-                cambio_color(boton_jugar)
+                # cambio_color(boton_jugar)
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
@@ -188,16 +189,17 @@ while bandera:
             detectar_cambio_color(lista_x,evento)
 
 
-            if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
-                cambio_color(boton_reinicio)
+            # if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
+            #     cambio_color(boton_reinicio)
                 
                 # jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
                 #                         colores, cronometro_activo, tiempo_inicial)
-                detectar_jugabilidad(lista_botones,evento)
-                juego_terminado = True
+            detectar_jugabilidad(lista_botones,evento)
+            juego_terminado = True
 
         elif boton_jugar["activo"]: 
-                pantalla["reemplazo_boton"] = True
+                pantalla["reemplazo_nombre"] = True
+                pantalla["reemplazo_nombre"] = True
                 
                 if juego_terminado == False:
 
@@ -210,6 +212,13 @@ while bandera:
 
 
     setear_pantalla(pantalla,colores)
+
+    # if pantalla["reemplazo_nombre"] == True:
+    #     boton_jugar["texto_del_boton"] = "REINICIO"
+    #     dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
+
+
+
 
     setear_acciones_pantalla(accion_a,accion_b)
 

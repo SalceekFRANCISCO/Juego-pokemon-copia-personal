@@ -115,7 +115,7 @@ def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reem
     pantalla["color_ventana"] = GRIS
     pantalla["lista_cuadrados"] = lista_cuadrados
     pantalla["boton_jugar"] = boton_jugar
-    pantalla["reemplazo_boton"] = reemplazo_boton
+    pantalla["reemplazo_nombre"] = reemplazo_boton
     pantalla["boton_reinicio"] = boton_reinicio
     pantalla["pokebola"] = pokebola
     pantalla["carta_1"] = carta_1

@@ -32,9 +32,15 @@ def setear_pantalla(pantalla,colores):
     dibujar_cuadrado_con_texto(pantalla["ganador_partida"])
     dibujar_cuadrado_con_texto(pantalla["atributo"])
 
-    if pantalla["reemplazo_boton"]:
-        dibujar_cuadrado_con_texto(pantalla["boton_reinicio"])
-        pantalla["boton_reinicio"]["color_actual"] = colores["blanco"]
+
+    if pantalla["reemplazo_nombre"]:
+        pantalla["boton_jugar"]["texto_del_boton"] = "REINICIO"
+        dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
+        pantalla["boton_jugar"]["color_actual"] = colores["blanco"]
+
+    # if pantalla["reemplazo_nombre"]:
+    #     dibujar_cuadrado_con_texto(pantalla["boton_reinicio"])
+    #     pantalla["boton_reinicio"]["color_actual"] = colores["blanco"]
 
     dibujar_imagenes(pantalla["pokebola"])
     
