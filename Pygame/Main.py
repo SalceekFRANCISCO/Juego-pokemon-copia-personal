@@ -42,13 +42,13 @@ colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
 #botones con accion
 boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
+boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
 boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
-boton_reinicio = crear_input(ventana,fuente,colores,(56,50),(200,60),"REINICIO",None)
 
 
 #region algunas funciones que hize
-def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,texto_del_boton=None) -> dict:
+def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto_del_boton=None) -> dict:
     boton = {}
     boton["ventana"] = ventana
     boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
@@ -58,6 +58,7 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
     boton["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
     boton["color_actual"] = colores["blanco"]
     boton["accion"] = accion
+    boton["lista_parametros"] = lista_parametros
 
     if texto_del_boton != None:
         boton["texto_del_boton"] = texto_del_boton
