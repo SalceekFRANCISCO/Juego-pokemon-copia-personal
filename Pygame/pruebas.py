@@ -33,3 +33,26 @@ def manejador_eventos():
 #
 #
 #
+                    
+  # elif evento.type == pygame.MOUSEBUTTONDOWN:
+        #     if boton_jugar["cuadrado"].collidepoint(evento.pos): 
+        #         # cambio_color(boton_jugar)
+        #         tiempo_inicial = pygame.time.get_ticks()  
+        #         cronometro_activo = True 
+            
+        #     #region cosas comentadas
+
+        #     # elif boton_nombre_uno["cuadrado"].collidepoint(evento.pos):
+        #     #     cambio_color(boton_nombre_uno)
+
+        #     # elif boton_nombre_dos["cuadrado"].collidepoint(evento.pos):
+        #     #     cambio_color(boton_nombre_dos)
+
+        #     # detectar_cambio_color(nueva_lista_x,evento)
+
+
+        #     # if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
+        #     #     cambio_color(boton_reinicio)
+                
+        #         # jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
+        #         #                         colores, cronometro_activo, tiempo_inicial)

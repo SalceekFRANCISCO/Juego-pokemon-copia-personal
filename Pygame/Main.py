@@ -40,14 +40,8 @@ jugadores = ["pepe","roberto"]
 
 colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
-#botones con accion
-boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
-boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
-boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
-
-
-#region algunas funciones que hize
-def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto_del_boton=None) -> dict:
+#region funciones
+def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
     boton = {}
     boton["ventana"] = ventana
     boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
@@ -59,24 +53,42 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
     boton["accion"] = accion
     boton["lista_parametros"] = lista_parametros
 
-    if texto_del_boton != None:
-        boton["texto_del_boton"] = texto_del_boton
-
-
-    return boton
-
-
-
-
-lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
-
+    if texto != None:
+        boton["texto"] = texto
 
 def detectar_cambio_color(lista_x,evento):
     for boton in lista_x:
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
-            # print("se cambio el color")
 
+def detectar_jugabilidad(lista_botones,evento):
+    for boton in lista_botones:
+        if boton["cuadrado"].collidepoint(evento.pos):
+            boton["accion"](boton["lista_parametros"],boton)
+
+
+
+#endregion
+
+
+#botones con accion
+boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
+boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
+
+boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
+
+lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
+
+tiempo_inicial = None
+cronometro_activo = False
+listas = ""
+pantalla = ""
+
+# parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
+
+# nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
+
+# lista_botones = [nuevo_boton_jugar]
 #endregion
 
 
@@ -86,13 +98,18 @@ def detectar_cambio_color(lista_x,evento):
 
 
 
-#botones con texto
+# region botones con texto
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
 pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
+#endregion
+#endregion
+
+
 reemplazo_nombre = False
+
 
 pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
                                       pokebola,carta_1,carta_2,jugadores,
@@ -101,6 +118,11 @@ pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,r
 
 listas = guardar_cartas(pantalla,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
+
+#endregion
+
+
+
 
 clock = pygame.time.Clock()
 
@@ -119,17 +141,7 @@ parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, crono
 nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
 
 lista_botones = [nuevo_boton_jugar]
-
-
-def detectar_jugabilidad(lista_botones,evento):
-    for boton in lista_botones:
-        if boton["cuadrado"].collidepoint(evento.pos):
-            boton["accion"](boton["lista_parametros"])
-
-
-
-
-
+# lista_botones = [boton_jugar]
 
 #region
 # mostrar ganador partida #!OK
@@ -175,20 +187,8 @@ while bandera:
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
-            # elif boton_nombre_uno["cuadrado"].collidepoint(evento.pos):
-            #     cambio_color(boton_nombre_uno)
-
-            # elif boton_nombre_dos["cuadrado"].collidepoint(evento.pos):
-            #     cambio_color(boton_nombre_dos)
-
             detectar_cambio_color(lista_x,evento)
-
-
-            # if boton_reinicio["cuadrado"].collidepoint(evento.pos): 
-            #     cambio_color(boton_reinicio)
                 
-                # jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
-                #                         colores, cronometro_activo, tiempo_inicial)
             detectar_jugabilidad(lista_botones,evento)
             juego_terminado = True
 
@@ -198,16 +198,13 @@ while bandera:
                 
                 if juego_terminado == False:
 
-                    # jugar(5, matriz_jerarquias_mezcladas, listas, pantalla, 
-                    #                     colores, cronometro_activo, tiempo_inicial)
-                    
                     detectar_jugabilidad(lista_botones,evento)
                     juego_terminado = True
 
 
 
-    setear_pantalla(pantalla,colores)
-
+    setear_pantalla(pantalla,colores,nuevo_boton_jugar)
+    
     setear_acciones_pantalla(accion_a,accion_b)
 
     actualizar()
