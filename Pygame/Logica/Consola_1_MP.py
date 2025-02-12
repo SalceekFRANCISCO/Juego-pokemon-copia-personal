@@ -83,7 +83,7 @@ def cargar_ganador_y_puntaje(pantalla:dict,resultado:str,contador_jugador_1:int,
 # parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
 
 
-def jugar(parametros,nuevo_boton_jugar):
+def jugar(parametros):
     
     cantidad_rondas = parametros[0]
     matriz_jerarquias_mezclada = parametros[1]
@@ -119,7 +119,7 @@ def jugar(parametros,nuevo_boton_jugar):
 
         actualizar()
 
-        setear_pantalla(pantalla,colores,nuevo_boton_jugar)
+        setear_pantalla(pantalla,colores)
 
         pygame.time.delay(1000)
 

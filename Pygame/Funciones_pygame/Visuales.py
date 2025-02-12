@@ -12,7 +12,7 @@ def setear_acciones_pantalla(accion_a,accion_b):
 
         setear_accion_pantalla(accion_b)
 
-def setear_pantalla(pantalla,colores,nuevo_boton_jugar):
+def setear_pantalla(pantalla,colores):
     """
     Configura y dibuja los elementos principales en la pantalla.
 
@@ -28,19 +28,14 @@ def setear_pantalla(pantalla,colores,nuevo_boton_jugar):
 
     dibujar_lista_cuadrados(pantalla["lista_cuadrados"])
 
-    # dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
-    dibujar_cuadrado_con_texto(nuevo_boton_jugar)
-
+    dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
     dibujar_cuadrado_con_texto(pantalla["ganador_partida"])
     dibujar_cuadrado_con_texto(pantalla["atributo"])
 
     if pantalla["reemplazo_nombre"]:
-        # pantalla["boton_jugar"]["texto"] = "REINICIO"
-        # dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
-        nuevo_boton_jugar["texto"] = "REINICIO"
-        dibujar_cuadrado_con_texto(nuevo_boton_jugar)
-
-        # pantalla["boton_jugar"]["color_actual"] = colores["blanco"]
+        pantalla["boton_jugar"]["texto"] = "REINICIO"
+        dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
+        pantalla["boton_jugar"]["color_actual"] = colores["blanco"]
 
     # if pantalla["reemplazo_nombre"]:
     #     dibujar_cuadrado_con_texto(pantalla["boton_reinicio"])

@@ -2,6 +2,14 @@ import pygame
 from variables import *
 from Logica.Consola_1_MP import *
 
+# objetivo: lograr que exitsa un solo boton_jugar en etse caso que sea nuevo_boton_jugar, ver la forma de que los parametros_jugar, los de pantalla puedan guardarse bien
+
+
+
+
+
+
+
 #region cambios y ocsas que ocupan espacio 
 # from Funciones_pygame.Visuales import *
 # from Funciones_pygame.Dicc_interaccion import *
@@ -27,7 +35,9 @@ from Logica.Consola_1_MP import *
 
 #endregion
 
+#region cosas 
 pygame.init() 
+
 
 ventana = inicializar_ventana()
 
@@ -39,6 +49,9 @@ fuente = ("Arial",20)
 jugadores = ["pepe","roberto"]
 
 colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
+
+#endregion
+
 
 #region funciones
 def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
@@ -56,6 +69,8 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
     if texto != None:
         boton["texto"] = texto
 
+    return boton
+
 def detectar_cambio_color(lista_x,evento):
     for boton in lista_x:
         if boton["cuadrado"].collidepoint(evento.pos):
@@ -64,7 +79,7 @@ def detectar_cambio_color(lista_x,evento):
 def detectar_jugabilidad(lista_botones,evento):
     for boton in lista_botones:
         if boton["cuadrado"].collidepoint(evento.pos):
-            boton["accion"](boton["lista_parametros"],boton)
+            boton["accion"](boton["lista_parametros"])
 
 
 
@@ -72,17 +87,20 @@ def detectar_jugabilidad(lista_botones,evento):
 
 
 #botones con accion
+#region boton_nombre_uno
 boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
+#endregion
 
 boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
 
 lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
 
-tiempo_inicial = None
-cronometro_activo = False
-listas = ""
-pantalla = ""
+#region
+# tiempo_inicial = None
+# cronometro_activo = False
+# listas = ""
+# pantalla = ""
 
 # parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
 
@@ -124,6 +142,7 @@ activar_cartas(listas,matriz_jerarquias_mezcladas)
 
 
 
+#region booleanos
 clock = pygame.time.Clock()
 
 tiempo_inicial = None
@@ -133,7 +152,7 @@ bandera_dos = False
 bandera_tres = False
 accion_a = None
 accion_b = None
-
+#endregion
 
 
 parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
@@ -141,7 +160,6 @@ parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, crono
 nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
 
 lista_botones = [nuevo_boton_jugar]
-# lista_botones = [boton_jugar]
 
 #region
 # mostrar ganador partida #!OK
@@ -182,18 +200,17 @@ while bandera:
 
                 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
-            if boton_jugar["cuadrado"].collidepoint(evento.pos): 
+            # if boton_jugar["cuadrado"].collidepoint(evento.pos): 
                 # cambio_color(boton_jugar)
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
-            detectar_cambio_color(lista_x,evento)
+                detectar_cambio_color(lista_x,evento)
                 
-            detectar_jugabilidad(lista_botones,evento)
-            juego_terminado = True
+                detectar_jugabilidad(lista_botones,evento)
+                juego_terminado = True
 
         elif boton_jugar["activo"]: 
-                pantalla["reemplazo_nombre"] = True
                 pantalla["reemplazo_nombre"] = True
                 
                 if juego_terminado == False:
@@ -202,8 +219,7 @@ while bandera:
                     juego_terminado = True
 
 
-
-    setear_pantalla(pantalla,colores,nuevo_boton_jugar)
+    setear_pantalla(pantalla,colores)
     
     setear_acciones_pantalla(accion_a,accion_b)
 
