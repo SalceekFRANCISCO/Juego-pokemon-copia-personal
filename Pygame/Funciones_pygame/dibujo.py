@@ -45,7 +45,7 @@ def dibujar_imagenes(imagen:dict):
     """
     imagen["ventana"].blit(imagen["imagen_final"],imagen["coordenadas"])
 
-def rellenar_superficie(pantalla:dict):
+def rellenar_superficie(pantalla:dict):#!usa ventana y color_ventnacolor_ventana
     """
     Llena toda la superficie de la ventana con un color.
 

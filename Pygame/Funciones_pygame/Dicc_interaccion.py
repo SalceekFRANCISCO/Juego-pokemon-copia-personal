@@ -168,7 +168,7 @@ def cambio_color(input_1):
     else:
         input_1["color_actual"] = input_1["color_inactivo"]
 
-def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):
+def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):#!usa ventana
     texto = {}
     texto["ventana"] = pantalla["ventana"]
     texto["texto_escrito"] = renderizar_mensaje((fuente[0],fuente[1]),texto_escrito,color_texto,color_fondo_texto)
@@ -277,7 +277,7 @@ def escribir_teclado(input_1, evento):
 
     return texto_final
 
-def guardar_texto(pantalla:dict,fuente:tuple,color_texto,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):
+def guardar_texto(pantalla:dict,fuente:tuple,color_texto,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):#!usa la ventana
     texto_pantalla = ""
     nombre_final = escribir_teclado(boton_nombre,evento)
 

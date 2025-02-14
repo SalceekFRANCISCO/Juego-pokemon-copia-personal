@@ -2,21 +2,7 @@ import pygame
 from variables import *
 from Logica.Consola_1_MP import *
 
-# objetivo: lograr que exitsa un solo boton_jugar en etse caso que sea nuevo_boton_jugar, ver la forma de que los parametros_jugar, los de pantalla puedan guardarse bien
-
-# opcion: crear_2 crear dos diccionarios, uno para datos pantalla, y uno para datos del juego
-# el dic pantalla se usa en:
-# main principal
-# consola 1 2 y 5
-# visuales
-# dibujo
-# y dicc ineraccion
-
-
-
-
-
-
+# objetivo conseguido!!!!
 
 #region cambios y ocsas que ocupan espacio 
 # from Funciones_pygame.Visuales import *
@@ -118,42 +104,67 @@ lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
 #endregion
 
 
-def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2):
-    pantalla_dos = {}
-    pantalla_dos["ventana"] = ventana
-    pantalla_dos["color_ventana"] = color_ventana
-    pantalla_dos["lista_cuadrados"] = lista_cuadrados
-    pantalla_dos["pokebola_imagen"] = pokebola
-    pantalla_dos["carta_1"] = carta_1
-    pantalla_dos["carta_2"] = carta_2
-
-    return pantalla_dos
-
-
-
-
-
-
-
 # region botones con texto
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
 pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
-#endregion
-#endregion
-
-
 reemplazo_nombre = False
 
+#endregion
+pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
-pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
-                                      pokebola,carta_1,carta_2,jugadores,
-                                      "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
-                                      ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 
-listas = guardar_cartas(pantalla,crear_diccionario_listas)
+
+def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv):
+    pantalla_dos = {}
+    pantalla_dos["ventana"] = ventana
+    pantalla_dos["color_ventana"] = color_ventana
+    pantalla_dos["lista_cuadrados"] = lista_cuadrados
+    pantalla_dos["pokebola"] = pokebola
+    pantalla_dos["carta_1"] = carta_1
+    pantalla_dos["carta_2"] = carta_2
+    pantalla_dos["path_json"] = path_json
+    pantalla_dos["path_csv"] = path_csv
+
+    return pantalla_dos
+
+def crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,reemplazo_nombre):
+
+    juego = {}
+    juego["jugador_1"] = jugadores[0]
+    juego["jugador_2"] = jugadores[1]
+    juego["ganador_partida"] = ganador_partida_final
+    juego["atributo"] = atributo
+    juego["boton_nombre_uno"] = boton_nombre_uno
+    juego["boton_nombre_dos"] = boton_nombre_dos
+    juego["reemplazo_nombre"] = reemplazo_nombre
+    juego["boton_jugar"] = boton_jugar
+
+    return juego
+
+pantalla_config = crear_datos_pantalla(ventana,GRIS,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv")
+
+elementos_juego = crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,reemplazo_nombre)
+
+
+def detectar_cambio_nombre(lista_botones):
+    for boton in lista_botones:
+        if boton["activo"]: 
+            boton["texto"]= "REINICIO"
+
+#endregion
+
+
+
+
+# pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
+#                                       pokebola,carta_1,carta_2,jugadores,
+#                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
+#                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
+
+listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
 
 #endregion
@@ -174,7 +185,7 @@ accion_b = None
 #endregion
 
 
-parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
+parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla_config,elementos_juego,colores, cronometro_activo, tiempo_inicial]
 
 nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
 
@@ -208,12 +219,12 @@ while bandera:
 
         if evento.type == pygame.KEYDOWN:
             if boton_nombre_uno["activo"]:
-                texto_pantalla= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
+                texto_pantalla= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)#!usan la ventana
                 bandera_dos = True
                 accion_a = crear_diccionario_acciones(bandera_dos,texto_pantalla)
            
             if boton_nombre_dos["activo"]:
-                texto_pantalla_dos= guardar_texto(pantalla,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)
+                texto_pantalla_dos= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
                 bandera_tres = True
                 accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
 
@@ -224,14 +235,14 @@ while bandera:
                 tiempo_inicial = pygame.time.get_ticks()  
                 cronometro_activo = True 
 
-                detectar_cambio_color(lista_x,evento)
-                # detectar_cambio_color(lista_botones,evento)
+                # detectar_cambio_color(lista_x,evento)
+                detectar_cambio_color(lista_botones,evento)
                 
                 detectar_jugabilidad(lista_botones,evento)
                 juego_terminado = True
 
-        elif boton_jugar["activo"]: 
-                pantalla["reemplazo_nombre"] = True
+                detectar_cambio_nombre(lista_botones)
+                print(nuevo_boton_jugar["texto"])
                 
                 if juego_terminado == False:
 
@@ -239,8 +250,10 @@ while bandera:
                     juego_terminado = True
 
 
-    setear_pantalla(pantalla,colores)
-    
+    setear_pantalla(pantalla_config,elementos_juego,colores)#!usa ambos diccionarios
+
+    dibujar(nuevo_boton_jugar,dibujar_cuadrado_con_texto)
+
     setear_acciones_pantalla(accion_a,accion_b)
 
     actualizar()

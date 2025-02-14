@@ -27,7 +27,7 @@ def guardar_cartas(pantalla:dict,funcion)->dict:
         dict: _description_
     """
     listas = funcion()
-    listas["lista_cartas"] = obtener_datos(pantalla)
+    listas["lista_cartas"] = obtener_datos(pantalla)#!path csv
     
     return listas
 
@@ -115,11 +115,11 @@ def mostrar_ganador_ronda(resultado: str, pantalla)->str:#!MODIFICADA AHORA RETO
     
     if resultado == "1":
         # print(f"GANA: ¡¡{jugador_1}!!")
-        jugador_ganador = pantalla["jugador_1"]
+        jugador_ganador = pantalla["jugador_1"]#!jugadores, otro diccionario
 
     elif resultado == "2":
         # print(f"GANA: ¡¡{jugador_2}!!")
-        jugador_ganador = pantalla["jugador_2"]
+        jugador_ganador = pantalla["jugador_2"]#!jugadores, otro diccionario
 
     elif resultado == "Empate":
         # print("¡¡Es un empate!!")
@@ -201,12 +201,12 @@ def determinar_ganador_partida(pantalla:dict,listas:dict) -> str:
     """
     
     if len(listas["lista_jugador_uno"]) > len(listas["lista_jugador_dos"]):
-        ganador = pantalla["jugador_1"]
+        ganador = pantalla["jugador_1"]#!jugadores 
         # print(f"El ganador de la partida es: {jugador_1}")
 
 
     elif len(listas["lista_jugador_uno"]) < len(listas["lista_jugador_dos"]):
-        ganador = pantalla["jugador_2"]
+        ganador = pantalla["jugador_2"]#!jugadores 
         # print(f"El ganador de la partida es: {jugador_2}")
 
     else: 
@@ -217,10 +217,10 @@ def determinar_ganador_partida(pantalla:dict,listas:dict) -> str:
 
 def calcular_puntaje(listas, pantalla, jugador_ganador):
     
-    if jugador_ganador == pantalla["jugador_1"]:
+    if jugador_ganador == pantalla["jugador_1"]:#!jugadores 
         puntaje = len(listas["lista_jugador_uno"])
     
-    elif jugador_ganador == pantalla["jugador_2"]:
+    elif jugador_ganador == pantalla["jugador_2"]:#!jugadores 
         puntaje = len(listas["lista_jugador_dos"])
     
     elif jugador_ganador == "Empate":
@@ -239,7 +239,7 @@ def obtener_datos(pantalla:dict)->list[dict]:
         list[dict]: Lista de diccionarios en donde cada diccionario representa
         una carta.
     """
-    lista_atributos = leer_csv(pantalla["path_csv"])
+    lista_atributos = leer_csv(pantalla["path_csv"])#!path csv
 
     nueva_lista = []
 

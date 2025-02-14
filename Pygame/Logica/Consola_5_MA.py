@@ -66,7 +66,7 @@ def verificar_existencia_archivo_json(path_json):
 
     return existe
 
-def guardar_resultados(pantalla:dict ,puntaje: int, jugador: str):
+def guardar_resultados(pantalla:dict ,puntaje: int, jugador: str):#! PATH JSON
     """Descripcion: Guarda las estadisticas del jugador ganador
 
     Args:

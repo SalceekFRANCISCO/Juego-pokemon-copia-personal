@@ -12,38 +12,22 @@ def setear_acciones_pantalla(accion_a,accion_b):
 
         setear_accion_pantalla(accion_b)
 
-def setear_pantalla(pantalla,colores):
-    """
-    Configura y dibuja los elementos principales en la pantalla.
+def setear_pantalla(pantalla_config,elementos_juego,colores):#! va a necesitar ambos diccionarios
 
-    Args:
-        pantalla (dict): Diccionario con los datos de la pantalla.
-        colores (dict): Diccionario de colores para la interfaz.
-    """
+    dibujar(pantalla_config,rellenar_superficie)
 
-    dibujar(pantalla,rellenar_superficie)
+    dibujar(elementos_juego["boton_nombre_uno"],mostrar_texbox_pantalla)
+    dibujar(elementos_juego["boton_nombre_dos"],mostrar_texbox_pantalla)
 
-    dibujar(pantalla["boton_nombre_uno"],mostrar_texbox_pantalla)
-    dibujar(pantalla["boton_nombre_dos"],mostrar_texbox_pantalla)
+    dibujar_lista_cuadrados(pantalla_config["lista_cuadrados"])
 
-    dibujar_lista_cuadrados(pantalla["lista_cuadrados"])
+    dibujar_cuadrado_con_texto(elementos_juego["boton_jugar"])
+    dibujar_cuadrado_con_texto(elementos_juego["ganador_partida"])
+    dibujar_cuadrado_con_texto(elementos_juego["atributo"])
 
-    dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
-    dibujar_cuadrado_con_texto(pantalla["ganador_partida"])
-    dibujar_cuadrado_con_texto(pantalla["atributo"])
-
-    if pantalla["reemplazo_nombre"]:
-        pantalla["boton_jugar"]["texto"] = "REINICIO"
-        dibujar_cuadrado_con_texto(pantalla["boton_jugar"])
-        pantalla["boton_jugar"]["color_actual"] = colores["blanco"]
-
-    # if pantalla["reemplazo_nombre"]:
-    #     dibujar_cuadrado_con_texto(pantalla["boton_reinicio"])
-    #     pantalla["boton_reinicio"]["color_actual"] = colores["blanco"]
-
-    dibujar_imagenes(pantalla["pokebola"])
+    dibujar_imagenes(pantalla_config["pokebola"])
     
-    dibujar_rectangulo_cartas(pantalla["carta_1"],pantalla["carta_2"])
+    dibujar_rectangulo_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
 
 def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
     """
@@ -90,7 +74,7 @@ def actualizar():
     """
     pygame.display.update()
 
-def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):
+def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):#! ventana
     texto = {}
     texto["ventana"] = pantalla["ventana"]
     texto["texto_escrito"] = renderizar_mensaje((fuente[0],fuente[1]),texto_escrito,color_texto,color_fondo_texto)
@@ -98,7 +82,7 @@ def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,c
 
     return texto
 
-def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_fondo_texto):
+def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_fondo_texto):#! ventana
     """
     Muestra texto en la ventana.
 
@@ -198,7 +182,7 @@ def crear_temporizador(ventana, fuente, posicion, dimensiones, tiempo, color) ->
 
     return temporizador
 
-def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):
+def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! ventana
     """
     Muestra un cronómetro en la ventana si está activo.
 
