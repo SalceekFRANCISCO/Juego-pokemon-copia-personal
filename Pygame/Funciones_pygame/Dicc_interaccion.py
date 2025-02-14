@@ -88,48 +88,87 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 
     return colores
 
-def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
-                               pokebola, carta_1, carta_2, jugadores, 
-                               path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
-    """
-    Crea un diccionario que almacena los datos principales de la pantalla.
+# def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
+#                                pokebola, carta_1, carta_2, jugadores, 
+#                                path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
+#     """
+#     Crea un diccionario que almacena los datos principales de la pantalla.
 
-    Args:
-        ventana: Superficie de Pygame donde se dibujarán los elementos.
-        GRIS: Color de fondo de la ventana.
-        lista_cuadrados (list): Lista de cuadrados en la pantalla.
-        boton_jugar: Botón de inicio del juego.
-        reemplazo_boton: Botón de reemplazo para alguna acción específica.
-        boton_reinicio: Botón para reiniciar el juego.
-        pokebola: Imagen o referencia a la pokebola.
-        carta_1, carta_2: Cartas asociadas a los jugadores.
-        jugadores (list): Lista de jugadores (jugador 1 y jugador 2).
-        path_json (str): Ruta al archivo JSON relacionado.
-        path_csv (str): Ruta al archivo CSV relacionado.
+#     Args:
+#         ventana: Superficie de Pygame donde se dibujarán los elementos.
+#         GRIS: Color de fondo de la ventana.
+#         lista_cuadrados (list): Lista de cuadrados en la pantalla.
+#         boton_jugar: Botón de inicio del juego.
+#         reemplazo_boton: Botón de reemplazo para alguna acción específica.
+#         boton_reinicio: Botón para reiniciar el juego.
+#         pokebola: Imagen o referencia a la pokebola.
+#         carta_1, carta_2: Cartas asociadas a los jugadores.
+#         jugadores (list): Lista de jugadores (jugador 1 y jugador 2).
+#         path_json (str): Ruta al archivo JSON relacionado.
+#         path_csv (str): Ruta al archivo CSV relacionado.
 
-    Returns:
-        dict: Diccionario con los datos de la pantalla.
-    """
-    pantalla = {}
-    pantalla["ventana"] = ventana
-    pantalla["color_ventana"] = GRIS
-    pantalla["lista_cuadrados"] = lista_cuadrados
-    pantalla["boton_jugar"] = boton_jugar
-    pantalla["reemplazo_nombre"] = reemplazo_boton
-    # pantalla["boton_reinicio"] = boton_reinicio
-    pantalla["pokebola"] = pokebola
-    pantalla["carta_1"] = carta_1
-    pantalla["carta_2"] = carta_2
-    pantalla["jugador_1"] = jugadores[0]
-    pantalla["jugador_2"] = jugadores[1]
-    pantalla["path_json"] = path_json
-    pantalla["path_csv"] = path_csv
-    pantalla["ganador_partida"] = boton_ganador_partida
-    pantalla["atributo"] = atributo
-    pantalla["boton_nombre_uno"] = boton_nombre_uno
-    pantalla["boton_nombre_dos"] = boton_nombre_dos
+#     Returns:
+#         dict: Diccionario con los datos de la pantalla.
+#     """
+#     pantalla = {}
+#     pantalla["ventana"] = ventana
+#     pantalla["color_ventana"] = GRIS
+#     pantalla["lista_cuadrados"] = lista_cuadrados
+#     pantalla["boton_jugar"] = boton_jugar
+#     pantalla["reemplazo_nombre"] = reemplazo_boton
+#     # pantalla["boton_reinicio"] = boton_reinicio
+#     pantalla["pokebola"] = pokebola
+#     pantalla["carta_1"] = carta_1
+#     pantalla["carta_2"] = carta_2
+#     pantalla["jugador_1"] = jugadores[0]
+#     pantalla["jugador_2"] = jugadores[1]
+#     pantalla["path_json"] = path_json
+#     pantalla["path_csv"] = path_csv
+#     pantalla["ganador_partida"] = boton_ganador_partida
+#     pantalla["atributo"] = atributo
+#     pantalla["boton_nombre_uno"] = boton_nombre_uno
+#     pantalla["boton_nombre_dos"] = boton_nombre_dos
 
-    return pantalla
+#     return pantalla
+
+
+def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv):
+    pantalla_dos = {}
+    pantalla_dos["ventana"] = ventana
+    pantalla_dos["color_ventana"] = color_ventana
+    pantalla_dos["lista_cuadrados"] = lista_cuadrados
+    pantalla_dos["pokebola"] = pokebola
+    pantalla_dos["carta_1"] = carta_1
+    pantalla_dos["carta_2"] = carta_2
+    pantalla_dos["path_json"] = path_json
+    pantalla_dos["path_csv"] = path_csv
+
+    return pantalla_dos
+
+def crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar):
+
+    juego = {}
+    juego["jugador_1"] = jugadores[0]
+    juego["jugador_2"] = jugadores[1]
+    juego["ganador_partida"] = ganador_partida_final
+    juego["atributo"] = atributo
+    juego["boton_nombre_uno"] = boton_nombre_uno
+    juego["boton_nombre_dos"] = boton_nombre_dos
+    juego["boton_jugar"] = boton_jugar
+
+    return juego
+
+
+
+
+
+
+
+
+
+
+
+
 
 def crear_diccionario_acciones(bandera,texto_pantalla):
     accion = {}
@@ -253,9 +292,6 @@ def crear_matriz_jerarquias():
 
     return matriz_jerarquias_mezclada
 
-
-#region nuevas funciones para escribir por pantalla
-############################################################# 
 def escribir_teclado(input_1, evento):
     texto_final = ""
     if input_1["activo"]:
@@ -285,4 +321,35 @@ def guardar_texto(pantalla:dict,fuente:tuple,color_texto,boton_nombre:dict,posic
             
     return texto_pantalla
 
+def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
+    boton = {}
+    boton["ventana"] = ventana
+    boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    boton["color_activo"] = colores["dorado"]
+    boton["color_inactivo"] = colores["blanco"]
+    boton["activo"] = False
+    boton["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
+    boton["color_actual"] = colores["blanco"]
+    boton["accion"] = accion
+    boton["lista_parametros"] = lista_parametros
+
+    if texto != None:
+        boton["texto"] = texto
+
+    return boton
+
+def detectar_cambio_color(lista,evento):
+    for boton in lista:
+        if boton["cuadrado"].collidepoint(evento.pos):
+            cambio_color(boton)
+
+def detectar_jugabilidad(lista,evento):
+    for boton in lista:
+        if boton["cuadrado"].collidepoint(evento.pos):
+            boton["accion"](boton["lista_parametros"])
+
+def detectar_cambio_nombre(lista_botones):
+    for boton in lista_botones:
+        if boton["activo"]: 
+            boton["texto"]= "REINICIO"
 #endregion

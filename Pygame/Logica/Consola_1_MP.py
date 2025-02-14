@@ -130,4 +130,4 @@ def jugar(parametros):
     actualizar()
 
     puntaje = calcular_puntaje(listas,elementos_juego, ganador_partida)#! usa los jugadores, otro diccionario
-    guardar_resultados(pantalla_config, puntaje, ganador_partida)#! usa el path json, el dicc principal
+    guardar_resultados(pantalla_config, puntaje, ganador_partida)#

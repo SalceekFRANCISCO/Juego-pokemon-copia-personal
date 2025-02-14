@@ -2,7 +2,7 @@ import pygame
 from variables import *
 from Logica.Consola_1_MP import *
 
-# objetivo conseguido!!!!
+# nuevo objetivo, probar poner los jugadores en el dic prinicpal, asi podes pasar al nuevo boton jugar como elemento para setear en pantalla
 
 #region cambios y ocsas que ocupan espacio 
 # from Funciones_pygame.Visuales import *
@@ -48,35 +48,11 @@ colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
 
 #region funciones
-def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
-    boton = {}
-    boton["ventana"] = ventana
-    boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
-    boton["color_activo"] = colores["dorado"]
-    boton["color_inactivo"] = colores["blanco"]
-    boton["activo"] = False
-    boton["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
-    boton["color_actual"] = colores["blanco"]
-    boton["accion"] = accion
-    boton["lista_parametros"] = lista_parametros
 
-    if texto != None:
-        boton["texto"] = texto
-
-    return boton
-
-def detectar_cambio_color(lista_x,evento):
-    for boton in lista_x:
-        if boton["cuadrado"].collidepoint(evento.pos):
-            cambio_color(boton)
-
-def detectar_jugabilidad(lista_botones,evento):
-    for boton in lista_botones:
-        if boton["cuadrado"].collidepoint(evento.pos):
-            boton["accion"](boton["lista_parametros"])
-
-
-
+# pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
+#                                       pokebola,carta_1,carta_2,jugadores,
+#                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
+#                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 #endregion
 
 
@@ -90,17 +66,6 @@ boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
 
 lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
 
-#region
-# tiempo_inicial = None
-# cronometro_activo = False
-# listas = ""
-# pantalla = ""
-
-# parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
-
-# nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
-
-# lista_botones = [nuevo_boton_jugar]
 #endregion
 
 
@@ -110,52 +75,14 @@ atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sort
 
 pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
 
-reemplazo_nombre = False
-
 #endregion
-pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
-
-
-
-def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv):
-    pantalla_dos = {}
-    pantalla_dos["ventana"] = ventana
-    pantalla_dos["color_ventana"] = color_ventana
-    pantalla_dos["lista_cuadrados"] = lista_cuadrados
-    pantalla_dos["pokebola"] = pokebola
-    pantalla_dos["carta_1"] = carta_1
-    pantalla_dos["carta_2"] = carta_2
-    pantalla_dos["path_json"] = path_json
-    pantalla_dos["path_csv"] = path_csv
-
-    return pantalla_dos
-
-def crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,reemplazo_nombre):
-
-    juego = {}
-    juego["jugador_1"] = jugadores[0]
-    juego["jugador_2"] = jugadores[1]
-    juego["ganador_partida"] = ganador_partida_final
-    juego["atributo"] = atributo
-    juego["boton_nombre_uno"] = boton_nombre_uno
-    juego["boton_nombre_dos"] = boton_nombre_dos
-    juego["reemplazo_nombre"] = reemplazo_nombre
-    juego["boton_jugar"] = boton_jugar
-
-    return juego
 
 pantalla_config = crear_datos_pantalla(ventana,GRIS,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv")
 
-elementos_juego = crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,reemplazo_nombre)
 
-
-def detectar_cambio_nombre(lista_botones):
-    for boton in lista_botones:
-        if boton["activo"]: 
-            boton["texto"]= "REINICIO"
+elementos_juego = crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar)
 
 #endregion
-
 
 
 
