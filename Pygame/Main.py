@@ -4,6 +4,14 @@ from Logica.Consola_1_MP import *
 
 # objetivo: lograr que exitsa un solo boton_jugar en etse caso que sea nuevo_boton_jugar, ver la forma de que los parametros_jugar, los de pantalla puedan guardarse bien
 
+# opcion: crear_2 crear dos diccionarios, uno para datos pantalla, y uno para datos del juego
+# el dic pantalla se usa en:
+# main principal
+# consola 1 2 y 5
+# visuales
+# dibujo
+# y dicc ineraccion
+
 
 
 
@@ -110,6 +118,17 @@ lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
 #endregion
 
 
+def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2):
+    pantalla_dos = {}
+    pantalla_dos["ventana"] = ventana
+    pantalla_dos["color_ventana"] = color_ventana
+    pantalla_dos["lista_cuadrados"] = lista_cuadrados
+    pantalla_dos["pokebola_imagen"] = pokebola
+    pantalla_dos["carta_1"] = carta_1
+    pantalla_dos["carta_2"] = carta_2
+
+    return pantalla_dos
+
 
 
 
@@ -206,6 +225,7 @@ while bandera:
                 cronometro_activo = True 
 
                 detectar_cambio_color(lista_x,evento)
+                # detectar_cambio_color(lista_botones,evento)
                 
                 detectar_jugabilidad(lista_botones,evento)
                 juego_terminado = True
