@@ -145,7 +145,15 @@ elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_
 
 
 
-lista_botones = [nuevo_boton_jugar,boton_nombre_uno,boton_nombre_dos]
+lista_botones = [nuevo_boton_jugar]
+
+lista_botones_nombre = [boton_nombre_uno,boton_nombre_dos]
+
+def detectar_jugabilidad_dos(lista,evento):
+    for boton in lista:
+        if boton["cuadrado"].collidepoint(evento.pos):
+            boton["accion"](boton["lista_parametros"])
+
 
 #region
 # mostrar ganador partida #!OK
@@ -195,15 +203,14 @@ while bandera_juego:
                 detectar_cambio_color(lista_botones,evento)
                 
                 detectar_jugabilidad(lista_botones,evento,elementos_juego)
-                juego_terminado = True
+                # juego_terminado = True
 
                 detectar_cambio_nombre(lista_botones)
-                print(nuevo_boton_jugar["texto"])
                 
-                if juego_terminado == False:
+                # if juego_terminado == False:
 
-                    detectar_jugabilidad(lista_botones,evento)
-                    juego_terminado = True
+                #     detectar_jugabilidad(lista_botones,evento)
+                #     juego_terminado = True
 
 
     setear_pantalla(pantalla_config,elementos_juego,colores)#!usa ambos diccionarios

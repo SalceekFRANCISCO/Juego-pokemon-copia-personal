@@ -291,28 +291,38 @@ def crear_matriz_jerarquias():
 
     return matriz_jerarquias_mezclada
 
-def escribir_teclado(input_1, evento):
+def escribir_teclado(boton, evento):
     texto_final = ""
-    if input_1["activo"]:
+    if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
-            input_1["texto_escritura"] = input_1["texto_escritura"][:-1]
-            texto_final = input_1["texto_escritura"]
+            boton["texto_escritura"] = boton["texto_escritura"][:-1]
+            texto_final = boton["texto_escritura"]
 
         elif evento.key == pygame.K_RCTRL:
             texto_final = ""
-            input_1["texto_escritura"] = ""
+            boton["texto_escritura"] = ""
 
         elif evento.key == pygame.K_RETURN:
-            input_1["activo"] = False
-            input_1["color_actual"] = input_1["color_inactivo"]
-            texto_final = input_1["texto_escritura"] 
+            boton["activo"] = False
+            boton["color_actual"] = boton["color_inactivo"]
+            texto_final = boton["texto_escritura"] 
         else:
-            input_1["texto_escritura"] += evento.unicode
-            texto_final = input_1["texto_escritura"]
+            boton["texto_escritura"] += evento.unicode
+            texto_final = boton["texto_escritura"]
 
     return texto_final
 
-def guardar_texto(pantalla:dict,fuente:tuple,color_texto,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):#!usa la ventana
+# def guardar_texto(pantalla:dict,fuente:tuple,color_texto:tuple,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):#!usa la ventana
+def guardar_texto(parametros):
+    pantalla = parametros[0]
+    fuente = parametros[1]
+    color_texto = parametros[2]
+    boton_nombre = parametros[3]
+    posicion_texto =  parametros[4]
+    evento =  parametros[5]
+    color_fondo_texto = parametros[6]
+
+
     texto_pantalla = ""
     nombre_final = escribir_teclado(boton_nombre,evento)
 
