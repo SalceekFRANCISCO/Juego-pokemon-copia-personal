@@ -220,7 +220,6 @@ while bandera_juego:
 
     dibujar(nuevo_boton_jugar,dibujar_cuadrado_con_texto)
     
-
     setear_acciones_pantalla(accion_a,accion_b)
 
     actualizar()
