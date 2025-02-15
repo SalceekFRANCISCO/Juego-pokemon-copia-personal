@@ -270,7 +270,7 @@ def renderizar_texto(fuente_creada: str, mensaje: str, color_texto: tuple, color
     return texto
 
 def mostrar_texbox_pantalla(input):
-    superficie = input["fuente"].render(input["texto_escritura"],False,"Black")
+    superficie = input["fuente"].render(input["texto"],False,"Black")
     input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
     pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
 

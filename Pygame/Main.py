@@ -123,21 +123,29 @@ nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,pa
 # boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 # boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 
-# nuevo_boton_nomre = crear_boton(ventana,fuente,colores,(56,50),(200,60),)
+evento = ""
+
+parametros_nombre = [pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None]
+
+parametros_nombre_dos = [pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None]
+
+
+boton_nombre_uno = crear_boton(ventana,fuente,colores,(907,205),(175,60),guardar_texto,parametros_nombre,"")
+boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),guardar_texto,parametros_nombre_dos,"")
 
 
 
 
 
 
-lista_x = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
+# lista_x = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 
 elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
 
 
 
 
-lista_botones = [nuevo_boton_jugar]
+lista_botones = [nuevo_boton_jugar,boton_nombre_uno,boton_nombre_dos]
 
 #region
 # mostrar ganador partida #!OK
