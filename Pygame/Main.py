@@ -180,6 +180,7 @@ while bandera:
     setear_pantalla(pantalla_config,elementos_juego,colores)#!usa ambos diccionarios
 
     dibujar(nuevo_boton_jugar,dibujar_cuadrado_con_texto)
+    
 
     setear_acciones_pantalla(accion_a,accion_b)
 

@@ -528,5 +528,10 @@
         "nombre_jugador": "roberto",
         "fecha_victoria": "14/02/2025",
         "puntaje_obtenido": 130
+    },
+    {
+        "nombre_jugador": "roberto",
+        "fecha_victoria": "15/02/2025",
+        "puntaje_obtenido": 128
     }
 ]
