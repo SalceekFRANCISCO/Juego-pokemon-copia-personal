@@ -42,6 +42,12 @@ def cargar_ganador_y_puntaje(pantalla:dict,resultado:str,contador_jugador_1:int,
 
     return puntajes
 
+def mostrar_atributo(listas:dict,pantalla_config:dict,colores:dict)->str:
+    atributo = sortear_atributos(listas["lista_cartas"])
+    mostrar_texto(pantalla_config, ("Arial", 50),atributo,colores["negro"], (1024,539),None)
+
+    return atributo
+
 def mostrar_ganador_partida(pantalla_config:dict,listas:dict,colores:dict) -> str:
     
     ganador_partida = determinar_ganador_partida(pantalla_config,listas)#! usa los jugadores, otro diccionario
@@ -107,18 +113,14 @@ def actualizar_datos(pantalla_config:dict,elementos_juego:dict,colores:dict):
 
 def jugar(parametros,elementos_juego):
     
-    
     cantidad_rondas = parametros[0]
     matriz_jerarquias_mezclada = parametros[1]
     listas = parametros[2]
     pantalla_config = parametros[3]
-    # elementos_juego = parametros[4]
     colores = parametros[4]
     cronometro_activo = parametros[5]
     tiempo_inicial = parametros[6]
 
-# def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
-#                         pantalla, colores,cronometro_activo,tiempo_inicial):
     contador = 0
     contador_jugador_1 = 0
     contador_jugador_2 = 0
@@ -131,8 +133,7 @@ def jugar(parametros,elementos_juego):
 
         cargar_cartas(listas,pantalla_config,colores)#!usa la ventana
         
-        atributo = sortear_atributos(listas["lista_cartas"])
-        mostrar_texto(pantalla_config, ("Arial", 50),atributo,colores["negro"], (1024,539),None)#!usa la ventana
+        atributo = mostrar_atributo(listas,pantalla_config,colores)
 
         resultado = comparar_atributos(listas, matriz_jerarquias_mezclada,atributo)
         agregar_cartas(resultado,listas)

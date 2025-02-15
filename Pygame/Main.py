@@ -2,6 +2,9 @@ import pygame
 from variables import *
 from Logica.Consola_1_MP import *
 
+
+#NUEVO OBJETIVO: 
+
 #objetivo logrado!!!!
 
 
