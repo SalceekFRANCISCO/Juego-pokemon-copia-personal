@@ -132,7 +132,7 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 #     return pantalla
 
 
-def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv):
+def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv,jugadores):
     pantalla_dos = {}
     pantalla_dos["ventana"] = ventana
     pantalla_dos["color_ventana"] = color_ventana
@@ -142,14 +142,13 @@ def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,
     pantalla_dos["carta_2"] = carta_2
     pantalla_dos["path_json"] = path_json
     pantalla_dos["path_csv"] = path_csv
+    pantalla_dos["jugador_1"] = jugadores[0]
+    pantalla_dos["jugador_2"] = jugadores[1]
 
     return pantalla_dos
 
-def crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar):
-
+def crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar):
     juego = {}
-    juego["jugador_1"] = jugadores[0]
-    juego["jugador_2"] = jugadores[1]
     juego["ganador_partida"] = ganador_partida_final
     juego["atributo"] = atributo
     juego["boton_nombre_uno"] = boton_nombre_uno
@@ -343,10 +342,10 @@ def detectar_cambio_color(lista,evento):
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
 
-def detectar_jugabilidad(lista,evento):
+def detectar_jugabilidad(lista,evento,elementos_juego):
     for boton in lista:
         if boton["cuadrado"].collidepoint(evento.pos):
-            boton["accion"](boton["lista_parametros"])
+            boton["accion"](boton["lista_parametros"],elementos_juego)
 
 def detectar_cambio_nombre(lista_botones):
     for boton in lista_botones:

@@ -2,6 +2,10 @@ import pygame
 from variables import *
 from Logica.Consola_1_MP import *
 
+#objetivo logrado!!!!
+
+
+
 # nuevo objetivo, probar poner los jugadores en el dic prinicpal, asi podes pasar al nuevo boton jugar como elemento para setear en pantalla
 
 #region cambios y ocsas que ocupan espacio 
@@ -62,9 +66,9 @@ boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,""
 boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 #endregion
 
-boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
+# boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
 
-lista_x = [boton_nombre_uno,boton_nombre_dos,boton_jugar]
+# lista_x = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 
 #endregion
 
@@ -77,10 +81,10 @@ pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),
 
 #endregion
 
-pantalla_config = crear_datos_pantalla(ventana,GRIS,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv")
+pantalla_config = crear_datos_pantalla(ventana,GRIS,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",jugadores)
 
 
-elementos_juego = crear_datos_juego(jugadores,ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar)
+# elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar)
 
 #endregion
 
@@ -104,7 +108,7 @@ clock = pygame.time.Clock()
 
 tiempo_inicial = None
 cronometro_activo = False
-bandera = True
+bandera_juego = True
 bandera_dos = False
 bandera_tres = False
 accion_a = None
@@ -112,9 +116,26 @@ accion_b = None
 #endregion
 
 
-parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla_config,elementos_juego,colores, cronometro_activo, tiempo_inicial]
+parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla_config,colores,cronometro_activo,tiempo_inicial]
 
 nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
+
+# boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
+# boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
+
+# nuevo_boton_nomre = crear_boton(ventana,fuente,colores,(56,50),(200,60),)
+
+
+
+
+
+
+lista_x = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
+
+elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
+
+
+
 
 lista_botones = [nuevo_boton_jugar]
 
@@ -135,11 +156,11 @@ lista_botones = [nuevo_boton_jugar]
 juego_terminado = False
 
 
-while bandera: 
+while bandera_juego: 
     lista_eventos = pygame.event.get()
     for evento in lista_eventos:
         if evento.type == pygame.QUIT:
-            bandera = False
+            bandera_juego = False
         # elif evento.type == pygame.MOUSEMOTION:
         #     x,y = evento.pos
         #     # print(x,y) #Saber que cordenadas son en la pantalla
@@ -165,7 +186,7 @@ while bandera:
                 # detectar_cambio_color(lista_x,evento)
                 detectar_cambio_color(lista_botones,evento)
                 
-                detectar_jugabilidad(lista_botones,evento)
+                detectar_jugabilidad(lista_botones,evento,elementos_juego)
                 juego_terminado = True
 
                 detectar_cambio_nombre(lista_botones)

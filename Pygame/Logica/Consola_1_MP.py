@@ -29,16 +29,16 @@ def contar_rondas_jugador(resultado:str,contador_jugador_1:int,contador_jugador_
 
     return [contador_jugador_1,contador_jugador_2]
 
-def cargar_ganador_y_puntaje(pantalla:dict,elementos_pantalla,resultado:str,contador_jugador_1:int,contador_jugador_2:int,colores:dict):
+def cargar_ganador_y_puntaje(pantalla:dict,resultado:str,contador_jugador_1:int,contador_jugador_2:int,colores:dict):
 
     ganador_ronda = mostrar_ganador_ronda(resultado, pantalla)#! necesita los jugadores
     
-    mostrar_texto(elementos_pantalla, ("Arial", 40), ganador_ronda, colores["negro"],(70,450),colores["blanco"])#! muestarn ventana
+    mostrar_texto(pantalla, ("Arial", 40), ganador_ronda, colores["negro"],(70,450),colores["blanco"])#! muestarn ventana
     
     puntajes = contar_rondas_jugador(resultado,contador_jugador_1,contador_jugador_2)
 
-    mostrar_texto(elementos_pantalla, ("Arial", 50), str(puntajes[0]), colores["negro"], (103, 310),None)#! muestarn ventana
-    mostrar_texto(elementos_pantalla, ("Arial", 50), str(puntajes[1]), colores["negro"], (180, 310),None)#! muestarn ventana
+    mostrar_texto(pantalla, ("Arial", 50), str(puntajes[0]), colores["negro"], (103, 310),None)#! muestarn ventana
+    mostrar_texto(pantalla, ("Arial", 50), str(puntajes[1]), colores["negro"], (180, 310),None)#! muestarn ventana
 
     return puntajes
 
@@ -84,16 +84,17 @@ def cargar_ganador_y_puntaje(pantalla:dict,elementos_pantalla,resultado:str,cont
 # parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla,colores, cronometro_activo, tiempo_inicial]
 #endregion
 
-def jugar(parametros):
+def jugar(parametros,elementos_juego):
+    
     
     cantidad_rondas = parametros[0]
     matriz_jerarquias_mezclada = parametros[1]
     listas = parametros[2]
     pantalla_config = parametros[3]
-    elementos_juego = parametros[4]
-    colores = parametros[5]
-    cronometro_activo = parametros[6]
-    tiempo_inicial = parametros[7]
+    # elementos_juego = parametros[4]
+    colores = parametros[4]
+    cronometro_activo = parametros[5]
+    tiempo_inicial = parametros[6]
 
 # def jugar(cantidad_rondas, matriz_jerarquias_mezclada,listas, 
 #                         pantalla, colores,cronometro_activo,tiempo_inicial):
@@ -115,7 +116,7 @@ def jugar(parametros):
         resultado = comparar_atributos(listas, matriz_jerarquias_mezclada,atributo)
         agregar_cartas(resultado,listas)
 
-        puntuacion = cargar_ganador_y_puntaje(elementos_juego,pantalla_config,resultado,contador_jugador_1,contador_jugador_2,colores)#! usa los jugadores, otro diccionario
+        puntuacion = cargar_ganador_y_puntaje(pantalla_config,resultado,contador_jugador_1,contador_jugador_2,colores)#! usa los jugadores, otro diccionario
         contador_jugador_1 = puntuacion[0]
         contador_jugador_2 = puntuacion[1]
 
@@ -125,9 +126,9 @@ def jugar(parametros):
 
         pygame.time.delay(1000)
 
-    ganador_partida = determinar_ganador_partida(elementos_juego,listas)#! usa los jugadores, otro diccionario
+    ganador_partida = determinar_ganador_partida(pantalla_config,listas)#! usa los jugadores, otro diccionario
     mostrar_texto(pantalla_config, ("Arial", 50),ganador_partida,colores["negro"], (1063,139),None)
     actualizar()
 
-    puntaje = calcular_puntaje(listas,elementos_juego, ganador_partida)#! usa los jugadores, otro diccionario
+    puntaje = calcular_puntaje(listas,pantalla_config, ganador_partida)#! usa los jugadores, otro diccionario
     guardar_resultados(pantalla_config, puntaje, ganador_partida)#
