@@ -39,7 +39,6 @@ from Logica.Consola_1_MP import *
 #region cosas 
 pygame.init() 
 
-
 ventana = inicializar_ventana()
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
@@ -53,7 +52,6 @@ colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
 #endregion
 
-
 #region funciones
 
 # pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
@@ -61,7 +59,6 @@ colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 #                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
 #                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 #endregion
-
 
 #botones con accion
 #region boton_nombre_uno
@@ -90,7 +87,6 @@ pantalla_config = crear_datos_pantalla(ventana,GRIS,lista_cuadrados,pokebola,car
 # elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar)
 
 #endregion
-
 
 
 # pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
@@ -126,15 +122,14 @@ nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,pa
 # boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
 # boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 
-evento = ""
 
-parametros_nombre = [pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None]
+parametros_nombre = [pantalla_config,fuente,colores["negro"],(795,50),None]
 
-parametros_nombre_dos = [pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None]
+parametros_nombre_dos = [pantalla_config,fuente,colores["negro"],(797,629),None]
 
 
-boton_nombre_uno = crear_boton(ventana,fuente,colores,(907,205),(175,60),guardar_texto,parametros_nombre,"")
-boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),guardar_texto,parametros_nombre_dos,"")
+boton_nombre_uno = crear_boton(ventana,fuente,colores,(907,205),(175,60),activar_escritura,parametros_nombre,"")
+boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),activar_escritura,parametros_nombre_dos,"")
 
 
 
@@ -146,16 +141,14 @@ boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),guardar
 elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
 
 
+dibujo = False
 
-
-lista_botones = [nuevo_boton_jugar]
+# lista_botones = [nuevo_boton_jugar]
 
 lista_botones_nombre = [boton_nombre_uno,boton_nombre_dos]
 
-def detectar_jugabilidad_dos(lista,evento):
-    for boton in lista:
-        if boton["cuadrado"].collidepoint(evento.pos):
-            boton["accion"](boton["lista_parametros"])
+lista_botones_completa = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
+
 
 
 #region
@@ -185,17 +178,24 @@ while bandera_juego:
         #     # print(x,y) #Saber que cordenadas son en la pantalla
 
         if evento.type == pygame.KEYDOWN:
-            if boton_nombre_uno["activo"]:
-                texto_pantalla= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)#!usan la ventana
-                bandera_dos = True
-                accion_a = crear_diccionario_acciones(bandera_dos,texto_pantalla)
-           
-            if boton_nombre_dos["activo"]:
-                texto_pantalla_dos= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
-                bandera_tres = True
-                accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
+            acciones = detectar_jugabilidad_dos(lista_botones_nombre,evento)
+            dibujo = True
 
-                
+            # if boton_nombre_uno["activo"]:
+            #     texto_pantalla= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)#!usan la ventana
+            #     bandera_dos = True
+            #     accion_a = crear_diccionario_acciones(bandera_dos,texto_pantalla)
+           
+            # if boton_nombre_dos["activo"]:
+            #     texto_pantalla_dos= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
+            #     bandera_tres = True
+            #     accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
+
+                # step 1: ccambiar el color del textbox, eso se hace en detectar_cambio_color()   OK
+
+                # step 2: una vez cambiado el color del textbox, es necesario activar el evento KEYDOWN
+
+
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             # if boton_jugar["cuadrado"].collidepoint(evento.pos): 
                 # cambio_color(boton_jugar)
@@ -203,12 +203,12 @@ while bandera_juego:
                 cronometro_activo = True 
 
                 # detectar_cambio_color(lista_x,evento)
-                detectar_cambio_color(lista_botones,evento)
+                detectar_cambio_color(lista_botones_completa,evento)
                 
-                detectar_jugabilidad(lista_botones,evento,elementos_juego)
-                # juego_terminado = True
+                # detectar_jugabilidad(lista_botones,evento,elementos_juego)
+                # # juego_terminado = True
 
-                detectar_cambio_nombre(lista_botones)
+                # detectar_cambio_nombre(lista_botones)
                 
                 # if juego_terminado == False:
 
@@ -220,7 +220,8 @@ while bandera_juego:
 
     dibujar(nuevo_boton_jugar,dibujar_cuadrado_con_texto)
     
-    setear_acciones_pantalla(accion_a,accion_b)
+    if dibujo == True:
+        setear_acciones_pantalla(acciones)
 
     actualizar()
 

@@ -7,7 +7,10 @@ def setear_accion_pantalla(accion):
         if accion["bandera"]:
             dibujar_solo_texto(accion["texto_pantalla"])
 
-def setear_acciones_pantalla(accion_a,accion_b):
+def setear_acciones_pantalla(acciones):
+        accion_a= acciones[0]
+        accion_b= acciones[1]
+        
         setear_accion_pantalla(accion_a)
 
         setear_accion_pantalla(accion_b)
