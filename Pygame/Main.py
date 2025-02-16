@@ -47,10 +47,10 @@ fuente = ("Arial",20)
 # jugadores = identificar_usuarios(2)
 jugadores = ["pepe","roberto"]
 
-dictad = creacion_cuadrados()
+diccionarios = creacion_diccionarios()
 
-lista_cuadrados = dictad[0]
-colores = dictad[1]
+lista_cuadrados = diccionarios[0]
+colores = diccionarios[1]
 
 #endregion
 

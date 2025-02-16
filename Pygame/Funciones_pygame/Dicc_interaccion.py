@@ -1,10 +1,7 @@
 import pygame
-# from Visuales import *
-# from Logica.Consola_2_FG import *
 # from Funciones_pygame.Visuales import *
-# from Funciones_pygame.Dicc_interaccion import *
 
-def creacion_cuadrados()->list:
+def creacion_diccionarios()->list:
 
     pygame.init()
 
@@ -32,6 +29,50 @@ def creacion_cuadrados()->list:
 
     return [lista_cuadrados,colores]
 
+def crear_diccionario_listas()-> dict:
+    """
+    Crea un diccionario para almacenar listas relacionadas con el juego.
+
+    Returns:
+        dict: Diccionario con listas vacías para uso en el juego.
+    """
+    listas = {}
+    listas["lista_jugador_uno"] = [] 
+    listas["lista_jugador_dos"] = [] 
+    listas["cartas_jugadores"] = [] 
+    listas["lista_cartas"] = [] 
+    listas["cartas_meza"] = [] 
+
+    return listas
+
+def inicializar_ventana():
+    ANCHO_VENTANA = 1300
+    ALTO_VENTANA = 700
+
+    pygame.init()
+    pygame.mixer.init()
+
+    ventana = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA))
+
+    pygame.display.set_caption("Pokemon Cards")
+
+    icono = pygame.image.load("Poke_fotos\pokebola.png")
+    pygame.display.set_icon(icono)
+
+    return ventana
+
+def crear_matriz_jerarquias()-> list[list]:
+
+    matriz_jerarquias_mezclada = [["Agua", ("Fuego", "Tierra")],
+                    [("Electricidad", "Fuego"),"Tierra"],
+                    ["Aire",("Tierra","Agua")],
+                    [("Aire", "Hielo"),"Fuego"],
+                    ["Electricidad",("Agua", "Hielo")], 
+                    [("Normal", "Fuego"),"Psíquico"],
+                    ["Normal",("Agua", "Aire")],
+                    [("Tierra", "Aire"),"Hielo"]]
+
+    return matriz_jerarquias_mezclada
 
 def crear_cuadrados(ventana, color, posicion: tuple, dimensiones: tuple) -> dict:
     """
@@ -116,51 +157,6 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 
     return colores
 
-#region
-# def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
-#                                pokebola, carta_1, carta_2, jugadores, 
-#                                path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
-#     """
-#     Crea un diccionario que almacena los datos principales de la pantalla.
-
-#     Args:
-#         ventana: Superficie de Pygame donde se dibujarán los elementos.
-#         GRIS: Color de fondo de la ventana.
-#         lista_cuadrados (list): Lista de cuadrados en la pantalla.
-#         boton_jugar: Botón de inicio del juego.
-#         reemplazo_boton: Botón de reemplazo para alguna acción específica.
-#         boton_reinicio: Botón para reiniciar el juego.
-#         pokebola: Imagen o referencia a la pokebola.
-#         carta_1, carta_2: Cartas asociadas a los jugadores.
-#         jugadores (list): Lista de jugadores (jugador 1 y jugador 2).
-#         path_json (str): Ruta al archivo JSON relacionado.
-#         path_csv (str): Ruta al archivo CSV relacionado.
-
-#     Returns:
-#         dict: Diccionario con los datos de la pantalla.
-#     """
-#     pantalla = {}
-#     pantalla["ventana"] = ventana
-#     pantalla["color_ventana"] = GRIS
-#     pantalla["lista_cuadrados"] = lista_cuadrados
-#     pantalla["boton_jugar"] = boton_jugar
-#     pantalla["reemplazo_nombre"] = reemplazo_boton
-#     # pantalla["boton_reinicio"] = boton_reinicio
-#     pantalla["pokebola"] = pokebola
-#     pantalla["carta_1"] = carta_1
-#     pantalla["carta_2"] = carta_2
-#     pantalla["jugador_1"] = jugadores[0]
-#     pantalla["jugador_2"] = jugadores[1]
-#     pantalla["path_json"] = path_json
-#     pantalla["path_csv"] = path_csv
-#     pantalla["ganador_partida"] = boton_ganador_partida
-#     pantalla["atributo"] = atributo
-#     pantalla["boton_nombre_uno"] = boton_nombre_uno
-#     pantalla["boton_nombre_dos"] = boton_nombre_dos
-
-#     return pantalla
-#endregion
-
 def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv,jugadores):
     pantalla_dos = {}
     pantalla_dos["ventana"] = ventana
@@ -193,23 +189,7 @@ def crear_diccionario_acciones(bandera,texto_pantalla):
 
     return accion
 
-def crear_diccionario_listas() -> dict:
-    """
-    Crea un diccionario para almacenar listas relacionadas con el juego.
-
-    Returns:
-        dict: Diccionario con listas vacías para uso en el juego.
-    """
-    listas = {}
-    listas["lista_jugador_uno"] = [] 
-    listas["lista_jugador_dos"] = [] 
-    listas["cartas_jugadores"] = [] 
-    listas["lista_cartas"] = [] 
-    listas["cartas_meza"] = [] 
-
-    return listas
-
-############################# INTERACCION ########################
+############################# INTERACCION #######################################################################################
 def cambio_color(boton):
     """
     Cambia el color de un campo de entrada basado en su estado (activo/inactivo).
@@ -278,35 +258,6 @@ def dibujar_solo_texto(texto:dict):
         texto (dict): Diccionario con datos del texto.
     """
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
-
-def inicializar_ventana():
-    ANCHO_VENTANA = 1300
-    ALTO_VENTANA = 700
-
-    pygame.init()
-    pygame.mixer.init()
-
-    ventana = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA))
-
-    pygame.display.set_caption("Pokemon Cards")
-
-    icono = pygame.image.load("Poke_fotos\pokebola.png")
-    pygame.display.set_icon(icono)
-
-    return ventana
-
-def crear_matriz_jerarquias():
-
-    matriz_jerarquias_mezclada = [["Agua", ("Fuego", "Tierra")],
-                    [("Electricidad", "Fuego"),"Tierra"],
-                    ["Aire",("Tierra","Agua")],
-                    [("Aire", "Hielo"),"Fuego"],
-                    ["Electricidad",("Agua", "Hielo")], 
-                    [("Normal", "Fuego"),"Psíquico"],
-                    ["Normal",("Agua", "Aire")],
-                    [("Tierra", "Aire"),"Hielo"]]
-
-    return matriz_jerarquias_mezclada
 
 def escribir_teclado(boton, evento):
     texto_final = ""
@@ -409,6 +360,50 @@ def guardar_texto(parametros,boton_nombre,evento)->dict:
     return texto_pantalla
 
 #region
+# def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
+#                                pokebola, carta_1, carta_2, jugadores, 
+#                                path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
+#     """
+#     Crea un diccionario que almacena los datos principales de la pantalla.
+
+#     Args:
+#         ventana: Superficie de Pygame donde se dibujarán los elementos.
+#         GRIS: Color de fondo de la ventana.
+#         lista_cuadrados (list): Lista de cuadrados en la pantalla.
+#         boton_jugar: Botón de inicio del juego.
+#         reemplazo_boton: Botón de reemplazo para alguna acción específica.
+#         boton_reinicio: Botón para reiniciar el juego.
+#         pokebola: Imagen o referencia a la pokebola.
+#         carta_1, carta_2: Cartas asociadas a los jugadores.
+#         jugadores (list): Lista de jugadores (jugador 1 y jugador 2).
+#         path_json (str): Ruta al archivo JSON relacionado.
+#         path_csv (str): Ruta al archivo CSV relacionado.
+
+#     Returns:
+#         dict: Diccionario con los datos de la pantalla.
+#     """
+#     pantalla = {}
+#     pantalla["ventana"] = ventana
+#     pantalla["color_ventana"] = GRIS
+#     pantalla["lista_cuadrados"] = lista_cuadrados
+#     pantalla["boton_jugar"] = boton_jugar
+#     pantalla["reemplazo_nombre"] = reemplazo_boton
+#     # pantalla["boton_reinicio"] = boton_reinicio
+#     pantalla["pokebola"] = pokebola
+#     pantalla["carta_1"] = carta_1
+#     pantalla["carta_2"] = carta_2
+#     pantalla["jugador_1"] = jugadores[0]
+#     pantalla["jugador_2"] = jugadores[1]
+#     pantalla["path_json"] = path_json
+#     pantalla["path_csv"] = path_csv
+#     pantalla["ganador_partida"] = boton_ganador_partida
+#     pantalla["atributo"] = atributo
+#     pantalla["boton_nombre_uno"] = boton_nombre_uno
+#     pantalla["boton_nombre_dos"] = boton_nombre_dos
+
+#     return pantalla
+
+
 # def guardar_texto(pantalla:dict,fuente:tuple,color_texto:tuple,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):#!usa la ventana
 # def guardar_texto(parametros):
 #     pantalla = parametros[0]
