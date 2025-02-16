@@ -3,7 +3,7 @@ from Funciones_pygame.Dibujo import *
 # from Funciones_pygame.Dicc_interaccion import *
 
 def setear_accion_pantalla(accion):
-    if accion != None:
+    if accion != "":
         if accion["bandera"]:
             dibujar_solo_texto(accion["texto_pantalla"])
 

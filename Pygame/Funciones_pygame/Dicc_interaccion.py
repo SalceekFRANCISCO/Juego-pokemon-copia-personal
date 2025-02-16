@@ -4,6 +4,34 @@ import pygame
 # from Funciones_pygame.Visuales import *
 # from Funciones_pygame.Dicc_interaccion import *
 
+def creacion_cuadrados()->list:
+
+    pygame.init()
+
+    ventana = inicializar_ventana()
+
+    NEGRO = (0,0,0)
+    ROJO = (255,0,0)
+    AZUL = (0,0,255)
+    AZUL_CLARO = (0,150,255)
+    VERDE = (0,255,0)
+    BLANCO = (255,255,255)
+    DORADO = (204, 153, 0)
+    GRIS = (128, 128, 128)
+    AMARILLO_CLARO = (254,255,145)
+
+    cuadrado_rojo = crear_cuadrados(ventana,ROJO,(56,180),(100,215))
+    cuadrado_azul = crear_cuadrados(ventana,AZUL_CLARO,(162,180),(100,215))
+    cuadrado_blanco = crear_cuadrados(ventana,BLANCO,(1122,201),(135,170))
+    cuadrado_negro_arriba = crear_cuadrados(ventana,NEGRO,(385,80),(520,260))
+    cuadrado_negro_abajo = crear_cuadrados(ventana,NEGRO,(385,360),(520,260))
+
+    lista_cuadrados = [cuadrado_rojo,cuadrado_azul,cuadrado_blanco,cuadrado_negro_arriba,cuadrado_negro_abajo]
+
+    colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
+
+    return [lista_cuadrados,colores]
+
 
 def crear_cuadrados(ventana, color, posicion: tuple, dimensiones: tuple) -> dict:
     """
@@ -88,6 +116,7 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 
     return colores
 
+#region
 # def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
 #                                pokebola, carta_1, carta_2, jugadores, 
 #                                path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
@@ -130,12 +159,12 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 #     pantalla["boton_nombre_dos"] = boton_nombre_dos
 
 #     return pantalla
-
+#endregion
 
 def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv,jugadores):
     pantalla_dos = {}
     pantalla_dos["ventana"] = ventana
-    pantalla_dos["color_ventana"] = color_ventana
+    pantalla_dos["color_ventana"] = color_ventana["gris"]
     pantalla_dos["lista_cuadrados"] = lista_cuadrados
     pantalla_dos["pokebola"] = pokebola
     pantalla_dos["carta_1"] = carta_1
@@ -156,18 +185,6 @@ def crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nomb
     juego["boton_jugar"] = boton_jugar
 
     return juego
-
-
-
-
-
-
-
-
-
-
-
-
 
 def crear_diccionario_acciones(bandera,texto_pantalla):
     accion = {}
@@ -193,20 +210,20 @@ def crear_diccionario_listas() -> dict:
     return listas
 
 ############################# INTERACCION ########################
-def cambio_color(input_1):
+def cambio_color(boton):
     """
     Cambia el color de un campo de entrada basado en su estado (activo/inactivo).
 
     Args:
-        input_1 (dict): Diccionario del campo de entrada.
+        boton (dict): Diccionario del campo de entrada.
     """
-    input_1["activo"] = not input_1["activo"]
-    if input_1["activo"]:
-        input_1["color_actual"] = input_1["color_activo"] 
+    boton["activo"] = not boton["activo"]
+    if boton["activo"]:
+        boton["color_actual"] = boton["color_activo"] 
     else:
-        input_1["color_actual"] = input_1["color_inactivo"]
+        boton["color_actual"] = boton["color_inactivo"]
 
-def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):#!usa ventana
+def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):
     texto = {}
     texto["ventana"] = pantalla["ventana"]
     texto["texto_escrito"] = renderizar_mensaje((fuente[0],fuente[1]),texto_escrito,color_texto,color_fondo_texto)
@@ -360,7 +377,7 @@ def detectar_jugabilidad_dos(lista,evento):
 
     return lista_acciones
 
-def asignar_accion(texto_pantalla):
+def asignar_accion(texto_pantalla)->dict:
     bandera = False
 
     if texto_pantalla != "":

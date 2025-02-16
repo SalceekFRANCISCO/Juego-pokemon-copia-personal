@@ -1,5 +1,4 @@
 import pygame
-from variables import *
 from Logica.Consola_1_MP import *
 
 
@@ -48,7 +47,10 @@ fuente = ("Arial",20)
 # jugadores = identificar_usuarios(2)
 jugadores = ["pepe","roberto"]
 
-colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
+dictad = creacion_cuadrados()
+
+lista_cuadrados = dictad[0]
+colores = dictad[1]
 
 #endregion
 
@@ -60,18 +62,16 @@ colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 #                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
 #endregion
 
-#botones con accion
 #region boton_nombre_uno
-boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
-boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
+#botones con accion
+# boton_nombre_uno = crear_input(ventana,fuente,colores,(907,205),(175,60),None,"")
+# boton_nombre_dos = crear_input(ventana,fuente,colores,(907,362),(175,60),None,"")
 #endregion
 
-# boton_jugar = crear_input(ventana,fuente,colores,(56,50),(200,60),"JUGAR",None)
-
-# lista_x = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 
 #endregion
-
+carta_1 = crear_cuadrados(ventana,colores["azul_claro"],(450,26),(340,245))
+carta_2 = crear_cuadrados(ventana,colores["rojo"],(450,415),(340,245))
 
 # region botones con texto
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
@@ -81,24 +81,12 @@ pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),
 
 #endregion
 
-pantalla_config = crear_datos_pantalla(ventana,GRIS,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",jugadores)
-
-
-# elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar)
-
-#endregion
-
-
-# pantalla = crear_diccionario_pantalla(ventana,GRIS,lista_cuadrados,boton_jugar,reemplazo_nombre,
-#                                       pokebola,carta_1,carta_2,jugadores,
-#                                       "Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",
-#                                       ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos)
+pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",jugadores)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
 
 #endregion
-
 
 
 
