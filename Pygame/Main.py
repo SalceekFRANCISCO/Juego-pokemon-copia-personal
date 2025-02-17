@@ -98,8 +98,8 @@ cronometro_activo = False
 bandera_juego = True
 bandera_dos = False
 bandera_tres = False
-accion_a = None
-accion_b = None
+# accion_a = None
+# accion_b = None
 #endregion
 
 
@@ -116,8 +116,10 @@ parametros_nombre = [pantalla_config,fuente,colores["negro"],(795,50),None]
 parametros_nombre_dos = [pantalla_config,fuente,colores["negro"],(797,629),None]
 
 
-boton_nombre_uno = crear_boton(ventana,fuente,colores,(907,205),(175,60),activar_escritura,parametros_nombre,"")
-boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),activar_escritura,parametros_nombre_dos,"")
+
+
+boton_nombre_uno = crear_boton(ventana,fuente,colores,(907,205),(175,60),procesar_entrada_texto,parametros_nombre,"")
+boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),procesar_entrada_texto,parametros_nombre_dos,"")
 
 
 
@@ -129,7 +131,7 @@ boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),activar
 elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
 
 
-dibujo = False
+
 
 # lista_botones = [nuevo_boton_jugar]
 
@@ -154,7 +156,9 @@ lista_botones_completa = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 #endregion
 
 juego_terminado = False
-
+# accion_a = None
+# accion_b = None
+dibujo = False
 
 while bandera_juego: 
     lista_eventos = pygame.event.get()
@@ -167,15 +171,21 @@ while bandera_juego:
 
         if evento.type == pygame.KEYDOWN:
             acciones = detectar_jugabilidad_dos(lista_botones_nombre,evento)
+
+            # accion_a = detectar_escritura_individual(boton_nombre_uno,evento)
+
+            # accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
+
+            # acciones = [accion_a,accion_b]
             dibujo = True
 
             # if boton_nombre_uno["activo"]:
-            #     texto_pantalla= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)#!usan la ventana
+            #     texto_pantalla= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
             #     bandera_dos = True
-            #     accion_a = crear_diccionario_acciones(bandera_dos,texto_pantalla)
+            #     accion_a = generar_estado_accion(bandera_dos,texto_pantalla)
            
             # if boton_nombre_dos["activo"]:
-            #     texto_pantalla_dos= guardar_texto(pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
+            #     texto_pantalla_dos= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
             #     bandera_tres = True
             #     accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
 
