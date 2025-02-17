@@ -1,18 +1,14 @@
 import pygame
 from Funciones_pygame.Dibujo import *
 
-def setear_accion_pantalla(accion):
-    if accion != "":
-        if accion["bandera"]:
-            dibujar_solo_texto(accion["texto_pantalla"])
+# def setear_accion_pantalla(accion):
+#     if accion != None and accion["bandera"] == True:
+#         dibujar_solo_texto(accion["texto_pantalla"])
 
 def setear_acciones_pantalla(acciones):
-        accion_a= acciones[0]
-        accion_b= acciones[1]
-        
-        setear_accion_pantalla(accion_a)
-
-        setear_accion_pantalla(accion_b)
+    for accion in acciones:
+        if accion != "vacio":        
+            dibujar_solo_texto(accion["texto_pantalla"])
 
 def setear_pantalla(pantalla_config,elementos_juego,colores):#! va a necesitar ambos diccionarios
 
@@ -76,7 +72,7 @@ def actualizar():
     """
     pygame.display.update()
 
-def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):#! ventana
+def generar_texto_renderizado (pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):#! ventana
     texto = {}
     texto["ventana"] = pantalla["ventana"]
     texto["texto_escrito"] = renderizar_mensaje((fuente[0],fuente[1]),texto_escrito,color_texto,color_fondo_texto)
@@ -95,7 +91,7 @@ def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_f
         color_texto (tuple): Color del texto en formato RGB.
         posicion (tuple): Coordenadas (x, y) para el texto.
     """
-    texto = crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto)
+    texto = generar_texto_renderizado (pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto)
 
     dibujar(texto,dibujar_solo_texto)
 

@@ -1,6 +1,7 @@
 import pygame
 # from Funciones_pygame.Visuales import *
 
+#region
 def creacion_diccionarios()->list:
 
     pygame.init()
@@ -182,7 +183,7 @@ def crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nomb
 
     return juego
 
-def crear_diccionario_acciones(bandera,texto_pantalla):
+def generar_estado_accion (bandera:bool,texto_pantalla):
     accion = {}
     accion["bandera"] = bandera
     accion["texto_pantalla"] = texto_pantalla
@@ -203,7 +204,20 @@ def cambio_color(boton):
     else:
         boton["color_actual"] = boton["color_inactivo"]
 
-def crear_diccionario_texto(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):
+def generar_texto_renderizado (pantalla,fuente:tuple,texto_escrito,color_texto:tuple,posicion:tuple,color_fondo_texto)->dict:
+    """la función genera texto listo para renderizar.
+
+    Args:
+        pantalla (_type_): _description_
+        fuente (_type_): _description_
+        texto_escrito (_type_): _description_
+        color_texto (_type_): _description_
+        posicion (_type_): _description_
+        color_fondo_texto (_type_): _description_
+
+    Returns:
+        dict: diccionario con los datos del texto
+    """
     texto = {}
     texto["ventana"] = pantalla["ventana"]
     texto["texto_escrito"] = renderizar_mensaje((fuente[0],fuente[1]),texto_escrito,color_texto,color_fondo_texto)
@@ -259,26 +273,28 @@ def dibujar_solo_texto(texto:dict):
     """
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
 
-def escribir_teclado(boton, evento):
-    texto_final = ""
+def escribir_teclado(boton, evento)->str:
+    # texto_final = ""
     if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
             boton["texto"] = boton["texto"][:-1]
-            texto_final = boton["texto"]
+            # texto_final = boton["texto"]
 
         elif evento.key == pygame.K_RCTRL:
-            texto_final = ""
+            # texto_final = ""
             boton["texto"] = ""
 
         elif evento.key == pygame.K_RETURN:
             boton["activo"] = False
             boton["color_actual"] = boton["color_inactivo"]
-            texto_final = boton["texto"] 
+            # texto_final = boton["texto"] 
         else:
             boton["texto"] += evento.unicode
-            texto_final = boton["texto"]
+            # texto_final = boton["texto"]
 
-    return texto_final
+    print(f"Texto actual del botón: {boton['texto']}")
+    # return texto_final
+    return boton["texto"]
 
 def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
     boton = {}
@@ -311,55 +327,65 @@ def detectar_cambio_nombre(lista_botones):
     for boton in lista_botones:
         if boton["activo"]: 
             boton["texto"]= "REINICIO"
+#endregion
 
 def detectar_jugabilidad_dos(lista,evento):
     lista_acciones = []
-    bandera = False
     for boton in lista:
-        texto_pantalla = boton["accion"](boton,boton["lista_parametros"],evento)
-        
-        if bandera != True:
-            accion_a = asignar_accion(texto_pantalla)
-            lista_acciones.append(accion_a)
-            bandera = True
-
-    accion_b = asignar_accion(texto_pantalla)
-    lista_acciones.append(accion_b)
+        if boton["activo"]:
+            texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)#* boton["accion"] = procesar_entrada_texto(lista_pa,boton,evento)
+            accion = evaluar_estado_texto(texto_pantalla)
+            lista_acciones.append(accion)
+        else:
+            lista_acciones.append("vacio")
 
     return lista_acciones
 
-def asignar_accion(texto_pantalla)->dict:
-    bandera = False
+def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
+    """Registra el texto que se ingresa por teclado
 
-    if texto_pantalla != "":
-        bandera = True
+    Args:
+        parametros (list): lista de parametros que se utilizaran
+        boton_nombre (dict): diccionario de donde sacaremos los datos
+        evento (_type_): ele tipo de evento que se registro
 
-    accion_a = crear_diccionario_acciones(bandera,texto_pantalla)
-
-    return accion_a
-
-def activar_escritura(boton_nombre,parametros,evento):
-    texto_pantalla = ""
-    if boton_nombre["activo"]:
-        texto_pantalla= guardar_texto(parametros,boton_nombre,evento)
-
-    return texto_pantalla
-
-def guardar_texto(parametros,boton_nombre,evento)->dict:
+    Returns:
+        dict: retorna un diccionario con los datos del texto
+    """
     pantalla = parametros[0]
     fuente = parametros[1]
     color_texto = parametros[2]
     posicion_texto =  parametros[3]
     color_fondo_texto = parametros[4]
 
-    texto_pantalla = ""
     nombre_final = escribir_teclado(boton_nombre,evento)
 
-    texto_pantalla = crear_diccionario_texto(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
+    texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             
     return texto_pantalla
 
+def evaluar_estado_texto(texto_pantalla)->dict:
+    bandera = True
+    accion = generar_estado_accion(bandera,texto_pantalla)
+
+    return accion
+
+
+# if boton_nombre_uno["activo"]:
+    #     texto_pantalla= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
+    #     bandera_dos = True
+    #     accion_a = generar_estado_accion (bandera_dos,texto_pantalla)
+
 #region
+
+# def detectar_escritura_individual(boton,evento):
+#     accion = ""
+#     if boton["activo"]:
+#         texto_pantalla = boton["accion"](boton,boton["lista_parametros"],evento)
+#         accion = evaluar_estado_texto(texto_pantalla)
+
+#     return accion
+
 # def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
 #                                pokebola, carta_1, carta_2, jugadores, 
 #                                path_json, path_csv, boton_ganador_partida,atributo,boton_nombre_uno,boton_nombre_dos) -> dict:
@@ -404,8 +430,8 @@ def guardar_texto(parametros,boton_nombre,evento)->dict:
 #     return pantalla
 
 
-# def guardar_texto(pantalla:dict,fuente:tuple,color_texto:tuple,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):#!usa la ventana
-# def guardar_texto(parametros):
+# def procesar_entrada_texto (pantalla:dict,fuente:tuple,color_texto:tuple,boton_nombre:dict,posicion_texto: tuple,evento,color_fondo_texto):#!usa la ventana
+# def procesar_entrada_texto (parametros):
 #     pantalla = parametros[0]
 #     fuente = parametros[1]
 #     color_texto = parametros[2]
@@ -418,7 +444,7 @@ def guardar_texto(parametros,boton_nombre,evento)->dict:
 #     texto_pantalla = ""
 #     nombre_final = escribir_teclado(boton_nombre,evento)
 
-#     texto_pantalla = crear_diccionario_texto(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
+#     texto_pantalla = generar_texto_renderizado (pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             
 #     return texto_pantalla
 
