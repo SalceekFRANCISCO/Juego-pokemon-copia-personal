@@ -156,8 +156,8 @@ lista_botones_completa = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 #endregion
 
 juego_terminado = False
-# accion_a = None
-# accion_b = None
+accion_a = None
+accion_b = None
 dibujo = False
 
 while bandera_juego: 
@@ -170,24 +170,34 @@ while bandera_juego:
         #     # print(x,y) #Saber que cordenadas son en la pantalla
 
         if evento.type == pygame.KEYDOWN:
-            acciones = detectar_jugabilidad_dos(lista_botones_nombre,evento)
+            # acciones = detectar_jugabilidad_dos(lista_botones_nombre,evento)
+            # sexoa =  sexo(boton_nombre_uno,boton_nombre_dos,parametros_nombre,parametros_nombre_dos,evento)
 
-            # accion_a = detectar_escritura_individual(boton_nombre_uno,evento)
+            # accion_a = sexoa[0]
+            # accion_b = sexoa[1]
+            if boton_nombre_uno["activo"]:
+                accion_a = detectar_escritura_individual(boton_nombre_uno,evento)
 
+
+            if boton_nombre_dos["activo"]:
+                accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
+                 
             # accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
 
             # acciones = [accion_a,accion_b]
-            dibujo = True
+            # dibujo = True
 
             # if boton_nombre_uno["activo"]:
-            #     texto_pantalla= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
+            #     # texto_pantalla= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
+            #     texto_pantalla= procesar_entrada_texto(parametros_nombre,boton_nombre_uno,evento)
             #     bandera_dos = True
             #     accion_a = generar_estado_accion(bandera_dos,texto_pantalla)
            
             # if boton_nombre_dos["activo"]:
-            #     texto_pantalla_dos= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
+            #     # texto_pantalla_dos= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_dos,(797,629),evento,None)#!usan la ventana
+            #     texto_pantalla_dos= procesar_entrada_texto(parametros_nombre_dos,boton_nombre_dos,evento)#!usan la ventana
             #     bandera_tres = True
-            #     accion_b = crear_diccionario_acciones(bandera_tres,texto_pantalla_dos)
+            #     accion_b = generar_estado_accion(bandera_tres,texto_pantalla_dos)
 
                 # step 1: ccambiar el color del textbox, eso se hace en detectar_cambio_color()   OK
 
@@ -218,8 +228,9 @@ while bandera_juego:
 
     dibujar(nuevo_boton_jugar,dibujar_cuadrado_con_texto)
     
-    if dibujo == True:
-        setear_acciones_pantalla(acciones)
+    # if dibujo == True:
+        # setear_acciones_pantalla(acciones)
+    setear_acciones_pantalla(accion_a,accion_b)
 
     actualizar()
 

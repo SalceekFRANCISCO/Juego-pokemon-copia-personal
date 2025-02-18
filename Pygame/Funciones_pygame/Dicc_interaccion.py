@@ -183,12 +183,12 @@ def crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nomb
 
     return juego
 
-def generar_estado_accion (bandera:bool,texto_pantalla):
-    accion = {}
-    accion["bandera"] = bandera
-    accion["texto_pantalla"] = texto_pantalla
+# def generar_estado_accion (bandera:bool,texto_pantalla):
+#     accion = {}
+#     accion["bandera"] = bandera
+#     accion["texto_pantalla"] = texto_pantalla
 
-    return accion
+#     return accion
 
 ############################# INTERACCION #######################################################################################
 def cambio_color(boton):
@@ -329,17 +329,17 @@ def detectar_cambio_nombre(lista_botones):
             boton["texto"]= "REINICIO"
 #endregion
 
-def detectar_jugabilidad_dos(lista,evento):
-    lista_acciones = []
-    for boton in lista:
-        if boton["activo"]:
-            texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)#* boton["accion"] = procesar_entrada_texto(lista_pa,boton,evento)
-            accion = evaluar_estado_texto(texto_pantalla)
-            lista_acciones.append(accion)
-        else:
-            lista_acciones.append("vacio")
+# def detectar_jugabilidad_dos(lista,evento):
+#     lista_acciones = []
+#     for boton in lista:
+#         if boton["activo"]:
+#             texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)#* boton["accion"] = procesar_entrada_texto(lista_pa,boton,evento)
+#             accion = evaluar_estado_texto(texto_pantalla)
+#             lista_acciones.append(accion)
+#         else:
+#             lista_acciones.append("vacio")
 
-    return lista_acciones
+#     return lista_acciones
 
 def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
     """Registra el texto que se ingresa por teclado
@@ -364,27 +364,51 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
             
     return texto_pantalla
 
-def evaluar_estado_texto(texto_pantalla)->dict:
-    bandera = True
-    accion = generar_estado_accion(bandera,texto_pantalla)
+# def evaluar_estado_texto(texto_pantalla)->dict:
+#     bandera = True
+#     accion = generar_estado_accion(bandera,texto_pantalla)
+
+#     return accion
+
+def generar_estado_accion (bandera:bool,texto_pantalla):
+    accion = {}
+    accion["bandera"] = bandera
+    accion["texto_pantalla"] = texto_pantalla
 
     return accion
-
 
 # if boton_nombre_uno["activo"]:
     #     texto_pantalla= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
     #     bandera_dos = True
     #     accion_a = generar_estado_accion (bandera_dos,texto_pantalla)
 
+def detectar_escritura_individual(boton,evento):
+    texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
+    bandera = True
+    accion = generar_estado_accion(bandera,texto_pantalla)
+
+    return accion
+
+
+# def sexo(boton_nombre_uno,boton_nombre_dos,parametros_nombre,parametros_nombre_dos,evento):
+#     accion_a = None
+#     accion_b = None
+#     bandera_dos = False
+#     bandera_tres = False
+
+#     if boton_nombre_uno["activo"]:
+#         texto_pantalla= procesar_entrada_texto(parametros_nombre,boton_nombre_uno,evento)
+#         bandera_dos = True
+#         accion_a = generar_estado_accion(bandera_dos,texto_pantalla)
+            
+#     if boton_nombre_dos["activo"]:
+#         texto_pantalla_dos= procesar_entrada_texto(parametros_nombre_dos,boton_nombre_dos,evento)#!usan la ventana
+#         bandera_tres = True
+#         accion_b = generar_estado_accion(bandera_tres,texto_pantalla_dos)
+
+#     return [accion_a,accion_b]
+
 #region
-
-# def detectar_escritura_individual(boton,evento):
-#     accion = ""
-#     if boton["activo"]:
-#         texto_pantalla = boton["accion"](boton,boton["lista_parametros"],evento)
-#         accion = evaluar_estado_texto(texto_pantalla)
-
-#     return accion
 
 # def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
 #                                pokebola, carta_1, carta_2, jugadores, 
