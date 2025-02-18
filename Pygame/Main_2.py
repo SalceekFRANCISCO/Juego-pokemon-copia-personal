@@ -77,14 +77,14 @@ while bandera_juego:
                 accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
-                tiempo_inicial = pygame.time.get_ticks()  
-                cronometro_activo = True 
+            tiempo_inicial = pygame.time.get_ticks()  
+            cronometro_activo = True 
 
-                detectar_cambio_color(lista_botones_completa,evento)
-                
-                detectar_jugabilidad(lista_botones,evento,elementos_juego)
+            detectar_cambio_color(lista_botones_completa,evento)
+            
+            detectar_jugabilidad(lista_botones,evento,elementos_juego)
 
-                detectar_cambio_nombre(lista_botones)
+            detectar_cambio_nombre(lista_botones)
                 
     setear_pantalla(pantalla_config,elementos_juego,colores)
 
