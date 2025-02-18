@@ -4,11 +4,13 @@ from Logica.Consola_1_MP import *
 
 #NUEVO OBJETIVO: 
 
+# OBJETIVO LOGADO!!!!
+
+
 #objetivo logrado!!!!
 
 
 
-# nuevo objetivo, probar poner los jugadores en el dic prinicpal, asi podes pasar al nuevo boton jugar como elemento para setear en pantalla
 
 #region cambios y ocsas que ocupan espacio 
 # from Funciones_pygame.Visuales import *

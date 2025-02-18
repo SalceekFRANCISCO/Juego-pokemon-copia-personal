@@ -159,6 +159,7 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
     return colores
 
 def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv,jugadores):
+
     pantalla_dos = {}
     pantalla_dos["ventana"] = ventana
     pantalla_dos["color_ventana"] = color_ventana["gris"]
