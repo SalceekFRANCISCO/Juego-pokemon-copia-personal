@@ -43,7 +43,6 @@ parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla_config,colores
 parametros_nombre = [pantalla_config,fuente,colores["negro"],(795,50),None]
 parametros_nombre_dos = [pantalla_config,fuente,colores["negro"],(797,629),None]
 
-
 nuevo_boton_jugar = crear_boton(ventana,fuente,colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
 boton_nombre_uno = crear_boton(ventana,fuente,colores,(907,205),(175,60),procesar_entrada_texto,parametros_nombre,"")
 boton_nombre_dos = crear_boton(ventana,fuente,colores,(907,362),(175,60),procesar_entrada_texto,parametros_nombre_dos,"")
