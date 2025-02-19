@@ -39,18 +39,11 @@ clock = pygame.time.Clock()
 tiempo_inicial = None
 cronometro_activo = False
 
-#region #TODO Esto puede ir en una funcion que retorne los parametros
-parametros_jugar = [5,matriz_jerarquias_mezcladas,listas,pantalla_config,colores,cronometro_activo,tiempo_inicial]
-parametros_nombre = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
-parametros_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
+parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas,cronometro_activo,tiempo_inicial)
 
-#endregion 
-
-#region #TODO Esto puede ir en una funcion que retorne los botones con jugabilidad
-nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros_jugar,"JUGAR")
-boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(907,205),(175,60),procesar_entrada_texto,parametros_nombre,"")
-boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(907,362),(175,60),procesar_entrada_texto,parametros_nombre_dos,"")
-#endregion 
+nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
+boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(907,205),(175,60),procesar_entrada_texto,parametros[1],"")
+boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(907,362),(175,60),procesar_entrada_texto,parametros[2],"")
 
 elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
 
@@ -86,10 +79,8 @@ while bandera_juego:
                 
                 detectar_jugabilidad(nuevo_boton_jugar,evento,elementos_juego)
 
-    setear_pantalla(pantalla_config,elementos_juego,colores)
+    setear_pantalla(pantalla_config,elementos_juego)
 
-    # dibujar(nuevo_boton_jugar,dibujar_cuadrado_con_texto)
-    
     setear_acciones_pantalla_ses(acciones)
 
     actualizar()

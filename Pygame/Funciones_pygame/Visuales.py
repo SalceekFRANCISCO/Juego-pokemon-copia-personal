@@ -21,7 +21,7 @@ def setear_acciones_pantalla(accion_a,accion_b):
 
         setear_accion_pantalla(accion_b)            
 
-def setear_pantalla(pantalla_config,elementos_juego,colores):#! va a necesitar ambos diccionarios
+def setear_pantalla(pantalla_config,elementos_juego):#! va a necesitar ambos diccionarios
 
     dibujar(pantalla_config,rellenar_superficie)
 

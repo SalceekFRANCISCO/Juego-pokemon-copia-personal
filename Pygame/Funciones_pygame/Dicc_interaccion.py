@@ -373,6 +373,18 @@ def agrupar_acciones(accion_a,accion_b):
 
     return lista
 
+def crear_listas_parametros(pantalla_config,listas,colores,matriz,cronometro,tiempo)-> list:
+    lista = []
+    parametros_jugar = [5,matriz,listas,pantalla_config,colores,cronometro,tiempo]
+    parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
+    parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
+
+    lista.append(parametros_jugar)
+    lista.append(parametros_boton_nombre_uno)
+    lista.append(parametros_boton_nombre_dos)
+
+    return lista
+
 #region
 
 # def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 

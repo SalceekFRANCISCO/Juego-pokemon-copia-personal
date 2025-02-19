@@ -98,10 +98,10 @@ def guardar_resultados_finales(ganador_partida:str,listas:dict,pantalla_config:d
     puntaje = calcular_puntaje(listas ,pantalla_config, ganador_partida)#! usa los jugadores, otro diccionario
     guardar_resultados(pantalla_config, puntaje, ganador_partida)
 
-def actualizar_datos(pantalla_config:dict,elementos_juego:dict,colores:dict):
+def actualizar_datos(pantalla_config:dict,elementos_juego:dict):
     actualizar()
 
-    setear_pantalla(pantalla_config,elementos_juego,colores)#!
+    setear_pantalla(pantalla_config,elementos_juego)#!
 
     pygame.time.delay(1000)
 
