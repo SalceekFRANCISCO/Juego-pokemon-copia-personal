@@ -18,11 +18,11 @@ def creacion_diccionarios()->list:
     GRIS = (128, 128, 128)
     AMARILLO_CLARO = (254,255,145)
 
-    cuadrado_rojo = crear_cuadrados(ventana,ROJO,(56,180),(100,215))
-    cuadrado_azul = crear_cuadrados(ventana,AZUL_CLARO,(162,180),(100,215))
-    cuadrado_blanco = crear_cuadrados(ventana,BLANCO,(1122,201),(135,170))
-    cuadrado_negro_arriba = crear_cuadrados(ventana,NEGRO,(385,80),(520,260))
-    cuadrado_negro_abajo = crear_cuadrados(ventana,NEGRO,(385,360),(520,260))
+    cuadrado_rojo = crear_cuadrado(ventana,ROJO,(56,180),(100,215))
+    cuadrado_azul = crear_cuadrado(ventana,AZUL_CLARO,(162,180),(100,215))
+    cuadrado_blanco = crear_cuadrado(ventana,BLANCO,(1122,201),(135,170))
+    cuadrado_negro_arriba = crear_cuadrado(ventana,NEGRO,(385,80),(520,260))
+    cuadrado_negro_abajo = crear_cuadrado(ventana,NEGRO,(385,360),(520,260))
 
     lista_cuadrados = [cuadrado_rojo,cuadrado_azul,cuadrado_blanco,cuadrado_negro_arriba,cuadrado_negro_abajo]
 
@@ -75,7 +75,7 @@ def crear_matriz_jerarquias()-> list[list]:
 
     return matriz_jerarquias_mezclada
 
-def crear_cuadrados(ventana, color, posicion: tuple, dimensiones: tuple) -> dict:
+def crear_cuadrado(ventana, color, posicion: tuple, dimensiones: tuple) -> dict:
     """
     Crea un diccionario que representa un cuadrado en Pygame.
 
@@ -161,8 +161,8 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 def crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores):
 
     pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
-    carta_1 = crear_cuadrados(ventana,colores["azul_claro"],(450,26),(340,245))
-    carta_2 = crear_cuadrados(ventana,colores["rojo"],(450,415),(340,245))
+    carta_1 = crear_cuadrado(ventana,colores["azul_claro"],(450,26),(340,245))
+    carta_2 = crear_cuadrado(ventana,colores["rojo"],(450,415),(340,245))
 
     pantalla_dos = {}
     pantalla_dos["ventana"] = ventana
@@ -317,15 +317,16 @@ def detectar_cambio_color(lista,evento):
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
 
-def detectar_jugabilidad(lista,evento,elementos_juego):
-    for boton in lista:
-        if boton["cuadrado"].collidepoint(evento.pos):
-            boton["accion"](boton["lista_parametros"],elementos_juego)
+def detectar_jugabilidad(boton,evento,elementos_juego):
+    if boton["cuadrado"].collidepoint(evento.pos):
+        tiempo_inicial = pygame.time.get_ticks()  
+        cronometro_activo = True 
+        boton["accion"](boton["lista_parametros"],elementos_juego)
+        detectar_cambio_nombre(boton)
 
-def detectar_cambio_nombre(lista_botones):
-    for boton in lista_botones:
-        if boton["activo"]: 
-            boton["texto"]= "REINICIO"
+def detectar_cambio_nombre(boton):
+    if boton["activo"]: 
+        boton["texto"]= "REINICIO"
 #endregion
 
 def detectar_escritura(boton,evento):
@@ -365,6 +366,12 @@ def generar_estado_accion(bandera:bool,texto_pantalla):
 
     return accion
 
+def agrupar_acciones(accion_a,accion_b):
+    lista = []
+    lista.append(accion_a)
+    lista.append(accion_b)
+
+    return lista
 
 #region
 
