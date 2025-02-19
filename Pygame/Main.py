@@ -25,8 +25,8 @@ lista_cuadrados = diccionarios[0]
 colores = diccionarios[1]
 
 # region botones con texto
-ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
-atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
+# ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
+# atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
 
 #endregion
 pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores)
@@ -45,7 +45,7 @@ nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),ju
 boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(907,205),(175,60),procesar_entrada_texto,parametros[1],"")
 boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(907,362),(175,60),procesar_entrada_texto,parametros[2],"")
 
-elementos_juego = crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
+elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
 
 lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 

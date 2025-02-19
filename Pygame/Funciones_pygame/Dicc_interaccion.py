@@ -204,7 +204,12 @@ def crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores):
 
     return pantalla_dos
 
-def crear_datos_juego(ganador_partida_final,atributo,boton_nombre_uno,boton_nombre_dos,boton_jugar):
+def crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,boton_jugar):
+    ventana = inicializar_ventana()
+
+    ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
+    atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
+
     juego = {}
     juego["ganador_partida"] = ganador_partida_final
     juego["atributo"] = atributo
