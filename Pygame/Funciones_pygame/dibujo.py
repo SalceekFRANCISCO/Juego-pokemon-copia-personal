@@ -17,10 +17,8 @@ def dibujar_cuadrados(cuadrado:dict):
     Args:
         cuadrado (dict): Diccionario con los datos del cuadrado.
     """
-    if cuadrado["color"]:
-        pygame.draw.rect(cuadrado["ventana"], cuadrado["color"], cuadrado["cuadrado"])
-    else:
-        pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
+    
+    pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
 
 def dibujar_solo_texto(texto:dict):
     """Muestra solo texto en la ventana.
@@ -48,7 +46,7 @@ def dibujar_imagenes(imagen:dict):
     """
     imagen["ventana"].blit(imagen["imagen_final"],imagen["coordenadas"])
 
-def rellenar_superficie(pantalla:dict):#!usa ventana y color_ventnacolor_ventana
+def rellenar_superficie(pantalla:dict):
     """
     Llena toda la superficie de la ventana con un color.
 

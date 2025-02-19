@@ -91,7 +91,7 @@ def crear_cuadrado(ventana, color, posicion: tuple, dimensiones: tuple) -> dict:
 
     cuadrado = {}
     cuadrado["ventana"]= ventana
-    cuadrado["color"]= color
+    cuadrado["color_actual"]= color
     cuadrado["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
 
     return cuadrado
@@ -152,35 +152,39 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 
     return colores
 
-def crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores):
+def crear_datos_pantalla(ventana,jugadores):
+
+    diccionarios = creacion_diccionarios()
+    lista_cuadrados = diccionarios[0]
+    colores = diccionarios[1]
 
     pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
     carta_1 = crear_cuadrado(ventana,colores["azul_claro"],(450,26),(340,245))
     carta_2 = crear_cuadrado(ventana,colores["rojo"],(450,415),(340,245))
 
-    pantalla_dos = {}
-    pantalla_dos["ventana"] = ventana
-    pantalla_dos["color_ventana"] = colores["gris"]
-    pantalla_dos["lista_cuadrados"] = lista_cuadrados
-    pantalla_dos["jugador_1"] = jugadores[0]
-    pantalla_dos["jugador_2"] = jugadores[1]
-    pantalla_dos["pokebola"] = pokebola
-    pantalla_dos["carta_1"] = carta_1
-    pantalla_dos["carta_2"] = carta_2
-    pantalla_dos["path_json"] = "Resultados.json"
-    pantalla_dos["path_csv"] = "Archivos\Pokemon_Cards_Pygame.csv"
+    pantalla = {}
+    pantalla["ventana"] = ventana
+    pantalla["color_ventana"] = colores["gris"]
+    pantalla["lista_cuadrados"] = lista_cuadrados
+    pantalla["jugador_1"] = jugadores[0]
+    pantalla["jugador_2"] = jugadores[1]
+    pantalla["pokebola"] = pokebola
+    pantalla["carta_1"] = carta_1
+    pantalla["carta_2"] = carta_2
+    pantalla["path_json"] = "Resultados.json"
+    pantalla["path_csv"] = "Archivos\Pokemon_Cards_Pygame.csv"
 
-    return pantalla_dos
+    return pantalla
 
 def crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,boton_jugar):
     ventana = inicializar_ventana()
 
-    ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
-    atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
+    # ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
+    # atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
 
     juego = {}
-    juego["ganador_partida"] = ganador_partida_final
-    juego["atributo"] = atributo
+    # juego["ganador_partida"] = ganador_partida_final
+    # juego["atributo"] = atributo
     juego["boton_nombre_uno"] = boton_nombre_uno
     juego["boton_nombre_dos"] = boton_nombre_dos
     juego["boton_jugar"] = boton_jugar

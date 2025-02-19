@@ -32,7 +32,7 @@ def jugar(parametros,elementos_juego):
         contador_jugador_1 = puntuacion[0]
         contador_jugador_2 = puntuacion[1]
 
-        actualizar_datos(pantalla_config,elementos_juego,colores)
+        actualizar_datos(pantalla_config,elementos_juego)
 
     ganador_partida = mostrar_ganador_partida(pantalla_config,listas,colores)
 
