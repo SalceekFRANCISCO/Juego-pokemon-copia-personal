@@ -25,8 +25,8 @@ lista_cuadrados = diccionarios[0]
 colores = diccionarios[1]
 
 # region botones con texto
-ganador_partida_final = crear_input(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida",None)
-atributo = crear_input(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado",None)
+ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
+atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
 
 #endregion
 pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores)

@@ -17,7 +17,10 @@ def dibujar_cuadrados(cuadrado:dict):
     Args:
         cuadrado (dict): Diccionario con los datos del cuadrado.
     """
-    pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
+    if cuadrado["color"]:
+        pygame.draw.rect(cuadrado["ventana"], cuadrado["color"], cuadrado["cuadrado"])
+    else:
+        pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
 
 def dibujar_solo_texto(texto:dict):
     """Muestra solo texto en la ventana.
