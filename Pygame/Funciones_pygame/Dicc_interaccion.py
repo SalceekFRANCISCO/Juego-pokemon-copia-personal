@@ -1,5 +1,5 @@
 import pygame
-# from Funciones_pygame.Visuales import *
+from Funciones_pygame.Visuales import *
 
 #region
 def creacion_diccionarios()->list:
@@ -158,19 +158,23 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 
     return colores
 
-def crear_datos_pantalla(ventana,color_ventana,lista_cuadrados,pokebola,carta_1,carta_2,path_json,path_csv,jugadores):
+def crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores):
+
+    pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
+    carta_1 = crear_cuadrados(ventana,colores["azul_claro"],(450,26),(340,245))
+    carta_2 = crear_cuadrados(ventana,colores["rojo"],(450,415),(340,245))
 
     pantalla_dos = {}
     pantalla_dos["ventana"] = ventana
-    pantalla_dos["color_ventana"] = color_ventana["gris"]
+    pantalla_dos["color_ventana"] = colores["gris"]
     pantalla_dos["lista_cuadrados"] = lista_cuadrados
+    pantalla_dos["jugador_1"] = jugadores[0]
+    pantalla_dos["jugador_2"] = jugadores[1]
     pantalla_dos["pokebola"] = pokebola
     pantalla_dos["carta_1"] = carta_1
     pantalla_dos["carta_2"] = carta_2
-    pantalla_dos["path_json"] = path_json
-    pantalla_dos["path_csv"] = path_csv
-    pantalla_dos["jugador_1"] = jugadores[0]
-    pantalla_dos["jugador_2"] = jugadores[1]
+    pantalla_dos["path_json"] = "Resultados.json"
+    pantalla_dos["path_csv"] = "Archivos\Pokemon_Cards_Pygame.csv"
 
     return pantalla_dos
 
@@ -275,26 +279,20 @@ def dibujar_solo_texto(texto:dict):
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
 
 def escribir_teclado(boton, evento)->str:
-    # texto_final = ""
     if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
             boton["texto"] = boton["texto"][:-1]
-            # texto_final = boton["texto"]
 
         elif evento.key == pygame.K_RCTRL:
-            # texto_final = ""
             boton["texto"] = ""
 
         elif evento.key == pygame.K_RETURN:
             boton["activo"] = False
             boton["color_actual"] = boton["color_inactivo"]
-            # texto_final = boton["texto"] 
         else:
             boton["texto"] += evento.unicode
-            # texto_final = boton["texto"]
 
-    print(f"Texto actual del botón: {boton['texto']}")
-    # return texto_final
+    # print(f"Texto actual del botón: {boton['texto']}")
     return boton["texto"]
 
 def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
@@ -330,17 +328,12 @@ def detectar_cambio_nombre(lista_botones):
             boton["texto"]= "REINICIO"
 #endregion
 
-# def detectar_jugabilidad_dos(lista,evento):
-#     lista_acciones = []
-#     for boton in lista:
-#         if boton["activo"]:
-#             texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)#* boton["accion"] = procesar_entrada_texto(lista_pa,boton,evento)
-#             accion = evaluar_estado_texto(texto_pantalla)
-#             lista_acciones.append(accion)
-#         else:
-#             lista_acciones.append("vacio")
+def detectar_escritura(boton,evento):
+    texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
+    bandera = True
+    accion = generar_estado_accion(bandera,texto_pantalla)
 
-#     return lista_acciones
+    return accion
 
 def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
     """Registra el texto que se ingresa por teclado
@@ -365,49 +358,13 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
             
     return texto_pantalla
 
-# def evaluar_estado_texto(texto_pantalla)->dict:
-#     bandera = True
-#     accion = generar_estado_accion(bandera,texto_pantalla)
-
-#     return accion
-
-def generar_estado_accion (bandera:bool,texto_pantalla):
+def generar_estado_accion(bandera:bool,texto_pantalla):
     accion = {}
     accion["bandera"] = bandera
     accion["texto_pantalla"] = texto_pantalla
 
     return accion
 
-# if boton_nombre_uno["activo"]:
-    #     texto_pantalla= procesar_entrada_texto (pantalla_config,fuente,colores["negro"],boton_nombre_uno,(795,50),evento,None)
-    #     bandera_dos = True
-    #     accion_a = generar_estado_accion (bandera_dos,texto_pantalla)
-
-def detectar_escritura_individual(boton,evento):
-    texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
-    bandera = True
-    accion = generar_estado_accion(bandera,texto_pantalla)
-
-    return accion
-
-
-# def sexo(boton_nombre_uno,boton_nombre_dos,parametros_nombre,parametros_nombre_dos,evento):
-#     accion_a = None
-#     accion_b = None
-#     bandera_dos = False
-#     bandera_tres = False
-
-#     if boton_nombre_uno["activo"]:
-#         texto_pantalla= procesar_entrada_texto(parametros_nombre,boton_nombre_uno,evento)
-#         bandera_dos = True
-#         accion_a = generar_estado_accion(bandera_dos,texto_pantalla)
-            
-#     if boton_nombre_dos["activo"]:
-#         texto_pantalla_dos= procesar_entrada_texto(parametros_nombre_dos,boton_nombre_dos,evento)#!usan la ventana
-#         bandera_tres = True
-#         accion_b = generar_estado_accion(bandera_tres,texto_pantalla_dos)
-
-#     return [accion_a,accion_b]
 
 #region
 

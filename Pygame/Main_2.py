@@ -17,18 +17,13 @@ diccionarios = creacion_diccionarios()
 lista_cuadrados = diccionarios[0]
 colores = diccionarios[1]
 
-carta_1 = crear_cuadrados(ventana,colores["azul_claro"],(450,26),(340,245))
-carta_2 = crear_cuadrados(ventana,colores["rojo"],(450,415),(340,245))
-
 # region botones con texto
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
-pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
-
 #endregion
 
-pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",jugadores)
+pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
@@ -70,10 +65,10 @@ while bandera_juego:
 
         if evento.type == pygame.KEYDOWN:
             if boton_nombre_uno["activo"]:
-                accion_a = detectar_escritura_individual(boton_nombre_uno,evento)
+                accion_a = detectar_escritura(boton_nombre_uno,evento)
 
             elif boton_nombre_dos["activo"]:
-                accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
+                accion_b = detectar_escritura(boton_nombre_dos,evento)
 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             tiempo_inicial = pygame.time.get_ticks()  

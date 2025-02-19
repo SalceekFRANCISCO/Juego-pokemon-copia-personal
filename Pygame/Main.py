@@ -72,18 +72,16 @@ colores = diccionarios[1]
 
 
 #endregion
-carta_1 = crear_cuadrados(ventana,colores["azul_claro"],(450,26),(340,245))
-carta_2 = crear_cuadrados(ventana,colores["rojo"],(450,415),(340,245))
+# carta_1 = crear_cuadrados(ventana,colores["azul_claro"],(450,26),(340,245))
+# carta_2 = crear_cuadrados(ventana,colores["rojo"],(450,415),(340,245))
 
 # region botones con texto
 ganador_partida_final = crear_input(ventana,fuente,colores,(1027,60),(200,60),"Ganador partida",None)
 atributo = crear_input(ventana,fuente,colores,(1027,439),(200,60),"Atributo Sorteado",None)
 
-pokebola = crear_diccionario_imagen(ventana,"Poke_fotos\pokebola.png",(370,145),(530,425))
-
 #endregion
 
-pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,pokebola,carta_1,carta_2,"Resultados.json","Archivos\Pokemon_Cards_Pygame.csv",jugadores)
+pantalla_config = crear_datos_pantalla(ventana,colores,lista_cuadrados,jugadores)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
@@ -160,6 +158,7 @@ lista_botones_completa = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 juego_terminado = False
 accion_a = None
 accion_b = None
+acciones = None
 dibujo = False
 
 while bandera_juego: 
@@ -177,12 +176,22 @@ while bandera_juego:
 
             # accion_a = sexoa[0]
             # accion_b = sexoa[1]
+
             if boton_nombre_uno["activo"]:
-                accion_a = detectar_escritura_individual(boton_nombre_uno,evento)
+                accion_a = detectar_escritura(boton_nombre_uno,evento)
 
 
             if boton_nombre_dos["activo"]:
-                accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
+                accion_b = detectar_escritura(boton_nombre_dos,evento)
+
+            def agrupar_acciones(accion_a,accion_b):
+                lista = []
+                lista.append(accion_a)
+                lista.append(accion_b)
+
+                return lista
+
+            acciones = agrupar_acciones(accion_a,accion_b)
                  
             # accion_b = detectar_escritura_individual(boton_nombre_dos,evento)
 
@@ -232,7 +241,8 @@ while bandera_juego:
     
     # if dibujo == True:
         # setear_acciones_pantalla(acciones)
-    setear_acciones_pantalla(accion_a,accion_b)
+    # setear_acciones_pantalla(accion_a,accion_b)
+    setear_acciones_pantalla_ses(acciones)
 
     actualizar()
 

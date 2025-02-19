@@ -5,14 +5,15 @@ from Funciones_pygame.Dibujo import *
 #     if accion != None and accion["bandera"] == True:
 #         dibujar_solo_texto(accion["texto_pantalla"])
 
-# def setear_acciones_pantalla(acciones):
-#     for accion in acciones:
-#         if accion != "vacio":        
-#             dibujar_solo_texto(accion["texto_pantalla"])
+def setear_acciones_pantalla_ses(acciones):
+    if acciones != None:
+        for accion in acciones:
+            if accion != None:        
+                dibujar_solo_texto(accion["texto_pantalla"])
 
 def setear_accion_pantalla(accion):
-    if accion != None:
-        if accion["bandera"]:
+    if accion != None and accion["bandera"]:
+        # if accion["bandera"]:
             dibujar_solo_texto(accion["texto_pantalla"])
 
 def setear_acciones_pantalla(accion_a,accion_b):
