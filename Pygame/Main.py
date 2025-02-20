@@ -3,8 +3,8 @@ from Logica.Consola_1_MP import *
 
 
 #NUEVO OBJETIVO: 
-#MIMIFICAR EL MAIN
-#PROBAR CREAR EL MODULO SOLO DICCIONARIOS
+#MIMIFICAR EL MAIN por ahora bien
+#PROBAR CREAR EL MODULO SOLO DICCIONARIOS desopues
 #EMPEZAR CON EL MANEJADOR MUSICAL
 # PEDIR CORRECTAMENTE LOS NOMBES  
 
@@ -66,12 +66,9 @@ while bandera_juego:
             acciones = agrupar_acciones(accion_a,accion_b)
                  
         elif evento.type == pygame.MOUSEBUTTONDOWN:
-                tiempo_inicial = pygame.time.get_ticks()  
-                cronometro_activo = True 
-
-                detectar_cambio_color(lista_botones,evento)
-                
-                detectar_jugabilidad(nuevo_boton_jugar,evento,elementos_juego)
+            # tiempo_inicial = pygame.time.get_ticks()  
+            # cronometro_activo = True 
+            jugabilidad(lista_botones,elementos_juego,evento)
 
     setear_pantalla(pantalla_config,elementos_juego)
 

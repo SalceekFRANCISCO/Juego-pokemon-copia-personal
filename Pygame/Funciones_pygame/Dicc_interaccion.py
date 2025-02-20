@@ -381,6 +381,12 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz,cronometro,tie
 
     return lista
 
+def jugabilidad(lista_botones,elementos_juego,evento):
+    detectar_cambio_color(lista_botones,evento)
+
+    detectar_jugabilidad(lista_botones[2],evento,elementos_juego)
+
+
 #region
 
 # def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 
