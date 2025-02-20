@@ -1,5 +1,13 @@
 import pygame
 
+def dibujar_boton_musical(boton):
+    boton["ventana"].blit(boton["contenido"], boton["posicion"])
+
+# Esto va en dibujar
+def dibujar_botones(lista):
+    for boton in lista:
+        dibujar_boton_musical(boton)
+
 def dibujar(diccionario:dict,tipo_dibujo):
     """Descripcion: Dibuja el elemento que se le pase por parametro junto con su respectivo orden.
 

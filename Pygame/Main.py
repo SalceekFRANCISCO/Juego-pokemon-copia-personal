@@ -11,7 +11,7 @@ from Logica.Consola_1_MP import *
 
 
 pygame.init() 
-
+#region
 ventana = inicializar_ventana()
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
@@ -39,7 +39,9 @@ nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),ju
 boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(907,205),(175,60),procesar_entrada_texto,parametros[1],"")
 boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(907,362),(175,60),procesar_entrada_texto,parametros[2],"")
 
-elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar)
+lista_botones_musicales = crear_botones(ventana)
+
+elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar,lista_botones_musicales)
 
 lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 
@@ -47,6 +49,9 @@ bandera_juego = True
 accion_a = None
 accion_b = None
 acciones = None
+#endregion
+
+cargar_musica("Musica\Atrapalos Ya!.mp3")
 
 while bandera_juego: 
     for evento in pygame.event.get():
@@ -54,7 +59,7 @@ while bandera_juego:
             bandera_juego = False
         # elif evento.type == pygame.MOUSEMOTION:
         #     x,y = evento.pos
-        #     # print(x,y) #Saber que cordenadas son en la pantalla
+        #     print(x,y) #Saber que cordenadas son en la pantalla
         elif evento.type == pygame.KEYDOWN:
 
             if boton_nombre_uno["activo"]:
@@ -69,6 +74,10 @@ while bandera_juego:
             # tiempo_inicial = pygame.time.get_ticks()  
             # cronometro_activo = True 
             jugabilidad(lista_botones,elementos_juego,evento)
+
+            checkear_accion_botones(lista_botones_musicales, evento)
+
+            
 
     setear_pantalla(pantalla_config,elementos_juego)
 

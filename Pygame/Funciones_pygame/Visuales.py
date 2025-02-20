@@ -23,10 +23,13 @@ def setear_acciones_pantalla(accion_a,accion_b):
 
 def setear_pantalla(pantalla_config,elementos_juego):#! va a necesitar ambos diccionarios
 
+    
     dibujar(pantalla_config,rellenar_superficie)
 
     dibujar(elementos_juego["boton_nombre_uno"],mostrar_texbox_pantalla)
     dibujar(elementos_juego["boton_nombre_dos"],mostrar_texbox_pantalla)
+
+    dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
 
     dibujar_lista_cuadrados(pantalla_config["lista_cuadrados"])
 
