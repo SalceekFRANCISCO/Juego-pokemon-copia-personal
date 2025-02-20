@@ -34,8 +34,9 @@ def setear_pantalla(pantalla_config,elementos_juego):#! va a necesitar ambos dic
     dibujar_lista_cuadrados(pantalla_config["lista_cuadrados"])
 
     dibujar_cuadrado_con_texto(elementos_juego["boton_jugar"])
-    # dibujar_cuadrado_con_texto(elementos_juego["ganador_partida"])
-    # dibujar_cuadrado_con_texto(elementos_juego["atributo"])
+    dibujar_cuadrado_con_texto(elementos_juego["atributo"])
+    dibujar_cuadrado_con_texto(elementos_juego["ganador_ronda"])
+    dibujar_cuadrado_con_texto(elementos_juego["ganador_partida"])
 
     dibujar_imagenes(pantalla_config["pokebola"])
     

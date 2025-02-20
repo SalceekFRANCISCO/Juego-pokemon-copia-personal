@@ -5,7 +5,7 @@ from Logica.Consola_1_MP import *
 #NUEVO OBJETIVO: 
 #MIMIFICAR EL MAIN por ahora bien
 #PROBAR CREAR EL MODULO SOLO DICCIONARIOS desopues
-#EMPEZAR CON EL MANEJADOR MUSICAL
+#EMPEZAR CON EL MANEJADOR MUSICAL ya esta hecho
 # PEDIR CORRECTAMENTE LOS NOMBES  
 
 
@@ -36,8 +36,8 @@ cronometro_activo = False
 parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas,cronometro_activo,tiempo_inicial)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
-boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(907,205),(175,60),procesar_entrada_texto,parametros[1],"")
-boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(907,362),(175,60),procesar_entrada_texto,parametros[2],"")
+boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
+boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
 lista_botones_musicales = crear_botones(ventana)
 
@@ -57,9 +57,9 @@ while bandera_juego:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             bandera_juego = False
-        # elif evento.type == pygame.MOUSEMOTION:
-        #     x,y = evento.pos
-        #     print(x,y) #Saber que cordenadas son en la pantalla
+        elif evento.type == pygame.MOUSEMOTION:
+            x,y = evento.pos
+            print(x,y) #Saber que cordenadas son en la pantalla
         elif evento.type == pygame.KEYDOWN:
 
             if boton_nombre_uno["activo"]:

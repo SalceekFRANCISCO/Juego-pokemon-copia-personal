@@ -21,11 +21,11 @@ def creacion_diccionarios()->list:
 
     cuadrado_rojo = crear_cuadrado(ventana,ROJO,(56,180),(100,215))
     cuadrado_azul = crear_cuadrado(ventana,AZUL_CLARO,(162,180),(100,215))
-    cuadrado_blanco = crear_cuadrado(ventana,BLANCO,(1122,201),(135,170))
+    cartas_meza = crear_cuadrado(ventana,BLANCO,(911,127),(135,170))
     cuadrado_negro_arriba = crear_cuadrado(ventana,NEGRO,(385,80),(520,260))
     cuadrado_negro_abajo = crear_cuadrado(ventana,NEGRO,(385,360),(520,260))
 
-    lista_cuadrados = [cuadrado_rojo,cuadrado_azul,cuadrado_blanco,cuadrado_negro_arriba,cuadrado_negro_abajo]
+    lista_cuadrados = [cuadrado_rojo,cuadrado_azul,cartas_meza,cuadrado_negro_arriba,cuadrado_negro_abajo]
 
     colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
@@ -115,7 +115,7 @@ def crear_texto_cuadrado(ventana, fuente, colores:tuple, posicion:tuple, dimensi
     input = {}
     input["ventana"] = ventana
     input["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
-    input["color"] = colores["blanco"]
+    input["color_actual"] = colores["blanco"]
     input["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
 
     if texto != None:
@@ -180,12 +180,16 @@ def crear_datos_pantalla(ventana,jugadores):
 def crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,boton_jugar,lista_botones_musicales):
     ventana = inicializar_ventana()
 
-    # ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,60),(200,60),"Ganador partida")
-    # atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(1027,439),(200,60),"Atributo Sorteado")
+    # atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,445),(200,60),"Atributo Sorteado")
+    atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
+    # ganador_ronda = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,524),(200,60),"Ganador ronda")
+    ganador_ronda = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,445),(200,60),"Ganador ronda")
+    ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,524),(200,60),"Ganador partida")
 
     juego = {}
-    # juego["ganador_partida"] = ganador_partida_final
-    # juego["atributo"] = atributo
+    juego["ganador_partida"] = ganador_partida_final
+    juego["atributo"] = atributo
+    juego["ganador_ronda"] = ganador_ronda
     juego["boton_nombre_uno"] = boton_nombre_uno
     juego["boton_nombre_dos"] = boton_nombre_dos
     juego["boton_jugar"] = boton_jugar

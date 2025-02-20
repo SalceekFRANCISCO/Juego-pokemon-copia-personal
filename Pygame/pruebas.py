@@ -101,6 +101,45 @@
             
 #     return texto_pantalla
 
+
+
+# def jugar(parametros,elementos_juego):
+    
+#     cantidad_rondas = parametros[0]
+#     matriz_jerarquias_mezclada = parametros[1]
+#     listas = parametros[2]
+#     pantalla_config = parametros[3]
+#     colores = parametros[4]
+#     cronometro_activo = parametros[5]
+#     tiempo_inicial = parametros[6]
+
+#     contador = 0
+#     contador_jugador_1 = 0
+#     contador_jugador_2 = 0
+
+#     while contador < cantidad_rondas or jugador_sin_cartas:
+#         jugador_sin_cartas = Determinar_algun_jugador_sin_cartas(listas)
+#         contador += 1
+
+#         mostrar_cronometro(pantalla_config, cronometro_activo,tiempo_inicial,colores)#! usa la ventana
+
+#         cargar_cartas(listas,pantalla_config,colores)#!usa la ventana
+        
+#         atributo = mostrar_atributo(listas,pantalla_config,colores)
+
+#         resultado = comparar_atributos(listas, matriz_jerarquias_mezclada,atributo)
+#         agregar_cartas(resultado,listas)
+
+#         puntuacion = cargar_ganador_y_puntaje(pantalla_config,resultado,contador_jugador_1,contador_jugador_2,colores)#! usa los jugadores, otro diccionario
+#         contador_jugador_1 = puntuacion[0]
+#         contador_jugador_2 = puntuacion[1]
+
+#         actualizar_datos(pantalla_config,elementos_juego,colores)
+
+#     ganador_partida = mostrar_ganador_partida(pantalla_config,listas,colores)
+
+#     guardar_resultados_finales(ganador_partida,listas,pantalla_config)
+
 #endregion
 #endregion
 
