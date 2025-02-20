@@ -1,27 +1,36 @@
 # def inicializar_ventana():
 #   
-# def manejador_eventos(lista_botones):
-#     flag_run = True
-#     for evento in pygame.event.get():
-#         if evento.type == pygame.QUIT:
-#             flag_run = False
-#         elif evento.type == pygame.MOUSEBUTTONDOWN:
-#             checkear_accion_botones(lista_botones, evento)
-
-#     return flag_run
 import pygame
+def crear_boton_musical(ventana, posicion:tuple, dimensiones:tuple,accion,imagen=None) -> dict:
+    boton_musical = {}
+    boton_musical["ventana"] = ventana
+    boton_musical["dimensiones"] = dimensiones
+    boton_musical["posicion"] = posicion
+    boton_musical["accion"] = accion
+    boton_musical["activo"] = False
+
+    if boton_musical != None:
+        img = pygame.image.load(imagen)
+        boton_musical["contenido"] = pygame.transform.scale(img,boton_musical["dimensiones"])
+
+    boton_musical["rectangulo"] = boton_musical["contenido"].get_rect()
+    boton_musical["rectangulo"].topleft = boton_musical["posicion"]
+
+
+    return boton_musical
+
 
 #
-def manejador_eventos():
-    bandera_correr = True
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            bandera_correr = False
-        # elif evento.type == pygame.MOUSEMOTION:
-        #     x,y = evento.pos
-        #     print(x,y) #Saber que cordenadas son en la pantalla
+# def manejador_eventos():
+#     bandera_correr = True
+#     for evento in pygame.event.get():
+#         if evento.type == pygame.QUIT:
+#             bandera_correr = False
+#         # elif evento.type == pygame.MOUSEMOTION:
+#         #     x,y = evento.pos
+#         #     print(x,y) #Saber que cordenadas son en la pantalla
     
-    return bandera_correr
+#     return bandera_correr
 #
 #
 #
