@@ -1,4 +1,4 @@
-from Funciones_pygame.Dicc_interaccion import *
+# from Funciones_pygame.Dicc_interaccion import *
 from Funciones_pygame.Visuales import *
 from Logica.Consola_2_FG import *
 

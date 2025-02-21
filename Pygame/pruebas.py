@@ -37,6 +37,40 @@
 
 
 
+
+# def crear_input(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,texto_del_boton=None,texto_escritura=None) -> dict:
+#     """
+#     Crea un diccionario que representa un campo de entrada (input) en Pygame.
+
+#     Args:
+#         ventana: Superficie de Pygame donde se dibujará el campo de entrada.
+#         fuente (tuple): Tipo y tamaño de fuente a utilizar (nombre, tamaño).
+#         colores (dict): Diccionario con los colores disponibles.
+#         posicion (tuple): Coordenadas (x, y) del campo de entrada.
+#         dimensiones (tuple): Ancho y alto del campo de entrada.
+#         texto_del_boton (str): Texto inicial del campo de entrada.
+
+#     Returns:
+#         dict: Diccionario con los datos del campo de entrada.
+#     """
+#     input = {}
+#     input["ventana"] = ventana
+#     # input["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+#     input["fuente"] = crear_fuente(fuente[0],fuente[1])
+#     input["color_activo"] = colores["dorado"]
+#     input["color_inactivo"] = colores["blanco"]
+#     input["activo"] = False
+#     input["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
+#     input["color_actual"] = colores["blanco"]
+
+#     if texto_del_boton != None:
+#         input["texto"] = texto_del_boton # la llave tiene que llamarse texto_del_boton
+
+#     elif texto_escritura != None:
+#         input["texto_escritura"] = texto_escritura
+
+#     return input
+
 #region
 
 # def crear_diccionario_pantalla(ventana, GRIS, lista_cuadrados, boton_jugar, reemplazo_boton, 

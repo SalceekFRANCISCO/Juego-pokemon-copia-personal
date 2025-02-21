@@ -3,6 +3,10 @@ from Logica.Consola_1_MP import *
 
 
 #NUEVO OBJETIVO: 
+
+#arreglar los modulos de funciones pygame
+
+
 #MIMIFICAR EL MAIN por ahora bien
 #PROBAR CREAR EL MODULO SOLO DICCIONARIOS desopues
 #EMPEZAR CON EL MANEJADOR MUSICAL ya esta hecho
@@ -57,9 +61,9 @@ while bandera_juego:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             bandera_juego = False
-        elif evento.type == pygame.MOUSEMOTION:
-            x,y = evento.pos
-            print(x,y) #Saber que cordenadas son en la pantalla
+        # elif evento.type == pygame.MOUSEMOTION:
+        #     x,y = evento.pos
+        #     print(x,y) #Saber que cordenadas son en la pantalla
         elif evento.type == pygame.KEYDOWN:
 
             if boton_nombre_uno["activo"]:
@@ -75,7 +79,7 @@ while bandera_juego:
             # cronometro_activo = True 
             jugabilidad(lista_botones,elementos_juego,evento)
 
-            checkear_accion_botones(lista_botones_musicales, evento)
+            veriificar_accion_botones(lista_botones_musicales, evento)
 
             
 

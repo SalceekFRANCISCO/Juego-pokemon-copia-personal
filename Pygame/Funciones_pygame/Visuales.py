@@ -1,9 +1,6 @@
 import pygame
 from Funciones_pygame.Dibujo import *
-
-# def setear_accion_pantalla(accion):
-#     if accion != None and accion["bandera"] == True:
-#         dibujar_solo_texto(accion["texto_pantalla"])
+from Funciones_pygame.Interaccion import *
 
 def setear_acciones_pantalla_ses(acciones):
     if acciones != None:
@@ -23,7 +20,6 @@ def setear_acciones_pantalla(accion_a,accion_b):
 
 def setear_pantalla(pantalla_config,elementos_juego):#! va a necesitar ambos diccionarios
 
-    
     dibujar(pantalla_config,rellenar_superficie)
 
     dibujar(elementos_juego["boton_nombre_uno"],mostrar_texbox_pantalla)
@@ -87,14 +83,6 @@ def actualizar():
     """
     pygame.display.update()
 
-def generar_texto_renderizado (pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto):#! ventana
-    texto = {}
-    texto["ventana"] = pantalla["ventana"]
-    texto["texto_escrito"] = renderizar_mensaje((fuente[0],fuente[1]),texto_escrito,color_texto,color_fondo_texto)
-    texto["posicion"] = posicion
-
-    return texto
-
 def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_fondo_texto):#! ventana
     """
     Muestra texto en la ventana.
@@ -109,49 +97,6 @@ def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_f
     texto = generar_texto_renderizado (pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto)
 
     dibujar(texto,dibujar_solo_texto)
-
-def renderizar_mensaje(fuente:tuple, mensaje: str, color_texto: tuple,color_fondo_texto):
-    fuente_creada = crear_fuente(fuente[0],fuente[1])
-    texto_definitivo = renderizar_texto(fuente_creada,mensaje,color_texto,color_fondo_texto)
-
-    return texto_definitivo
-
-def crear_diccionario_imagen(ventana, path, coordenadas, dimensiones)->dict:
-    """
-    Crea una imagen escalada y la asocia a una ventana.
-
-    Args:
-        ventana (Surface): Superficie donde se dibujará la imagen.
-        path (str): Ruta de la imagen.
-        coordenadas (tuple): Coordenadas (x, y) de la imagen.
-        dimensiones (tuple): Escala (ancho, alto) de la imagen.
-
-    Returns:
-        dict: Diccionario con datos de la imagen.
-    """
-    imagen = {}
-    imagen_cargada = cargar_imagenes(path,dimensiones)
-    imagen["imagen_final"] = imagen_cargada 
-    imagen["ventana"] = ventana 
-    imagen["coordenadas"] = coordenadas 
-
-    return imagen
-
-def cargar_imagenes(path: str, coordenadas:tuple):
-    """
-    Carga y escala una imagen.
-
-    Args:
-        path (str): Ruta de la imagen.
-        coordenadas (tuple): Dimensiones para escalar la imagen.
-
-    Returns:
-        Surface: Imagen escalada.
-    """
-    imagen_cargada = cargar_imagen(path)
-    imagen_Escalada = escalar_imagen(imagen_cargada,coordenadas)
-
-    return imagen_Escalada
 
 def obtener_tiempo(tiempo_actual, tiempo_inicial):
     """
@@ -170,30 +115,6 @@ def obtener_tiempo(tiempo_actual, tiempo_inicial):
     tiempo_transcurrido = str(tiempo_transcurrido)
 
     return tiempo_transcurrido
-
-def crear_temporizador(ventana, fuente, posicion, dimensiones, tiempo, color) -> dict:
-    """
-    Crea un temporizador para mostrar en pantalla.
-
-    Args:
-        ventana (Surface): Superficie donde se dibuja.
-        fuente (tuple): Tipo y tamaño de la fuente.
-        posicion (tuple): Coordenadas del temporizador.
-        dimensiones (tuple): Dimensiones del rectángulo del temporizador.
-        tiempo (str): Tiempo inicial a mostrar.
-        color (tuple): Color del texto.
-
-    Returns:
-        dict: Diccionario con datos del temporizador.
-    """
-    texto_superficie = renderizar_mensaje((fuente[0],fuente[1]),tiempo,color,None)
-
-    temporizador = {}
-    temporizador["ventana"] = ventana
-    temporizador["rectangulo"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
-    temporizador["texto"] = texto_superficie
-
-    return temporizador
 
 def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! ventana
     """
@@ -218,102 +139,3 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
 
         # Mostrar el tiempo en pantalla
         dibujar(tiempo_final,dibujar_tiempo)
-
-def cargar_imagen(path:str):
-    """
-    Carga una imagen desde un archivo.
-
-    Args:
-        path (str): Ruta de la imagen.
-
-    Returns:
-        Surface: Imagen cargada.
-    """
-    imagen_cargada = pygame.image.load(path)
-
-    return imagen_cargada
-
-def escalar_imagen(imagen, coordenadas:tuple):
-    """
-    Escala una imagen a las dimensiones especificadas.
-
-    Args:
-        imagen (Surface): Imagen a escalar.
-        coordenadas (tuple): Nuevas dimensiones (ancho, alto).
-
-    Returns:
-        Surface: Imagen escalada.
-    """
-    imagen_Escalada = pygame.transform.scale(imagen, coordenadas)
-
-    return imagen_Escalada
-
-def crear_fuente(tipo_fuente: str, tamaño: int):
-    """
-    Crea una fuente de texto.
-
-    Args:
-        tipo_fuente (str): Nombre de la fuente.
-        tamaño (int): Tamaño de la fuente.
-
-    Returns:
-        Font: Objeto de fuente creado.
-    """
-    fuente = pygame.font.SysFont(tipo_fuente,tamaño)
-    return fuente
-
-def renderizar_texto(fuente_creada: str, mensaje: str, color_texto: tuple, color_fondo_texto=None):
-    """
-    Renderiza un texto con la fuente, colores de texto y fondo.
-
-    Args:
-        fuente_creada (Font): Objeto de fuente.
-        mensaje (str): Texto a renderizar.
-        color_texto (tuple): Color del texto.
-        color_fondo_texto (tuple): Color del fondo del texto.
-
-    Returns:
-        Surface: Superficie con el texto renderizado.
-    """
-    if color_fondo_texto != None:
-        texto = fuente_creada.render(mensaje,False,color_texto,color_fondo_texto)
-    else:
-        texto = fuente_creada.render(mensaje,False,color_texto)
-
-    return texto
-
-def mostrar_texbox_pantalla(input):
-    superficie = input["fuente"].render(input["texto"],False,"Black")
-    input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
-    pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
-
-#region cosas que no se usan
-
-#? Esta funcion es de modelo para las otras
-# def dibujar(input):
-#     """
-#     Dibuja un campo de texto con un rectángulo y el texto que contiene.
-
-#     Args:
-#         input (dict): Diccionario del campo de texto.
-#     """
-#     superficie = input["fuente"].render(input["texto"],False,"Black")
-#     input["ventana"].blit(superficie,input["rectangulo"])
-#     pygame.draw.rect(input["ventana"], input["color_actual"], input["rectangulo"],2)
-
-
-#? Esta funcion es de modelo para las otras
-# def dibujar_rectangulo(ventana, color, boton):
-#     """
-#     Dibuja un rectángulo en la ventana.
-
-#     Args:
-#         ventana (Surface): Superficie de Pygame donde se dibuja el rectángulo.
-#         color (tuple): Color del rectángulo en formato RGB.
-#         boton (Rect): Objeto Rect de Pygame que representa el rectángulo.
-#     """
-#     pygame.draw.rect(ventana, color, boton)
-
-
-
-#endregion

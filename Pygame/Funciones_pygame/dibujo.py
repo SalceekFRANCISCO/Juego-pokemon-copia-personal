@@ -3,7 +3,6 @@ import pygame
 def dibujar_boton_musical(boton):
     boton["ventana"].blit(boton["contenido"], boton["posicion"])
 
-# Esto va en dibujar
 def dibujar_botones(lista):
     for boton in lista:
         dibujar_boton_musical(boton)
@@ -113,3 +112,8 @@ def dibujar_rectangulo_cartas(carta_1,carta_2):
     """
     dibujar(carta_1,dibujar_cuadrados)
     dibujar(carta_2,dibujar_cuadrados)
+
+def mostrar_texbox_pantalla(input):
+    superficie = input["fuente"].render(input["texto"],False,"Black")
+    input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
+    pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
