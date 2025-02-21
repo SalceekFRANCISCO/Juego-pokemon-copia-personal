@@ -61,6 +61,7 @@ flag_b = False
 flag_c = False
 flag_a = False
 
+
 cargar_musica("Musica\Atrapalos Ya!.mp3")
 
 while bandera_juego: 
@@ -72,7 +73,9 @@ while bandera_juego:
         #     print(x,y) #Saber que cordenadas son en la pantalla
         elif evento.type == pygame.KEYDOWN:
             
-            if flag_a != True and flag_b != True:
+            # if flag_a == False and flag_b == False:
+            #     boton_nombre_uno["activo"] = False 
+            #     boton_nombre_dos["activo"] = False 
                 if boton_nombre_uno["activo"]:
                     accion_a = detectar_escritura(boton_nombre_uno,evento)
                     flag_a = True
@@ -90,7 +93,14 @@ while bandera_juego:
 
             veriificar_accion_botones(lista_botones_musicales, evento)
 
-            
+    def prueba(flag_a,flag_b):
+        flag_c = False
+        if flag_a == True and flag_b == True:
+            flag_c = True
+
+        return flag_c
+    
+    flag_c = prueba(flag_a,flag_b)
 
     setear_pantalla(pantalla_config,elementos_juego)
 

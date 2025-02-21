@@ -54,6 +54,11 @@ def cambio_color(boton:dict):
         boton (dict): Diccionario del campo de entrada.
     """
     boton["activo"] = not boton["activo"]
+    print(boton["texto"])
+
+    if boton["texto"] != "JUGAR" and boton["texto"] != "":
+        boton["color_actual"] = boton["color_inactivo"]
+
     if boton["activo"]:
         boton["color_actual"] = boton["color_activo"] 
     else:
