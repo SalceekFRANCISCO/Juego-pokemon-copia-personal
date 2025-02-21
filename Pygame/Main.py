@@ -8,8 +8,9 @@ from Logica.Consola_1_MP import *
 
 
 #MIMIFICAR EL MAIN por ahora bien
-#PROBAR CREAR EL MODULO SOLO DICCIONARIOS desopues
+#PROBAR CREAR EL MODULO SOLO DICCIONARIOS ya esta hecho
 #EMPEZAR CON EL MANEJADOR MUSICAL ya esta hecho
+# main mimificado
 # PEDIR CORRECTAMENTE LOS NOMBES  
 
 
