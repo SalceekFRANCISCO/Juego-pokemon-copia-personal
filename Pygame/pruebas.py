@@ -330,21 +330,55 @@
 #############################################################################################################################
 import pygame
 
+pantalla_principal = True
+bandera = True
 
-def manejador_eventos_pantalla (pantalla_principal: bool, bandera: bool, bandera_correr: bool, boton):
-    for evento in pygame.event.get ():
-        if evento.type == pygame.QUIT:
-            pantalla_principal = False
-            bandera = False
-            bandera_correr = False
+ventana = ""
+colores = ""
 
-        if evento.type == pygame.MOUSEBUTTONDOWN:
-            if boton.collidepoint(evento.pos):
-                pantalla_principal = False
-    
-    return [pantalla_principal, bandera, bandera_correr]
+def crear_datos_pre_pantalla(ventana,colores,bandera_1,bandera_2,bandera_3):
+    pre_pantalla = {}
+    pre_pantalla["ventana"] = ventana
+    pre_pantalla["color_ventana"] = colores["rojo"]
+    pre_pantalla["bandera_1"] = bandera_1
+    pre_pantalla["bandera_2"] = bandera_2
+    pre_pantalla["bandera_3"] = bandera_3
+
+    return pre_pantalla
+
+def cargar_pantalla_inicio(datos,boton):
+    manejador_eventos_pantalla(datos,boton)
+
+    rellenar_superficie(datos)
+    dibujar_cuadro_con_texto(boton)
+
+    return datos
 
 
+
+crear_boton = ""
+parametros = ""
+jugar = ""
+
+
+
+
+# dad
+
+while bandera:
+    bandera_dos = True
+
+    datos = crear_datos_pre_pantalla(ventana,colores,pantalla_principal,bandera_dos,bandera)
+    nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
+
+    while pantalla_principal:
+        cargar_pantalla_inicio(datos,nuevo_boton_jugar), 
+        
+        pantalla_principal = datos["bandera_1"]
+        bandera_dos = datos["bandera_2"]
+        bandera = datos["bandera_3"]
+
+        pygame.display.update ()
 
 dibujar_cuadro_con_texto = ""
 bandera_1 = "" 
@@ -353,20 +387,22 @@ bandera_3 = ""
 boton = "" 
 rellenar_superficie = ""
 
-# nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
-def cargar_pantalla_inicio():
-    # cosas que necesito
-    # ventana
-    # color_ventana
-    # boton_sexuar
-    #
-    #
-    #
 
+# def cargar_pantalla_inicio(datos,boton):
+#     pantalla_datos = manejador_eventos_pantalla(datos,boton)
 
-    pantalla_datos = manejador_eventos_pantalla(bandera_1, bandera_2, bandera_3, boton)
+#     rellenar_superficie(datos)
+#     dibujar_cuadro_con_texto(boton)
 
-    rellenar_superficie()
-    dibujar_cuadro_con_texto()
+#     return pantalla_datos
 
-    return pantalla_datos
+def manejador_eventos_pantalla (datos,boton):
+    for evento in pygame.event.get ():
+        if evento.type == pygame.QUIT:
+            datos["pantalla_principal"] = False
+            datos["bandera"] = False
+            datos["bandera_correr"] = False
+
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            if boton.collidepoint(evento.pos):
+                datos["pantalla_principal"] = False
