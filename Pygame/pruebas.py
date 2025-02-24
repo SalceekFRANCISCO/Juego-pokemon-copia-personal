@@ -248,3 +248,83 @@
 
 #endregion
 
+
+
+# musica = reproducir_musica ("Atrapalos Ya!.mp3", -1, 0.1)
+
+# pantalla_principal = True
+# bandera = True
+
+
+########################################################################################################################################################
+# while bandera:
+#     bandera_dos = True
+
+#     while pantalla_principal:
+#         pantalla_datos = cargar_pantalla_inicio (pantalla, pantalla_principal, bandera_dos, bandera, 
+#                                                  "Who-is-that-Pokemon-/pygame\pokemon fotos\\banderas_fotos\\fondo.jpg", (1000, 900), 
+#                                                  "JUGAR", 80, (255, 255, 255), (255, 0, 0), boton_jugar)
+#         pantalla_principal = pantalla_datos[0]
+#         bandera_dos = pantalla_datos[1]
+#         bandera = pantalla_datos[2]
+
+#         pygame.display.update ()
+
+########################################################################################################################################################
+
+#     tiempo_inicial = pygame.time.get_ticks()
+
+#     pokemon_random = uso_random(set_generaciones, generaciones["generaciones.json"]) 
+
+#     gen_random = pokemon_random[0]
+#     poke_random = pokemon_random[1]
+
+#     ortografia_fija = ortografia
+#     dificultad_fija = dificultad
+
+#     texto = ""
+#     partidas_jugadas += 1
+
+#     while bandera_dos:
+#         pokemon = generar_imagen_dificultad(dificultad_fija, generaciones["generaciones.json"][gen_random][poke_random]["imagen"], generaciones["generaciones.json"][gen_random][poke_random]["imagen oculta"], 0.09, (500,500),)
+
+#         lista_eventos = pygame.event.get() 
+#         for event in lista_eventos: #CAPTURADOR DE EVENTOS
+#             if event.type == pygame.QUIT:
+#                 bandera_dos = False
+#                 bandera = False
+
+
+#############################################################################################################################
+
+# def manejador_eventos_pantalla (pantalla_principal: bool, bandera: bool, flag_run: bool, boton):
+#     for evento_pantalla in pygame.event.get ():
+#         if evento_pantalla.type == pygame.QUIT:
+#             pantalla_principal = False
+#             bandera = False
+#             flag_run = False
+
+#         if evento_pantalla.type == pygame.MOUSEBUTTONDOWN:
+#             if boton.collidepoint(evento_pantalla.pos):
+#                 pantalla_principal = False
+    
+#     return pantalla_principal, bandera, flag_run
+#############################################################################################################################
+
+# def cargar_pantalla_inicio (screen: tuple, bandera_1, bandera_2, bandera_3, 
+#                             imagen_fondo: str, escala_fondo: tuple, texto: str, 
+#                             size: int, color_texto: tuple, color_boton: tuple, boton):
+    
+#     jugar = cargar_texto ("Arial", size, True, texto, True, color_texto)
+    
+#     fondo = cargar_imagen_pantalla (imagen_fondo, escala_fondo)
+    
+#     pantalla_datos = manejador_eventos_pantalla (bandera_1, bandera_2, bandera_3, boton)
+
+#     screen.blit(fondo, (0,0))
+#     pygame.draw.rect (screen, color_boton, boton)
+#     screen.blit(jugar, (boton.x + 10, boton.y + 7))
+
+#     return pantalla_datos
+
+#############################################################################################################################
