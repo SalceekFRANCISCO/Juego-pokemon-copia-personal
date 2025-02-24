@@ -328,3 +328,45 @@
 #     return pantalla_datos
 
 #############################################################################################################################
+import pygame
+
+
+def manejador_eventos_pantalla (pantalla_principal: bool, bandera: bool, bandera_correr: bool, boton):
+    for evento in pygame.event.get ():
+        if evento.type == pygame.QUIT:
+            pantalla_principal = False
+            bandera = False
+            bandera_correr = False
+
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            if boton.collidepoint(evento.pos):
+                pantalla_principal = False
+    
+    return [pantalla_principal, bandera, bandera_correr]
+
+
+
+dibujar_cuadro_con_texto = ""
+bandera_1 = "" 
+bandera_2 = "" 
+bandera_3 = "" 
+boton = "" 
+rellenar_superficie = ""
+
+# nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
+def cargar_pantalla_inicio():
+    # cosas que necesito
+    # ventana
+    # color_ventana
+    # boton_sexuar
+    #
+    #
+    #
+
+
+    pantalla_datos = manejador_eventos_pantalla(bandera_1, bandera_2, bandera_3, boton)
+
+    rellenar_superficie()
+    dibujar_cuadro_con_texto()
+
+    return pantalla_datos
