@@ -63,6 +63,16 @@ def crear_diccionario_listas()-> dict:
 
     return listas
 
+def crear_pantalla_datos(ventana,colores,primer_pantalla,empezar_juego,bandera_principal):
+    pre_pantalla = {}
+    pre_pantalla["ventana"] = ventana
+    pre_pantalla["color_ventana"] = colores["azul"]
+    pre_pantalla["primer_pantalla"] = primer_pantalla
+    pre_pantalla["empezar_juego"] = empezar_juego
+    pre_pantalla["bandera_principal"] = bandera_principal
+
+    return pre_pantalla
+
 def crear_datos_pantalla(ventana,jugadores) -> dict:
 
     diccionarios = creacion_diccionarios()
@@ -272,6 +282,8 @@ def crear_temporizador(ventana, fuente, posicion, dimensiones, tiempo, color) ->
     temporizador["ventana"] = ventana
     temporizador["rectangulo"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
     temporizador["texto"] = texto_superficie
+
+    return temporizador
 
 def generar_estado_accion(bandera:bool,texto_pantalla)->dict:
     accion = {}

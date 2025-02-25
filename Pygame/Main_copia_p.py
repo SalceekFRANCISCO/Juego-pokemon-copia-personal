@@ -2,16 +2,20 @@ import pygame
 from Logica.Consola_1_MP import *
 
 
-#NUEVO OBJETIVO: 
+#OBJETIVOS: 
+# Pedir los nombres en la pre-pantalla
+# arreglar el tema del tiempo #!OK
+# implementar cartas meza #!Preguntar a Cris
+# ajustar la velocidad del juego #!OK
 
-#arreglar los modulos de funciones pygame
+# utilizar sets
+# mejorar el dry
+# utilizar eventos propios
+# Mmimificar el main  #! va queriendo
+# acomodar los modulos Funciones_pygame
 
+# si tengo tiempo y ganas, implementar el submenu musical
 
-#MIMIFICAR EL MAIN por ahora bien
-#PROBAR CREAR EL MODULO SOLO DICCIONARIOS ya esta hecho
-#EMPEZAR CON EL MANEJADOR MUSICAL ya esta hecho
-# main mimificado
-# PEDIR CORRECTAMENTE LOS NOMBES  
 
 
 
@@ -33,12 +37,7 @@ pantalla_config = crear_datos_pantalla(ventana,jugadores)
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
 
-clock = pygame.time.Clock()
-
-tiempo_inicial = None
-cronometro_activo = False
-
-parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas,cronometro_activo,tiempo_inicial)
+parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
 boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
@@ -50,7 +49,6 @@ elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nu
 
 lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 
-# bandera_juego = True
 accion_a = None
 accion_b = None
 acciones = None
@@ -58,78 +56,20 @@ acciones = None
 
 cargar_musica("Musica\Atrapalos Ya!.mp3")
 
-bandera_juego = True
-pantalla_principal = True
+bandera_principal = True
 
-def crear_pantalla_datos(ventana,colores,bandera_1,bandera_2,bandera_3):
-    pre_pantalla = {}
-    pre_pantalla["ventana"] = ventana
-    pre_pantalla["color_ventana"] = colores["azul"]
-    pre_pantalla["bandera_1"] = bandera_1
-    pre_pantalla["bandera_2"] = bandera_2
-    pre_pantalla["bandera_3"] = bandera_3
+while bandera_principal:
 
-    return pre_pantalla
+    banderas =  pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)
 
-def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
-    accion_a = None
-    accion_b = None
-    acciones = None
+    empezar_juego = banderas[0]
+    bandera_principal = banderas[1]
 
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            datos["bandera_1"] = False
-            datos["bandera_2"] = False
-            datos["bandera_3"] = False
-
-        elif evento.type == pygame.MOUSEBUTTONDOWN:
-            if boton["cuadrado"].collidepoint(evento.pos):
-                datos["bandera_1"] = False
-
-        elif evento.type == pygame.KEYDOWN:
-            if boton_1["activo"]:
-                accion_a = detectar_escritura(boton_1,evento)
-
-            elif boton_2["activo"]:
-                accion_b = detectar_escritura(boton_2,evento)
-
-            acciones = agrupar_acciones(accion_a,accion_b)
-
-    return acciones
-
-def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
-    manejador_eventos_pantalla(datos,boton)#modifica llave del diccionario datos
-
-    rellenar_superficie(datos)
-    dibujar_cuadrado_con_texto(boton)
-    dibujar_cuadrado_con_texto(boton_1)
-    dibujar_cuadrado_con_texto(boton_2)
-
-while bandera_juego:
-    bandera_dos = True
-
-    datos = crear_pantalla_datos(ventana,colores,pantalla_principal,bandera_dos,bandera_juego)
-    boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(650,350),(200,60),"COMENZAR")
-    boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
-    boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
-
-    while pantalla_principal:
-        cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos)
-        
-        pantalla_principal = datos["bandera_1"]
-        bandera_dos = datos["bandera_2"]
-        bandera_juego = datos["bandera_3"]
-
-        actualizar()
-    
-    setear_pantalla(pantalla_config,elementos_juego)
-    actualizar()
-
-    while bandera_dos: 
+    while empezar_juego: 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                bandera_juego = False
-                bandera_dos = False
+                bandera_principal = False
+                empezar_juego = False
             # region coordenadas
             # elif evento.type == pygame.MOUSEMOTION:
             #     x,y = evento.pos
@@ -146,11 +86,10 @@ while bandera_juego:
                 acciones = agrupar_acciones(accion_a,accion_b)
                     
             elif evento.type == pygame.MOUSEBUTTONDOWN:
-                # tiempo_inicial = pygame.time.get_ticks()  
-                # cronometro_activo = True 
-                jugabilidad(lista_botones,elementos_juego,evento)
+                detectar_accion(lista_botones,elementos_juego,evento)
 
-                veriificar_accion_botones(lista_botones_musicales, evento)
+                verificar_botones_musicales(lista_botones_musicales, evento)
+
 
         setear_pantalla(pantalla_config,elementos_juego)
 

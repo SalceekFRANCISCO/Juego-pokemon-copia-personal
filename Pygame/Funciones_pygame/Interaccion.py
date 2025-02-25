@@ -54,7 +54,6 @@ def cambio_color(boton:dict):
         boton (dict): Diccionario del campo de entrada.
     """
     boton["activo"] = not boton["activo"]
-    print(boton["texto"])
 
     if boton["texto"] != "JUGAR" and boton["texto"] != "":
         boton["color_actual"] = boton["color_inactivo"]
@@ -71,8 +70,6 @@ def detectar_cambio_color(lista,evento):
 
 def detectar_jugabilidad(boton,evento,elementos_juego):
     if boton["cuadrado"].collidepoint(evento.pos):
-        tiempo_inicial = pygame.time.get_ticks()  
-        cronometro_activo = True 
         boton["accion"](boton["lista_parametros"],elementos_juego)
 
 def detectar_cambio_nombre(boton):
@@ -117,9 +114,9 @@ def agrupar_acciones(accion_a,accion_b):
 
     return lista
 
-def crear_listas_parametros(pantalla_config,listas,colores,matriz,cronometro,tiempo)-> list:
+def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     lista = []
-    parametros_jugar = [5,matriz,listas,pantalla_config,colores,cronometro,tiempo]
+    parametros_jugar = [5,matriz,listas,pantalla_config,colores]
     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
     parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
 
@@ -129,14 +126,44 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz,cronometro,tie
 
     return lista
 
-def jugabilidad(lista_botones,elementos_juego,evento):
+def detectar_accion(lista_botones,elementos_juego,evento):
     detectar_cambio_color(lista_botones,evento)
 
     detectar_jugabilidad(lista_botones[2],evento,elementos_juego)
 
     detectar_cambio_nombre(lista_botones[2])
 
-def veriificar_accion_botones(lista_botones, evento):
+def verificar_botones_musicales(lista_botones, evento):
     for boton in lista_botones:
         if boton["rectangulo"].collidepoint(evento.pos):
             boton["accion"]()
+
+def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
+    accion_a = None
+    accion_b = None
+    acciones = None
+    lista_de_botones = [boton_1,boton_2]
+
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            datos["primer_pantalla"] = False
+            datos["empezar_juego"] = False
+            datos["bandera_principal"] = False
+
+        elif evento.type == pygame.MOUSEBUTTONDOWN:
+            if boton["cuadrado"].collidepoint(evento.pos):
+                datos["primer_pantalla"] = False
+                detectar_cambio_color(lista_de_botones,evento)
+
+        elif evento.type == pygame.KEYDOWN:
+            if boton_1["activo"]:
+                accion_a = detectar_escritura(boton_1,evento)
+
+            elif boton_2["activo"]:
+                accion_b = detectar_escritura(boton_2,evento)
+
+            acciones = agrupar_acciones(accion_a,accion_b)
+
+    # mostrar_texbox_pantalla(boton_1)}
+    # mostrar_texbox_pantalla(boton_2)}
+

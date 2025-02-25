@@ -139,3 +139,39 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
 
         # Mostrar el tiempo en pantalla
         dibujar(tiempo_final,dibujar_tiempo)
+
+def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
+
+    manejador_eventos_pantalla(datos,boton,boton_1,boton_2)#modifica llave del diccionario datos
+
+    rellenar_superficie(datos)
+    dibujar_cuadrado_con_texto(boton)
+    dibujar_cuadrado_con_texto(boton_1)
+    dibujar_cuadrado_con_texto(boton_2)
+
+def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:
+    empezar_juego = True
+    primer_pantalla = True
+
+    datos = crear_pantalla_datos(ventana,colores,primer_pantalla,empezar_juego,bandera_principal)
+
+    boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(650,350),(200,60),"COMENZAR")
+    boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
+    boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
+
+    while primer_pantalla:
+        cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos)
+        
+        primer_pantalla = datos["primer_pantalla"]
+        empezar_juego = datos["empezar_juego"]
+        bandera_principal = datos["bandera_principal"]
+
+        actualizar()
+
+    if bandera_principal != False or empezar_juego != False:
+        setear_pantalla(pantalla_config,elementos_juego)
+        actualizar()
+
+    lista = [empezar_juego, bandera_principal]
+
+    return lista

@@ -1,15 +1,16 @@
-# from Funciones_pygame.Dicc_interaccion import *
+import time 
 from Funciones_pygame.Visuales import *
 from Logica.Consola_2_FG import *
 
 def jugar(parametros,elementos_juego):
+
     cantidad_rondas = parametros[0]
     matriz_jerarquias_mezclada = parametros[1]
     listas = parametros[2]
     pantalla_config = parametros[3]
     colores = parametros[4]
-    cronometro_activo = parametros[5]
-    tiempo_inicial = parametros[6]
+    cronometro_activo = True 
+    tiempo_inicial = pygame.time.get_ticks()  
 
     contador = 0
     contador_jugador_1 = 0
@@ -103,4 +104,6 @@ def actualizar_datos(pantalla_config:dict,elementos_juego:dict):
 
     setear_pantalla(pantalla_config,elementos_juego)#!
 
-    pygame.time.delay(1000)
+    # pygame.time.delay(1000)
+    # clock.tick(1)
+    time.sleep(10) 
