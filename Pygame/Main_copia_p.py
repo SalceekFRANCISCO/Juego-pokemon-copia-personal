@@ -64,39 +64,57 @@ pantalla_principal = True
 def crear_pantalla_datos(ventana,colores,bandera_1,bandera_2,bandera_3):
     pre_pantalla = {}
     pre_pantalla["ventana"] = ventana
-    pre_pantalla["color_ventana"] = colores["rojo"]
+    pre_pantalla["color_ventana"] = colores["azul"]
     pre_pantalla["bandera_1"] = bandera_1
     pre_pantalla["bandera_2"] = bandera_2
     pre_pantalla["bandera_3"] = bandera_3
 
     return pre_pantalla
 
-def manejador_eventos_pantalla (datos,boton):
-    for evento in pygame.event.get ():
+def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
+    accion_a = None
+    accion_b = None
+    acciones = None
+
+    for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             datos["bandera_1"] = False
             datos["bandera_2"] = False
             datos["bandera_3"] = False
 
-
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             if boton["cuadrado"].collidepoint(evento.pos):
                 datos["bandera_1"] = False
 
-def cargar_pantalla_inicio(datos:dict,boton):
+        elif evento.type == pygame.KEYDOWN:
+            if boton_1["activo"]:
+                accion_a = detectar_escritura(boton_1,evento)
+
+            elif boton_2["activo"]:
+                accion_b = detectar_escritura(boton_2,evento)
+
+            acciones = agrupar_acciones(accion_a,accion_b)
+
+    return acciones
+
+def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
     manejador_eventos_pantalla(datos,boton)#modifica llave del diccionario datos
 
     rellenar_superficie(datos)
     dibujar_cuadrado_con_texto(boton)
+    dibujar_cuadrado_con_texto(boton_1)
+    dibujar_cuadrado_con_texto(boton_2)
 
 while bandera_juego:
     bandera_dos = True
 
     datos = crear_pantalla_datos(ventana,colores,pantalla_principal,bandera_dos,bandera_juego)
-    boton_sexual = crear_texto_cuadrado(ventana,("Arial",20),colores,(650,350),(200,60),"JUGAR")
+    boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(650,350),(200,60),"COMENZAR")
+    boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
+    boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
     while pantalla_principal:
-        cargar_pantalla_inicio(datos,boton_sexual)
+        cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos)
         
         pantalla_principal = datos["bandera_1"]
         bandera_dos = datos["bandera_2"]
@@ -106,7 +124,6 @@ while bandera_juego:
     
     setear_pantalla(pantalla_config,elementos_juego)
     actualizar()
-
 
     while bandera_dos: 
         for evento in pygame.event.get():
@@ -135,13 +152,10 @@ while bandera_juego:
 
                 veriificar_accion_botones(lista_botones_musicales, evento)
 
+        setear_pantalla(pantalla_config,elementos_juego)
 
+        setear_acciones_pantalla_ses(acciones)
 
-
-    setear_pantalla(pantalla_config,elementos_juego)
-
-    setear_acciones_pantalla_ses(acciones)
-
-    actualizar()
+        actualizar()
 
 pygame.quit()

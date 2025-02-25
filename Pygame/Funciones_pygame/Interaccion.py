@@ -74,11 +74,11 @@ def detectar_jugabilidad(boton,evento,elementos_juego):
         tiempo_inicial = pygame.time.get_ticks()  
         cronometro_activo = True 
         boton["accion"](boton["lista_parametros"],elementos_juego)
-        detectar_cambio_nombre(boton)
 
 def detectar_cambio_nombre(boton):
     if boton["activo"]: 
         boton["texto"]= "REINICIO"
+        print(boton["texto"])
 
 def detectar_escritura(boton,evento):
     texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
@@ -133,6 +133,8 @@ def jugabilidad(lista_botones,elementos_juego,evento):
     detectar_cambio_color(lista_botones,evento)
 
     detectar_jugabilidad(lista_botones[2],evento,elementos_juego)
+
+    detectar_cambio_nombre(lista_botones[2])
 
 def veriificar_accion_botones(lista_botones, evento):
     for boton in lista_botones:
