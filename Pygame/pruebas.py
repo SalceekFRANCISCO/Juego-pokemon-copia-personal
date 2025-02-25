@@ -336,7 +336,7 @@ bandera = True
 ventana = ""
 colores = ""
 
-def crear_datos_pre_pantalla(ventana,colores,bandera_1,bandera_2,bandera_3):
+def crear_pantalla_datos(ventana,colores,bandera_1,bandera_2,bandera_3):
     pre_pantalla = {}
     pre_pantalla["ventana"] = ventana
     pre_pantalla["color_ventana"] = colores["rojo"]
@@ -346,30 +346,46 @@ def crear_datos_pre_pantalla(ventana,colores,bandera_1,bandera_2,bandera_3):
 
     return pre_pantalla
 
-def cargar_pantalla_inicio(datos,boton):
-    manejador_eventos_pantalla(datos,boton)
+def cargar_pantalla_inicio(datos:dict,boton):
+    manejador_eventos_pantalla(datos,boton)#modifica llave del diccionario datos
 
     rellenar_superficie(datos)
     dibujar_cuadro_con_texto(boton)
 
-    return datos
+def crear_texto_cuadrado(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,texto=None) -> dict:
+    """
+    Crea un diccionario que representa un campo de entrada (input) en Pygame.
 
+    Args:
+        ventana: Superficie de Pygame donde se dibujará el campo de entrada.
+        fuente (tuple): Tipo y tamaño de fuente a utilizar (nombre, tamaño).
+        colores (dict): Diccionario con los colores disponibles.
+        posicion (tuple): Coordenadas (x, y) del campo de entrada.
+        dimensiones (tuple): Ancho y alto del campo de entrada.
+        texto (str): Texto inicial del campo de entrada.
 
+    Returns:
+        dict: Diccionario con los datos del campo de entrada.
+    """
+    input = {}
+    input["ventana"] = ventana
+    input["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    input["color_actual"] = colores["blanco"]
+    input["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
 
-crear_boton = ""
-parametros = ""
-jugar = ""
+    if texto != None:
+        input["texto"] = texto 
 
+    return input
 
+actualizar = ""
 
-
-# dad
 
 while bandera:
     bandera_dos = True
 
-    datos = crear_datos_pre_pantalla(ventana,colores,pantalla_principal,bandera_dos,bandera)
-    nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
+    datos = crear_pantalla_datos(ventana,colores,pantalla_principal,bandera_dos,bandera)
+    nuevo_boton_jugar = crear_texto_cuadrado(ventana,("Arial",20),colores,(56,50),(200,60),"JUGAR")
 
     while pantalla_principal:
         cargar_pantalla_inicio(datos,nuevo_boton_jugar), 
@@ -378,7 +394,7 @@ while bandera:
         bandera_dos = datos["bandera_2"]
         bandera = datos["bandera_3"]
 
-        pygame.display.update ()
+        actualizar()
 
 dibujar_cuadro_con_texto = ""
 bandera_1 = "" 
@@ -399,10 +415,10 @@ rellenar_superficie = ""
 def manejador_eventos_pantalla (datos,boton):
     for evento in pygame.event.get ():
         if evento.type == pygame.QUIT:
-            datos["pantalla_principal"] = False
-            datos["bandera"] = False
-            datos["bandera_correr"] = False
+            datos["bandera_1"] = False
+            datos["bandera_2"] = False
+            datos["bandera_3"] = False
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
-            if boton.collidepoint(evento.pos):
-                datos["pantalla_principal"] = False
+            if boton["cuadrado"].collidepoint(evento.pos):
+                datos["bandera_1"] = False
