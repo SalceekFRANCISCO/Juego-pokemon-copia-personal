@@ -17,7 +17,7 @@ from Logica.Consola_1_MP import *
 # si tengo tiempo y ganas, implementar el submenu musical
 # si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
 
-
+#pedirle a ochoa que me de una devolucion del juego
 
 
 pygame.init() 
