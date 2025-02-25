@@ -15,6 +15,7 @@ from Logica.Consola_1_MP import *
 # acomodar los modulos Funciones_pygame
 
 # si tengo tiempo y ganas, implementar el submenu musical
+# si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
 
 
 
