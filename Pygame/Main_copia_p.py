@@ -3,9 +3,9 @@ from Logica.Consola_1_MP import *
 
 
 #OBJETIVOS: 
-# Pedir los nombres en la pre-pantalla
+# Pedir los nombres en la pre-pantalla #!ME FALTA ESTO!
 # arreglar el tema del tiempo #!OK
-# implementar cartas meza #!Preguntar a Cris
+# implementar cartas meza #!OK
 # ajustar la velocidad del juego #!OK
 
 # utilizar sets
@@ -17,7 +17,7 @@ from Logica.Consola_1_MP import *
 # si tengo tiempo y ganas, implementar el submenu musical
 # si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
 
-#pedirle a ochoa que me de una devolucion del juego
+# pedirle a ochoa que me de una devolucion del juego
 
 
 pygame.init() 

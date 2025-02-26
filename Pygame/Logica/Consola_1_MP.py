@@ -2,13 +2,6 @@ import time
 from Funciones_pygame.Visuales import *
 from Logica.Consola_2_FG import *
 
-def cartar_mesa(pantalla,colores,resultado,listas):
-    if resultado == "Empate":
-        cartas_en_la_meza = len(listas["cartas_meza"])
-        mostrar_texto(pantalla,("Arial", 26),str(cartas_en_la_meza),colores["negro"],(911,127),None)
-
-
-
 def jugar(parametros,elementos_juego):
 
     cantidad_rondas = parametros[0]
@@ -34,9 +27,8 @@ def jugar(parametros,elementos_juego):
         atributo = mostrar_atributo(listas,pantalla_config,colores)
 
         resultado = comparar_atributos(listas, matriz_jerarquias_mezclada,atributo)
-        print(resultado)
         agregar_cartas(resultado,listas)
-        cartar_mesa(pantalla_config,colores,resultado,listas)
+        mostrar_cartas_mesa(pantalla_config,colores,resultado,listas)
 
         puntuacion = cargar_ganador_y_puntaje(pantalla_config,resultado,contador_jugador_1,contador_jugador_2,colores)#! usa los jugadores, otro diccionario
         contador_jugador_1 = puntuacion[0]
@@ -47,6 +39,17 @@ def jugar(parametros,elementos_juego):
     ganador_partida = mostrar_ganador_partida(pantalla_config,listas,colores)
 
     guardar_resultados_finales(ganador_partida,listas,pantalla_config)
+
+
+def mostrar_cartas_mesa(pantalla:dict,colores:dict,resultado:str,listas:dict):
+    mostrar_texto(pantalla,("Arial", 18),"CARTAS MEZA:",colores["negro"],(910,156),None)
+    cartas_en_la_meza = "0"
+
+    if resultado == "Empate":
+        cartas_en_la_meza = len(listas["cartas_meza"])
+        cartas_en_la_meza = str(cartas_en_la_meza)
+
+    mostrar_texto(pantalla,("Arial", 30),cartas_en_la_meza,colores["negro"],(961,192),None)
 
 def cargar_cartas(listas:dict, pantalla:dict, colores:dict): #? ESTA BIEN
     obtener_cartas_cada_jugador(listas) 
@@ -113,6 +116,7 @@ def actualizar_datos(pantalla_config:dict,elementos_juego:dict):
 
     setear_pantalla(pantalla_config,elementos_juego)#!
 
-    # pygame.time.delay(1000)
+    pygame.time.delay(1000)
     # clock.tick(1)
+    # time.sleep(10) 
     # time.sleep(10) 
