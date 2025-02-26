@@ -10,7 +10,7 @@ from Logica.Consola_1_MP import *
 # utilizar sets
 # mejorar el dry
 # utilizar eventos propios
-# Mmimificar el main  #! va queriendo
+# Mimificar el main  #! va queriendo
 # acomodar los modulos Funciones_pygame
 
 # si tengo tiempo y ganas, implementar el submenu musical
