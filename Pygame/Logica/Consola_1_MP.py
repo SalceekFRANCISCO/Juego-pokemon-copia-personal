@@ -2,6 +2,7 @@ import time
 from Funciones_pygame.Visuales import *
 from Logica.Consola_2_FG import *
 
+#! mostrar_ganador_partida y cargar_ganador_y_puntaje partida usan los nombres
 def jugar(parametros,elementos_juego):
 
     cantidad_rondas = parametros[0]

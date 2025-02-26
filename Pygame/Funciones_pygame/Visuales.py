@@ -140,14 +140,69 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
         # Mostrar el tiempo en pantalla
         dibujar(tiempo_final,dibujar_tiempo)
 
+def verificar_nombres_vacios(acciones):
+    bandera = False
+    if acciones[0] != None and acciones[1] != None:
+        bandera = True
+
+    return bandera
+
 def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
 
-    manejador_eventos_pantalla(datos,boton,boton_1,boton_2)#modifica llave del diccionario datos
+    # verificar_nombres_vacios(acciones)
+
 
     rellenar_superficie(datos)
     dibujar_cuadrado_con_texto(boton)
     dibujar_cuadrado_con_texto(boton_1)
     dibujar_cuadrado_con_texto(boton_2)
+    actualizar()
+
+    acciones = manejador_eventos_pantalla(datos,boton,boton_1,boton_2)#modifica llave del diccionario datos
+    if acciones:
+        datos["primer_pantalla"] = False
+
+
+def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
+    accion_a = None
+    accion_b = None
+    acciones = None
+    lista_de_botones = [boton_1,boton_2]
+    verificacion = False
+
+    while datos["primer_pantalla"]:
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                datos["primer_pantalla"] = False
+                datos["empezar_juego"] = False
+                datos["bandera_principal"] = False
+
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                if boton["cuadrado"].collidepoint(evento.pos):
+                    datos["primer_pantalla"] = False
+
+                detectar_cambio_color(lista_de_botones,evento)
+
+            elif evento.type == pygame.KEYDOWN:
+                if boton_1["activo"]:
+                    accion_a = detectar_escritura(boton_1,evento)
+
+                elif boton_2["activo"]:
+                    accion_b = detectar_escritura(boton_2,evento)
+
+                acciones = agrupar_acciones(accion_a,accion_b)
+                verificacion = verificar_nombres_vacios(acciones)
+
+        mostrar_texbox_pantalla(boton_1)
+        mostrar_texbox_pantalla(boton_2)
+        dibujar_cuadrado_con_texto(boton_1)
+        dibujar_cuadrado_con_texto(boton_2)
+        actualizar()
+
+        if verificacion != False:
+            return verificacion
+
 
 def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:
     empezar_juego = True

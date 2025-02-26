@@ -75,7 +75,7 @@ def detectar_jugabilidad(boton,evento,elementos_juego):
 def detectar_cambio_nombre(boton):
     if boton["activo"]: 
         boton["texto"]= "REINICIO"
-        print(boton["texto"])
+        # print(boton["texto"])
 
 def detectar_escritura(boton,evento):
     texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
@@ -102,6 +102,7 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
     color_fondo_texto = parametros[4]
 
     nombre_final = escribir_teclado(boton_nombre,evento)
+    print(nombre_final)
 
     texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             
@@ -138,32 +139,48 @@ def verificar_botones_musicales(lista_botones, evento):
         if boton["rectangulo"].collidepoint(evento.pos):
             boton["accion"]()
 
-def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
-    accion_a = None
-    accion_b = None
-    acciones = None
-    lista_de_botones = [boton_1,boton_2]
+# def mostrar_texbox_pantalla(input):
+#     superficie = input["fuente"].render(input["texto"],False,"Black")
+#     input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
+#     pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
 
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            datos["primer_pantalla"] = False
-            datos["empezar_juego"] = False
-            datos["bandera_principal"] = False
 
-        elif evento.type == pygame.MOUSEBUTTONDOWN:
-            if boton["cuadrado"].collidepoint(evento.pos):
-                datos["primer_pantalla"] = False
-                detectar_cambio_color(lista_de_botones,evento)
+# def verificar_nombres_vacios(accion_a,accion_b):
+#     if accion_a != "" and accion_b != "":
+#         print("No estan vacíos")
 
-        elif evento.type == pygame.KEYDOWN:
-            if boton_1["activo"]:
-                accion_a = detectar_escritura(boton_1,evento)
+# def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
+#     accion_a = None
+#     accion_b = None
+#     acciones = None
+#     lista_de_botones = [boton_1,boton_2]
 
-            elif boton_2["activo"]:
-                accion_b = detectar_escritura(boton_2,evento)
+#     for evento in pygame.event.get():
+#         if evento.type == pygame.QUIT:
+#             datos["primer_pantalla"] = False
+#             datos["empezar_juego"] = False
+#             datos["bandera_principal"] = False
 
-            acciones = agrupar_acciones(accion_a,accion_b)
+#         elif evento.type == pygame.MOUSEBUTTONDOWN:
+#             if boton["cuadrado"].collidepoint(evento.pos):
+#                 datos["primer_pantalla"] = False
 
-    # mostrar_texbox_pantalla(boton_1)}
+#             detectar_cambio_color(lista_de_botones,evento)
+
+#         elif evento.type == pygame.KEYDOWN:
+#             if boton_1["activo"]:
+#                 accion_a = detectar_escritura(boton_1,evento)
+
+#             elif boton_2["activo"]:
+#                 accion_b = detectar_escritura(boton_2,evento)
+
+#             acciones = agrupar_acciones(accion_a,accion_b)
+
+#     mostrar_texbox_pantalla(boton_1)
+#     mostrar_texbox_pantalla(boton_2)
+#     dibujar_cuadrado_con_texto(boton_1)
+#     dibujar_cuadrado_con_texto(boton_2)
+    
+    # return [acciones]
     # mostrar_texbox_pantalla(boton_2)}
 
