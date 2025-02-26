@@ -102,7 +102,11 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
     color_fondo_texto = parametros[4]
 
     nombre_final = escribir_teclado(boton_nombre,evento)
-    print(nombre_final)
+
+    while len(nombre_final) <= 3:
+        nombre_final = escribir_teclado(boton_nombre,evento)
+    # print(nombre_final)
+    # print(len(nombre_final))
 
     texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             

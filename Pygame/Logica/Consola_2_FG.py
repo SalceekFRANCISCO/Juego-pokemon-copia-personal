@@ -31,7 +31,6 @@ def guardar_cartas(pantalla:dict,funcion)->dict:
     
     return listas
 
-
 def activar_cartas(listas:dict,matriz_jerarquias_mezcladas:list[list]):
     """Descripcion: mezcla, reparte cartas y ordena la matriz de jerarquias
 
