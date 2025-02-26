@@ -1,7 +1,6 @@
 import pygame
 from Logica.Consola_1_MP import *
 
-
 #OBJETIVOS: 
 # Pedir los nombres en la pre-pantalla #!ME FALTA ESTO!
 # arreglar el tema del tiempo #!OK
@@ -18,7 +17,6 @@ from Logica.Consola_1_MP import *
 # si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
 
 # pedirle a ochoa que me de una devolucion del juego
-
 
 pygame.init() 
 #region
