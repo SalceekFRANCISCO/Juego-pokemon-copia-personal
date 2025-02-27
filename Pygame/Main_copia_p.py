@@ -80,8 +80,6 @@ while bandera_principal:
             # elif evento.type == pygame.MOUSEMOTION:
             #     x,y = evento.pos
             #     print(x,y) #Saber que cordenadas son en la pantalla
-            #endregion
-            
             #region antigua funcion
             # elif evento.type == pygame.KEYDOWN:
             #     if boton_nombre_uno["activo"]:
@@ -92,6 +90,8 @@ while bandera_principal:
 
             #     acciones = agrupar_acciones(accion_a,accion_b)
             #endregion
+            #endregion
+            
                     
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 detectar_accion(lista_botones,elementos_juego,jugadores,evento)
