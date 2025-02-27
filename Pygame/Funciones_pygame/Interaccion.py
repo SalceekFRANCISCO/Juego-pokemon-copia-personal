@@ -68,9 +68,9 @@ def detectar_cambio_color(lista,evento):
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
 
-def detectar_jugabilidad(boton,evento,elementos_juego):
+def detectar_jugabilidad(boton,evento,elementos_juego,jugadores):
     if boton["cuadrado"].collidepoint(evento.pos):
-        boton["accion"](boton["lista_parametros"],elementos_juego)
+        boton["accion"](boton["lista_parametros"],elementos_juego,jugadores)
 
 def detectar_cambio_nombre(boton):
     if boton["activo"]: 
@@ -103,11 +103,6 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
 
     nombre_final = escribir_teclado(boton_nombre,evento)
 
-    while len(nombre_final) <= 3:
-        nombre_final = escribir_teclado(boton_nombre,evento)
-    # print(nombre_final)
-    # print(len(nombre_final))
-
     texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             
     return texto_pantalla
@@ -131,10 +126,10 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
 
     return lista
 
-def detectar_accion(lista_botones,elementos_juego,evento):
+def detectar_accion(lista_botones,elementos_juego,jugadores,evento):
     detectar_cambio_color(lista_botones,evento)
 
-    detectar_jugabilidad(lista_botones[2],evento,elementos_juego)
+    detectar_jugabilidad(lista_botones[2],evento,elementos_juego,jugadores)
 
     detectar_cambio_nombre(lista_botones[2])
 

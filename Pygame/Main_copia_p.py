@@ -6,7 +6,7 @@ from Logica.Consola_1_MP import *
 # fijarse de hacerla en procesar entrada texto
 
 #OBJETIVOS: 
-# Pedir los nombres en la pre-pantalla #!ME FALTA ESTO!
+# Pedir los nombres en la pre-pantalla #!OK
 # arreglar el tema del tiempo #!OK
 # implementar cartas meza #!OK
 # ajustar la velocidad del juego #!OK
@@ -29,13 +29,13 @@ ventana = inicializar_ventana()
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
 
 # jugadores = identificar_usuarios(2)
-jugadores = ["pepe","roberto"]
+# jugadores = ["pepe","roberto"]
 
 diccionarios = creacion_diccionarios()
 
 colores = diccionarios[1]
 
-pantalla_config = crear_datos_pantalla(ventana,jugadores)
+pantalla_config = crear_datos_pantalla(ventana)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
@@ -52,9 +52,9 @@ elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nu
 
 lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
 
-accion_a = None
-accion_b = None
-acciones = None
+# accion_a = None
+# accion_b = None
+# acciones = None
 #endregion
 
 cargar_musica("Musica\Atrapalos Ya!.mp3")
@@ -67,6 +67,7 @@ while bandera_principal:
 
     empezar_juego = banderas[0]
     bandera_principal = banderas[1]
+    jugadores = [banderas[2],banderas[3]]
 
     while empezar_juego: 
         for evento in pygame.event.get():
@@ -79,24 +80,26 @@ while bandera_principal:
             #     print(x,y) #Saber que cordenadas son en la pantalla
             #endregion
             
-            elif evento.type == pygame.KEYDOWN:
-                if boton_nombre_uno["activo"]:
-                    accion_a = detectar_escritura(boton_nombre_uno,evento)
+            #region antigua funcion
+            # elif evento.type == pygame.KEYDOWN:
+            #     if boton_nombre_uno["activo"]:
+            #         accion_a = detectar_escritura(boton_nombre_uno,evento)
 
-                elif boton_nombre_dos["activo"]:
-                    accion_b = detectar_escritura(boton_nombre_dos,evento)
+            #     elif boton_nombre_dos["activo"]:
+            #         accion_b = detectar_escritura(boton_nombre_dos,evento)
 
-                acciones = agrupar_acciones(accion_a,accion_b)
+            #     acciones = agrupar_acciones(accion_a,accion_b)
+            #endregion
                     
             elif evento.type == pygame.MOUSEBUTTONDOWN:
-                detectar_accion(lista_botones,elementos_juego,evento)
+                detectar_accion(lista_botones,elementos_juego,jugadores,evento)
 
                 verificar_botones_musicales(lista_botones_musicales, evento)
 
 
         setear_pantalla(pantalla_config,elementos_juego)
 
-        setear_acciones_pantalla_ses(acciones)
+        # setear_acciones_pantalla_ses(acciones)
 
         actualizar()
 

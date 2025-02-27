@@ -149,29 +149,23 @@ def verificar_nombres_vacios(acciones):
 
 def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
 
-    # verificar_nombres_vacios(acciones)
-
-
     rellenar_superficie(datos)
     dibujar_cuadrado_con_texto(boton)
     dibujar_cuadrado_con_texto(boton_1)
     dibujar_cuadrado_con_texto(boton_2)
     actualizar()
 
-    acciones = manejador_eventos_pantalla(datos,boton,boton_1,boton_2)#modifica llave del diccionario datos
-    if acciones:
-        datos["primer_pantalla"] = False
+    verificacion_textboxs = manejador_textboxs(datos,boton_1,boton_2)#modifica llave del diccionario datos
+    if verificacion_textboxs[0]:
+        manejador_cerrar_pantalla(datos,boton)
+    
+    lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
+    
+    return lista
 
-
-def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
-    accion_a = None
-    accion_b = None
-    acciones = None
-    lista_de_botones = [boton_1,boton_2]
-    verificacion = False
+def manejador_cerrar_pantalla(datos:dict,boton:dict):
 
     while datos["primer_pantalla"]:
-
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 datos["primer_pantalla"] = False
@@ -182,17 +176,46 @@ def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
                 if boton["cuadrado"].collidepoint(evento.pos):
                     datos["primer_pantalla"] = False
 
+
+def verificar_existencia_nombre(boton):
+    hay_nombre_valido = None
+    if boton["activo"] == False:
+        longitud = len(boton["texto"])
+        if longitud >= 3:
+            hay_nombre_valido = True
+        else:
+            hay_nombre_valido = False
+
+    return hay_nombre_valido
+
+def manejador_textboxs(datos,boton_1,boton_2):
+    lista_de_botones = [boton_1,boton_2]
+    verificacion = False
+    nombre_registrado = ""
+    nombre_registrado_2 = ""
+    lista = []
+
+    while datos["primer_pantalla"]:
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                datos["primer_pantalla"] = False
+                datos["empezar_juego"] = False
+                datos["bandera_principal"] = False
+
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
                 detectar_cambio_color(lista_de_botones,evento)
 
             elif evento.type == pygame.KEYDOWN:
                 if boton_1["activo"]:
-                    accion_a = detectar_escritura(boton_1,evento)
+                    detectar_escritura(boton_1,evento)
 
                 elif boton_2["activo"]:
-                    accion_b = detectar_escritura(boton_2,evento)
+                    detectar_escritura(boton_2,evento)
 
-                acciones = agrupar_acciones(accion_a,accion_b)
-                verificacion = verificar_nombres_vacios(acciones)
+                nombre_registrado = verificar_existencia_nombre(boton_1)
+
+                nombre_registrado_2 = verificar_existencia_nombre(boton_2)
 
         mostrar_texbox_pantalla(boton_1)
         mostrar_texbox_pantalla(boton_2)
@@ -200,9 +223,14 @@ def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
         dibujar_cuadrado_con_texto(boton_2)
         actualizar()
 
-        if verificacion != False:
-            return verificacion
+        if nombre_registrado == True and nombre_registrado_2 == True:
+            verificacion = True
+            lista.append(verificacion)
+            lista.append(boton_1["texto"])
+            lista.append(boton_2["texto"])
 
+        if verificacion != False:
+            return lista
 
 def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:
     empezar_juego = True
@@ -215,7 +243,7 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
     while primer_pantalla:
-        cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos)
+        jugadores_nombre = cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos)
         
         primer_pantalla = datos["primer_pantalla"]
         empezar_juego = datos["empezar_juego"]
@@ -227,6 +255,6 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
         setear_pantalla(pantalla_config,elementos_juego)
         actualizar()
 
-    lista = [empezar_juego, bandera_principal]
+    lista = [empezar_juego, bandera_principal,jugadores_nombre[0],jugadores_nombre[1]]
 
     return lista

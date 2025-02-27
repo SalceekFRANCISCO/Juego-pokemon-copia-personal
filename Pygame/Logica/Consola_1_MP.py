@@ -3,7 +3,7 @@ from Funciones_pygame.Visuales import *
 from Logica.Consola_2_FG import *
 
 #! mostrar_ganador_partida y cargar_ganador_y_puntaje partida usan los nombres
-def jugar(parametros,elementos_juego):
+def jugar(parametros,elementos_juego,jugadores):
 
     cantidad_rondas = parametros[0]
     matriz_jerarquias_mezclada = parametros[1]
@@ -31,16 +31,15 @@ def jugar(parametros,elementos_juego):
         agregar_cartas(resultado,listas)
         mostrar_cartas_mesa(pantalla_config,colores,resultado,listas)
 
-        puntuacion = cargar_ganador_y_puntaje(pantalla_config,resultado,contador_jugador_1,contador_jugador_2,colores)#! usa los jugadores, otro diccionario
+        puntuacion = cargar_ganador_y_puntaje(jugadores,pantalla_config,resultado,contador_jugador_1,contador_jugador_2,colores)#! usa los jugadores, otro diccionario
         contador_jugador_1 = puntuacion[0]
         contador_jugador_2 = puntuacion[1]
 
         actualizar_datos(pantalla_config,elementos_juego)
 
-    ganador_partida = mostrar_ganador_partida(pantalla_config,listas,colores)
+    ganador_partida = mostrar_ganador_partida(jugadores,pantalla_config,listas,colores)
 
-    guardar_resultados_finales(ganador_partida,listas,pantalla_config)
-
+    guardar_resultados_finales(jugadores,ganador_partida,listas,pantalla_config)
 
 def mostrar_cartas_mesa(pantalla:dict,colores:dict,resultado:str,listas:dict):
     mostrar_texto(pantalla,("Arial", 18),"CARTAS MEZA:",colores["negro"],(910,156),None)
@@ -79,9 +78,9 @@ def contar_rondas_jugador(resultado:str,contador_jugador_1:int,contador_jugador_
 
     return [contador_jugador_1,contador_jugador_2]
 
-def cargar_ganador_y_puntaje(pantalla:dict,resultado:str,contador_jugador_1:int,contador_jugador_2:int,colores:dict):
+def cargar_ganador_y_puntaje(jugadores,pantalla:dict,resultado:str,contador_jugador_1:int,contador_jugador_2:int,colores:dict):
 
-    ganador_ronda = mostrar_ganador_ronda(resultado, pantalla)#! necesita los jugadores
+    ganador_ronda = mostrar_ganador_ronda(resultado, jugadores)#! necesita los jugadores
     
     mostrar_texto(pantalla, ("Arial", 26), ganador_ronda, colores["negro"],(1120,466),None)
     
@@ -98,18 +97,18 @@ def mostrar_atributo(listas:dict,pantalla_config:dict,colores:dict)->str:
 
     return atributo
 
-def mostrar_ganador_partida(pantalla_config:dict,listas:dict,colores:dict) -> str:
+def mostrar_ganador_partida(jugadores,pantalla_config:dict,listas:dict,colores:dict) -> str:
     
-    ganador_partida = determinar_ganador_partida(pantalla_config,listas)#! usa los jugadores, otro diccionario
+    ganador_partida = determinar_ganador_partida(jugadores,listas)#! usa los jugadores, otro diccionario
     mostrar_texto(pantalla_config, ("Arial", 26),ganador_partida,colores["negro"], (1118,550),None)
     actualizar()
     pygame.time.delay(1000)
 
     return ganador_partida
 
-def guardar_resultados_finales(ganador_partida:str,listas:dict,pantalla_config:dict):
+def guardar_resultados_finales(jugadores,ganador_partida:str,listas:dict,pantalla_config:dict):
 
-    puntaje = calcular_puntaje(listas ,pantalla_config, ganador_partida)#! usa los jugadores, otro diccionario
+    puntaje = calcular_puntaje(listas ,jugadores, ganador_partida)#! usa los jugadores, otro diccionario
     guardar_resultados(pantalla_config, puntaje, ganador_partida)
 
 def actualizar_datos(pantalla_config:dict,elementos_juego:dict):

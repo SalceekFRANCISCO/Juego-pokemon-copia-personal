@@ -102,7 +102,7 @@ def determinar_resultado(parametro_ganador: str|int, parametro_1: str|int, param
 
     return resultado
 
-def mostrar_ganador_ronda(resultado: str, pantalla)->str:#!MODIFICADA AHORA RETORNA AL GANADOR 
+def mostrar_ganador_ronda(resultado: str, jugadores)->str:#!MODIFICADA AHORA RETORNA AL GANADOR 
     """Muestra y retorna el nombre del ganador de cada ronda.
 
     Args:
@@ -115,11 +115,11 @@ def mostrar_ganador_ronda(resultado: str, pantalla)->str:#!MODIFICADA AHORA RETO
     
     if resultado == "1":
         # print(f"GANA: ¡¡{jugador_1}!!")
-        jugador_ganador = pantalla["jugador_1"]#!jugadores, otro diccionario
+        jugador_ganador = jugadores[0]#!jugadores, otro diccionario
 
     elif resultado == "2":
         # print(f"GANA: ¡¡{jugador_2}!!")
-        jugador_ganador = pantalla["jugador_2"]#!jugadores, otro diccionario
+        jugador_ganador = jugadores[1]#!jugadores, otro diccionario
 
     elif resultado == "Empate":
         # print("¡¡Es un empate!!")
@@ -186,7 +186,7 @@ def guardar_atributos(lista_cartas: list[dict]) -> list:
 
     return lista_atributos
 
-def determinar_ganador_partida(pantalla:dict,listas:dict) -> str:
+def determinar_ganador_partida(jugadores,listas:dict) -> str:
     """Determina el ganador de la partida comparando la cantidad de cartas que cada jugador posee. 
     El que posea mas cartas, sera el ganador
 
@@ -201,12 +201,12 @@ def determinar_ganador_partida(pantalla:dict,listas:dict) -> str:
     """
     
     if len(listas["lista_jugador_uno"]) > len(listas["lista_jugador_dos"]):
-        ganador = pantalla["jugador_1"]#!jugadores 
+        ganador = jugadores[0]#!jugadores 
         # print(f"El ganador de la partida es: {jugador_1}")
 
 
     elif len(listas["lista_jugador_uno"]) < len(listas["lista_jugador_dos"]):
-        ganador = pantalla["jugador_2"]#!jugadores 
+        ganador = jugadores[1]#!jugadores 
         # print(f"El ganador de la partida es: {jugador_2}")
 
     else: 
@@ -215,12 +215,12 @@ def determinar_ganador_partida(pantalla:dict,listas:dict) -> str:
 
     return ganador
 
-def calcular_puntaje(listas, pantalla, jugador_ganador):
+def calcular_puntaje(listas, jugadores, jugador_ganador):
     
-    if jugador_ganador == pantalla["jugador_1"]:#!jugadores 
+    if jugador_ganador == jugadores[0]:#!jugadores 
         puntaje = len(listas["lista_jugador_uno"])
     
-    elif jugador_ganador == pantalla["jugador_2"]:#!jugadores 
+    elif jugador_ganador == jugadores[1]:#!jugadores 
         puntaje = len(listas["lista_jugador_dos"])
     
     elif jugador_ganador == "Empate":
