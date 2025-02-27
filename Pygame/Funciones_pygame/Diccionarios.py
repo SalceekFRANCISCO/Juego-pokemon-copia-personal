@@ -121,7 +121,7 @@ def crear_texto_cuadrado(ventana, fuente, colores:tuple, posicion:tuple, dimensi
 
     return input
 
-def crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,boton_jugar,lista_botones_musicales) -> dict:
+def crear_datos_juego(colores,boton_jugar,lista_botones_musicales) -> dict:
     ventana = inicializar_ventana()
 
     atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
@@ -132,8 +132,8 @@ def crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,boton_jugar,list
     juego["ganador_partida"] = ganador_partida_final
     juego["atributo"] = atributo
     juego["ganador_ronda"] = ganador_ronda
-    juego["boton_nombre_uno"] = boton_nombre_uno
-    juego["boton_nombre_dos"] = boton_nombre_dos
+    # juego["boton_nombre_uno"] = boton_nombre_uno
+    # juego["boton_nombre_dos"] = boton_nombre_dos
     juego["boton_jugar"] = boton_jugar
     juego["lista_botones_musicales"] = lista_botones_musicales
 

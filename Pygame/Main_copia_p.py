@@ -43,14 +43,16 @@ activar_cartas(listas,matriz_jerarquias_mezcladas)
 parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
-boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
-boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
+# boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
+# boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
 lista_botones_musicales = crear_botones(ventana)
 
-elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar,lista_botones_musicales)
+# elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar,lista_botones_musicales)
+elementos_juego = crear_datos_juego(colores,nuevo_boton_jugar,lista_botones_musicales)
 
-lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
+# lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
+lista_botones = [nuevo_boton_jugar]
 
 # accion_a = None
 # accion_b = None

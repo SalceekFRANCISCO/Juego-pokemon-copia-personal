@@ -129,9 +129,9 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
 def detectar_accion(lista_botones,elementos_juego,jugadores,evento):
     detectar_cambio_color(lista_botones,evento)
 
-    detectar_jugabilidad(lista_botones[2],evento,elementos_juego,jugadores)
+    detectar_jugabilidad(lista_botones[0],evento,elementos_juego,jugadores)
 
-    detectar_cambio_nombre(lista_botones[2])
+    detectar_cambio_nombre(lista_botones[0])
 
 def verificar_botones_musicales(lista_botones, evento):
     for boton in lista_botones:

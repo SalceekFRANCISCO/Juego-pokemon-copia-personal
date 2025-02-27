@@ -22,8 +22,8 @@ def setear_pantalla(pantalla_config,elementos_juego):#! va a necesitar ambos dic
 
     dibujar(pantalla_config,rellenar_superficie)
 
-    dibujar(elementos_juego["boton_nombre_uno"],mostrar_texbox_pantalla)
-    dibujar(elementos_juego["boton_nombre_dos"],mostrar_texbox_pantalla)
+    # dibujar(elementos_juego["boton_nombre_uno"],mostrar_texbox_pantalla)
+    # dibujar(elementos_juego["boton_nombre_dos"],mostrar_texbox_pantalla)
 
     dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
 
