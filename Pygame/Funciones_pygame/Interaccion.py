@@ -126,12 +126,12 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
 
     return lista
 
-def detectar_accion(lista_botones,elementos_juego,jugadores,evento):
-    detectar_cambio_color(lista_botones,evento)
+def detectar_accion(boton_jugar,elementos_juego,jugadores,evento):
+    cambio_color(boton_jugar)
 
-    detectar_jugabilidad(lista_botones[0],evento,elementos_juego,jugadores)
+    detectar_jugabilidad(boton_jugar,evento,elementos_juego,jugadores)
 
-    detectar_cambio_nombre(lista_botones[0])
+    detectar_cambio_nombre(boton_jugar)
 
 def verificar_botones_musicales(lista_botones, evento):
     for boton in lista_botones:
@@ -143,43 +143,4 @@ def verificar_botones_musicales(lista_botones, evento):
 #     input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
 #     pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
 
-
-# def verificar_nombres_vacios(accion_a,accion_b):
-#     if accion_a != "" and accion_b != "":
-#         print("No estan vacíos")
-
-# def manejador_eventos_pantalla(datos,boton,boton_1,boton_2):
-#     accion_a = None
-#     accion_b = None
-#     acciones = None
-#     lista_de_botones = [boton_1,boton_2]
-
-#     for evento in pygame.event.get():
-#         if evento.type == pygame.QUIT:
-#             datos["primer_pantalla"] = False
-#             datos["empezar_juego"] = False
-#             datos["bandera_principal"] = False
-
-#         elif evento.type == pygame.MOUSEBUTTONDOWN:
-#             if boton["cuadrado"].collidepoint(evento.pos):
-#                 datos["primer_pantalla"] = False
-
-#             detectar_cambio_color(lista_de_botones,evento)
-
-#         elif evento.type == pygame.KEYDOWN:
-#             if boton_1["activo"]:
-#                 accion_a = detectar_escritura(boton_1,evento)
-
-#             elif boton_2["activo"]:
-#                 accion_b = detectar_escritura(boton_2,evento)
-
-#             acciones = agrupar_acciones(accion_a,accion_b)
-
-#     mostrar_texbox_pantalla(boton_1)
-#     mostrar_texbox_pantalla(boton_2)
-#     dibujar_cuadrado_con_texto(boton_1)
-#     dibujar_cuadrado_con_texto(boton_2)
-    
-    # return [acciones]
-    # mostrar_texbox_pantalla(boton_2)}
 

@@ -5,11 +5,13 @@ from Logica.Consola_1_MP import *
 #encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
 # fijarse de hacerla en procesar entrada texto
 
-#OBJETIVOS: 
+#region
+#OBJETIVOS CUMPLIDOS: 
 # Pedir los nombres en la pre-pantalla #!OK
 # arreglar el tema del tiempo #!OK
 # implementar cartas meza #!OK
 # ajustar la velocidad del juego #!OK
+#endregion
 
 # utilizar sets
 # mejorar el dry
@@ -26,10 +28,7 @@ pygame.init()
 #region
 ventana = inicializar_ventana()
 
-matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
-
-# jugadores = identificar_usuarios(2)
-# jugadores = ["pepe","roberto"]
+matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
 diccionarios = creacion_diccionarios()
 
@@ -43,21 +42,11 @@ activar_cartas(listas,matriz_jerarquias_mezcladas)
 parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
-# boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
-# boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
 lista_botones_musicales = crear_botones(ventana)
 
-# elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar,lista_botones_musicales)
 elementos_juego = crear_datos_juego(colores,nuevo_boton_jugar,lista_botones_musicales)
 
-# lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
-lista_botones = [nuevo_boton_jugar]
-
-# accion_a = None
-# accion_b = None
-# acciones = None
-#endregion
 
 cargar_musica("Musica\Atrapalos Ya!.mp3")
 
@@ -91,17 +80,14 @@ while bandera_principal:
             #     acciones = agrupar_acciones(accion_a,accion_b)
             #endregion
             #endregion
-            
                     
             elif evento.type == pygame.MOUSEBUTTONDOWN:
-                detectar_accion(lista_botones,elementos_juego,jugadores,evento)
+                detectar_accion(nuevo_boton_jugar,elementos_juego,jugadores,evento)
 
                 verificar_botones_musicales(lista_botones_musicales, evento)
 
 
         setear_pantalla(pantalla_config,elementos_juego)
-
-        # setear_acciones_pantalla_ses(acciones)
 
         actualizar()
 
