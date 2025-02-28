@@ -125,7 +125,7 @@ def crear_datos_juego(colores,boton_jugar,lista_botones_musicales) -> dict:
     atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
     ganador_ronda = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,445),(200,60),"Ganador ronda")
     ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,524),(200,60),"Ganador partida")
-    
+
     lista_rect_texto = [atributo,ganador_ronda,ganador_partida_final,boton_jugar]
 
     juego = {}
@@ -278,13 +278,6 @@ def crear_temporizador(ventana, fuente, posicion, dimensiones, tiempo, color) ->
     temporizador["texto"] = texto_superficie
 
     return temporizador
-
-def generar_estado_accion(bandera:bool,texto_pantalla)->dict:
-    accion = {}
-    accion["bandera"] = bandera
-    accion["texto_pantalla"] = texto_pantalla
-
-    return accion
 
 def generar_texto_renderizado (pantalla,fuente:tuple,texto_escrito,color_texto:tuple,posicion:tuple,color_fondo_texto)->dict:
     """la función genera texto listo para renderizar.

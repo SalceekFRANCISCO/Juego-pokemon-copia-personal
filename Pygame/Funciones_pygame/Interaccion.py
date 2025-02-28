@@ -77,11 +77,7 @@ def detectar_cambio_nombre(boton):
         boton["texto"]= "REINICIO"
 
 def detectar_escritura(boton,evento):
-    texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
-    bandera = True
-    accion = generar_estado_accion(bandera,texto_pantalla)
-
-    return accion
+    boton["accion"](boton["lista_parametros"],boton,evento)
 
 def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
     """Registra el texto que se ingresa por teclado
