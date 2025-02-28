@@ -35,7 +35,7 @@ def jugar(parametros,elementos_juego,jugadores):
         contador_jugador_1 = puntuacion[0]
         contador_jugador_2 = puntuacion[1]
 
-        actualizar_datos(pantalla_config,elementos_juego)
+        actualizar_datos(pantalla_config,elementos_juego,jugadores,colores)
 
     ganador_partida = mostrar_ganador_partida(jugadores,pantalla_config,listas,colores)
 
@@ -111,10 +111,10 @@ def guardar_resultados_finales(jugadores,ganador_partida:str,listas:dict,pantall
     puntaje = calcular_puntaje(listas ,jugadores, ganador_partida)#! usa los jugadores, otro diccionario
     guardar_resultados(pantalla_config, puntaje, ganador_partida)
 
-def actualizar_datos(pantalla_config:dict,elementos_juego:dict):
+def actualizar_datos(pantalla_config:dict,elementos_juego:dict,jugadores,colores):
     actualizar()
 
-    setear_pantalla(pantalla_config,elementos_juego)#!
+    setear_pantalla(pantalla_config,elementos_juego,jugadores,colores)#!
 
     pygame.time.delay(1000)
     # clock.tick(1)

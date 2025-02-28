@@ -1,5 +1,9 @@
 import pygame
 
+def dibujar_cuadrados_con_textos(lista_cuadrados):
+    for input in lista_cuadrados:
+        dibujar_cuadrado_con_texto(input)
+
 def dibujar_boton_musical(boton):
     boton["ventana"].blit(boton["contenido"], boton["posicion"])
 

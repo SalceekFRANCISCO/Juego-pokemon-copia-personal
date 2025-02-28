@@ -1,8 +1,6 @@
 import pygame
 from Funciones_pygame.Musica import *
 
-#region
-
 def inicializar_ventana():
     ANCHO_VENTANA = 1300
     ALTO_VENTANA = 700
@@ -127,14 +125,12 @@ def crear_datos_juego(colores,boton_jugar,lista_botones_musicales) -> dict:
     atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
     ganador_ronda = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,445),(200,60),"Ganador ronda")
     ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,524),(200,60),"Ganador partida")
+    
+    lista_rect_texto = [atributo,ganador_ronda,ganador_partida_final,boton_jugar]
 
     juego = {}
-    juego["ganador_partida"] = ganador_partida_final
-    juego["atributo"] = atributo
-    juego["ganador_ronda"] = ganador_ronda
-    # juego["boton_nombre_uno"] = boton_nombre_uno
-    # juego["boton_nombre_dos"] = boton_nombre_dos
     juego["boton_jugar"] = boton_jugar
+    juego["lista_rect_texto"] = lista_rect_texto
     juego["lista_botones_musicales"] = lista_botones_musicales
 
     return juego

@@ -47,7 +47,6 @@ lista_botones_musicales = crear_botones(ventana)
 
 elementos_juego = crear_datos_juego(colores,nuevo_boton_jugar,lista_botones_musicales)
 
-
 cargar_musica("Musica\Atrapalos Ya!.mp3")
 
 bandera_principal = True
@@ -87,7 +86,7 @@ while bandera_principal:
                 verificar_botones_musicales(lista_botones_musicales, evento)
 
 
-        setear_pantalla(pantalla_config,elementos_juego)
+        setear_pantalla(pantalla_config,elementos_juego,jugadores,colores)
 
         actualizar()
 

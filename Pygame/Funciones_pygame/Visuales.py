@@ -2,37 +2,35 @@ import pygame
 from Funciones_pygame.Dibujo import *
 from Funciones_pygame.Interaccion import *
 
-def setear_acciones_pantalla_ses(acciones):
-    if acciones != None:
-        for accion in acciones:
-            if accion != None:        
-                dibujar_solo_texto(accion["texto_pantalla"])
+# def setear_acciones_pantalla_ses(acciones):
+#     if acciones != None:
+#         for accion in acciones:
+#             if accion != None:        
+#                 dibujar_solo_texto(accion["texto_pantalla"])
 
-def setear_accion_pantalla(accion):
-    if accion != None and accion["bandera"]:
-        # if accion["bandera"]:
-            dibujar_solo_texto(accion["texto_pantalla"])
+# def setear_accion_pantalla(accion):
+#     if accion != None and accion["bandera"]:
+#         # if accion["bandera"]:
+#             dibujar_solo_texto(accion["texto_pantalla"])
 
-def setear_acciones_pantalla(accion_a,accion_b):
-        setear_accion_pantalla(accion_a)
+# def setear_acciones_pantalla(accion_a,accion_b):
+#         setear_accion_pantalla(accion_a)
 
-        setear_accion_pantalla(accion_b)            
+#         setear_accion_pantalla(accion_b)            
 
-def setear_pantalla(pantalla_config,elementos_juego):#! va a necesitar ambos diccionarios
+def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a necesitar ambos diccionarios
 
     dibujar(pantalla_config,rellenar_superficie)
-
-    # dibujar(elementos_juego["boton_nombre_uno"],mostrar_texbox_pantalla)
-    # dibujar(elementos_juego["boton_nombre_dos"],mostrar_texbox_pantalla)
 
     dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
 
     dibujar_lista_cuadrados(pantalla_config["lista_cuadrados"])
 
-    dibujar_cuadrado_con_texto(elementos_juego["boton_jugar"])
-    dibujar_cuadrado_con_texto(elementos_juego["atributo"])
-    dibujar_cuadrado_con_texto(elementos_juego["ganador_ronda"])
-    dibujar_cuadrado_con_texto(elementos_juego["ganador_partida"])
+    mostrar_texto(pantalla_config,("Arial",30),jugadores[0],colores["negro"],(795,50),None)
+    mostrar_texto(pantalla_config,("Arial",30),jugadores[1],colores["negro"],(797,629),None)
+
+    dibujar(elementos_juego["lista_rect_texto"],dibujar_cuadrados_con_textos)
+    # dibujar_cuadrados_con_textos(elementos_juego["lista_rect_texto"])
 
     dibujar_imagenes(pantalla_config["pokebola"])
     
@@ -94,7 +92,7 @@ def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_f
         color_texto (tuple): Color del texto en formato RGB.
         posicion (tuple): Coordenadas (x, y) para el texto.
     """
-    texto = generar_texto_renderizado (pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto)
+    texto = generar_texto_renderizado(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto)
 
     dibujar(texto,dibujar_solo_texto)
 
@@ -140,13 +138,6 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
         # Mostrar el tiempo en pantalla
         dibujar(tiempo_final,dibujar_tiempo)
 
-def verificar_nombres_vacios(acciones):
-    bandera = False
-    if acciones[0] != None and acciones[1] != None:
-        bandera = True
-
-    return bandera
-
 def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
 
     rellenar_superficie(datos)
@@ -163,20 +154,6 @@ def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
     
     return lista
 
-def manejador_cerrar_pantalla(datos:dict,boton:dict):
-
-    while datos["primer_pantalla"]:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
-                datos["primer_pantalla"] = False
-                datos["empezar_juego"] = False
-                datos["bandera_principal"] = False
-
-            elif evento.type == pygame.MOUSEBUTTONDOWN:
-                if boton["cuadrado"].collidepoint(evento.pos):
-                    datos["primer_pantalla"] = False
-
-
 def verificar_existencia_nombre(boton):
     hay_nombre_valido = None
     if boton["activo"] == False:
@@ -187,6 +164,18 @@ def verificar_existencia_nombre(boton):
             hay_nombre_valido = False
 
     return hay_nombre_valido
+
+def manejador_cerrar_pantalla(datos:dict,boton:dict):
+    while datos["primer_pantalla"]:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                datos["primer_pantalla"] = False
+                datos["empezar_juego"] = False
+                datos["bandera_principal"] = False
+
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                if boton["cuadrado"].collidepoint(evento.pos):
+                    datos["primer_pantalla"] = False
 
 def manejador_textboxs(datos,boton_1,boton_2):
     lista_de_botones = [boton_1,boton_2]
@@ -252,7 +241,7 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
         actualizar()
 
     if bandera_principal != False or empezar_juego != False:
-        setear_pantalla(pantalla_config,elementos_juego)
+        setear_pantalla(pantalla_config,elementos_juego,jugadores_nombre,colores)
         actualizar()
 
     lista = [empezar_juego, bandera_principal,jugadores_nombre[0],jugadores_nombre[1]]

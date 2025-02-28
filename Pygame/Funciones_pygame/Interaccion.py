@@ -75,7 +75,6 @@ def detectar_jugabilidad(boton,evento,elementos_juego,jugadores):
 def detectar_cambio_nombre(boton):
     if boton["activo"]: 
         boton["texto"]= "REINICIO"
-        # print(boton["texto"])
 
 def detectar_escritura(boton,evento):
     texto_pantalla = boton["accion"](boton["lista_parametros"],boton,evento)
@@ -127,7 +126,8 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     return lista
 
 def detectar_accion(boton_jugar,elementos_juego,jugadores,evento):
-    cambio_color(boton_jugar)
+    if boton_jugar["cuadrado"].collidepoint(evento.pos):
+        cambio_color(boton_jugar)
 
     detectar_jugabilidad(boton_jugar,evento,elementos_juego,jugadores)
 
