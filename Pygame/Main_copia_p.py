@@ -1,7 +1,6 @@
 import pygame
 from Logica.Consola_1_MP import *
 
-
 #encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
 # fijarse de hacerla en procesar entrada texto
 
