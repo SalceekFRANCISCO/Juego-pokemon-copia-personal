@@ -84,7 +84,6 @@ while bandera_principal:
 
                 verificar_botones_musicales(lista_botones_musicales, evento)
 
-
         setear_pantalla(pantalla_config,elementos_juego,jugadores,colores)
 
         actualizar()
