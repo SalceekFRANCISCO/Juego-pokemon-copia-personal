@@ -1,7 +1,7 @@
 import pygame
 from Funciones_pygame.Dibujo import *
 from Funciones_pygame.Interaccion import *
-
+#region
 # def setear_acciones_pantalla_ses(acciones):
 #     if acciones != None:
 #         for accion in acciones:
@@ -17,6 +17,7 @@ from Funciones_pygame.Interaccion import *
 #         setear_accion_pantalla(accion_a)
 
 #         setear_accion_pantalla(accion_b)            
+#endregion
 
 def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a necesitar ambos diccionarios
 
@@ -24,7 +25,7 @@ def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a n
 
     dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
 
-    dibujar_lista_cuadrados(pantalla_config["lista_cuadrados"])
+    dibujar(pantalla_config["lista_cuadrados"],dibujar_lista_cuadrados)
 
     mostrar_texto(pantalla_config,("Arial",30),jugadores[0],colores["negro"],(795,50),None)
     mostrar_texto(pantalla_config,("Arial",30),jugadores[1],colores["negro"],(797,629),None)

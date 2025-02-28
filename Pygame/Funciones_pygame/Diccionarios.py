@@ -1,6 +1,8 @@
 import pygame
 from Funciones_pygame.Musica import *
 
+#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
+
 def inicializar_ventana():
     ANCHO_VENTANA = 1300
     ALTO_VENTANA = 700
@@ -17,8 +19,19 @@ def inicializar_ventana():
 
     return ventana
 
-def creacion_diccionarios()->list:
+def crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)->list:
+    lista = []
+    colores = [ROJO,AZUL_CLARO,BLANCO,NEGRO,NEGRO]
+    posiciones = [(56, 180), (162, 180), (911, 127), (385, 80), (385, 360)]
+    dimensiones = [(100, 215), (100, 215), (135, 170), (520, 260), (520, 260)]
 
+    for i in range(len(colores)):
+        cuadrado = crear_cuadrado(ventana,colores[i],posiciones[i],dimensiones[i])
+        lista.append(cuadrado)
+    
+    return lista
+
+def creacion_diccionarios()->list:
     pygame.init()
 
     ventana = inicializar_ventana()
@@ -33,17 +46,11 @@ def creacion_diccionarios()->list:
     GRIS = (128, 128, 128)
     AMARILLO_CLARO = (254,255,145)
 
-    cuadrado_rojo = crear_cuadrado(ventana,ROJO,(56,180),(100,215))
-    cuadrado_azul = crear_cuadrado(ventana,AZUL_CLARO,(162,180),(100,215))
-    cartas_meza = crear_cuadrado(ventana,BLANCO,(911,127),(135,170))
-    cuadrado_negro_arriba = crear_cuadrado(ventana,NEGRO,(385,80),(520,260))
-    cuadrado_negro_abajo = crear_cuadrado(ventana,NEGRO,(385,360),(520,260))
-
-    lista_cuadrados = [cuadrado_rojo,cuadrado_azul,cartas_meza,cuadrado_negro_arriba,cuadrado_negro_abajo]
+    set_cuadrados = crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)
 
     colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
 
-    return [lista_cuadrados,colores]
+    return [set_cuadrados,colores]
 
 def crear_diccionario_listas()-> dict:
     """
@@ -119,17 +126,26 @@ def crear_texto_cuadrado(ventana, fuente, colores:tuple, posicion:tuple, dimensi
 
     return input
 
-def crear_datos_juego(colores,boton_jugar,lista_botones_musicales) -> dict:
-    ventana = inicializar_ventana()
+def crear_lista_rectangulo_con_texto(ventana,colores,boton_jugar):
+    lista = [boton_jugar]
 
-    atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
-    ganador_ronda = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,445),(200,60),"Ganador ronda")
-    ganador_partida_final = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,524),(200,60),"Ganador partida")
+    fuente = ("Arial",20)
+    posiciones = [(911, 366), (911, 445), (911, 524)]
+    dimensiones = (200, 60)
+    textos = ["Atributo Sorteado","Ganador ronda","Ganador partida"]
 
-    lista_rect_texto = [atributo,ganador_ronda,ganador_partida_final,boton_jugar]
+    for i in range(len(posiciones)):
+        rectangulo = crear_texto_cuadrado(ventana,fuente,colores,posiciones[i],dimensiones,textos[i]) 
+        lista.append(rectangulo)
+    
+    return lista
+
+def crear_datos_juego(ventana,colores,boton_jugar,lista_botones_musicales) -> dict:
+    # atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
+
+    lista_rect_texto = crear_lista_rectangulo_con_texto(ventana,colores,boton_jugar)
 
     juego = {}
-    juego["boton_jugar"] = boton_jugar
     juego["lista_rect_texto"] = lista_rect_texto
     juego["lista_botones_musicales"] = lista_botones_musicales
 
@@ -203,7 +219,7 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
 
     return boton
 
-def crear_boton_musical(ventana, posicion:tuple, dimensiones:tuple,accion,imagen=None) -> dict:
+def crear_boton_musical(ventana, posicion:tuple, dimensiones:tuple,accion,imagen=None) -> dict: #!revisar y entender
     boton_musical = {}
     boton_musical["ventana"] = ventana
     boton_musical["dimensiones"] = dimensiones

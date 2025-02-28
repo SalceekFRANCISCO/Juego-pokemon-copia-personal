@@ -368,5 +368,20 @@
         "nombre_jugador": "lolo",
         "fecha_victoria": "27/02/2025",
         "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "ricardito",
+        "fecha_victoria": "28/02/2025",
+        "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "ricardito",
+        "fecha_victoria": "28/02/2025",
+        "puntaje_obtenido": 129
+    },
+    {
+        "nombre_jugador": "dddd",
+        "fecha_victoria": "28/02/2025",
+        "puntaje_obtenido": 126
     }
 ]
