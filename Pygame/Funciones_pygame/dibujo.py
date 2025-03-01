@@ -1,5 +1,15 @@
 import pygame
 
+def dibujar(diccionario:dict,tipo_dibujo):
+    """Descripcion: Dibuja el elemento que se le pase por parametro junto con su respectivo orden.
+
+    Args:
+        diccionario (dict): diccionario de donde se sacan los datos
+        tipo_dibujo (_type_): funcion que dibujara los elementos del diccionario
+    """
+
+    tipo_dibujo(diccionario)
+
 def dibujar_cuadrados_con_textos(lista_cuadrados):
     for input in lista_cuadrados:
         dibujar_cuadrado_con_texto(input)
@@ -10,16 +20,6 @@ def dibujar_boton_musical(boton):
 def dibujar_botones(lista):
     for boton in lista:
         dibujar_boton_musical(boton)
-
-def dibujar(diccionario:dict,tipo_dibujo):
-    """Descripcion: Dibuja el elemento que se le pase por parametro junto con su respectivo orden.
-
-    Args:
-        diccionario (dict): diccionario de donde se sacan los datos
-        tipo_dibujo (_type_): funcion que dibujara los elementos del diccionario
-    """
-
-    tipo_dibujo(diccionario)
 
 def dibujar_cuadrados(cuadrado:dict):
     """

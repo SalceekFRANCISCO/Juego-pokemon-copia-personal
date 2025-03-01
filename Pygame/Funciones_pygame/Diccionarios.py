@@ -117,7 +117,8 @@ def crear_texto_cuadrado(ventana, fuente, colores:tuple, posicion:tuple, dimensi
     """
     input = {}
     input["ventana"] = ventana
-    input["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    # input["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    input["fuente"] = crear_fuente(fuente[0],fuente[1])
     input["color_actual"] = colores["blanco"]
     input["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
 
@@ -205,7 +206,8 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
 def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
     boton = {}
     boton["ventana"] = ventana
-    boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    # boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
+    boton["fuente"] = crear_fuente(fuente[0],fuente[1])
     boton["color_activo"] = colores["dorado"]
     boton["color_inactivo"] = colores["blanco"]
     boton["activo"] = False

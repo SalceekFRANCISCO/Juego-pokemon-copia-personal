@@ -55,9 +55,11 @@ def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke
     for clave, atributo in diccionario.items():
         pokemon = f"{clave}: {atributo}"
         texto = renderizar_mensaje(("Arial",20),pokemon,colores["negro"],colores["gris"])
+        # texto = generar_texto_renderizado(ventana,("Arial",20),pokemon,colores["negro"],(coordenadas_texto[0],y),colores["gris"])
         y += 40
         if clave != "poke-foto":
             dibujar_pantalla(ventana,texto,(coordenadas_texto[0],y))
+            # dibujar_solo_texto(texto)
         else:
             mostrar_foto_pokemon(ventana,atributo,escala_poke_imagen,coordenas_imagen)
 
