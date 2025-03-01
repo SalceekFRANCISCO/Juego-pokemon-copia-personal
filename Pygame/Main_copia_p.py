@@ -1,11 +1,14 @@
 import pygame
 from Logica.Consola_1_MP import *
 
+#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
+
+
+
 #encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
 # fijarse de hacerla en procesar entrada texto
 
-#region
-#OBJETIVOS CUMPLIDOS: 
+#region OBJETIVOS CUMPLIDOS
 # Pedir los nombres en la pre-pantalla #!OK
 # arreglar el tema del tiempo #!OK
 # implementar cartas meza #!OK
@@ -13,8 +16,8 @@ from Logica.Consola_1_MP import *
 #endregion
 
 # utilizar sets
-# poner fondos relacionados con pokemon
 # utilizar eventos propios
+# poner fondos relacionados con pokemon
 # mejorar el dry
 # acomodar los modulos Funciones_pygame
 # Mimificar el main  #! va queriendo

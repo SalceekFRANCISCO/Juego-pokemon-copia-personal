@@ -249,6 +249,8 @@
 #endregion
 
 
+cumstom_event = pygame.USEREVENT
+
 
 # musica = reproducir_musica ("Atrapalos Ya!.mp3", -1, 0.1)
 
