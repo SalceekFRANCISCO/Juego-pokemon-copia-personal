@@ -102,12 +102,12 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
             
     return texto_pantalla
 
-def agrupar_acciones(accion_a,accion_b):
-    lista = []
-    lista.append(accion_a)
-    lista.append(accion_b)
+# def agrupar_acciones(accion_a,accion_b):
+#     lista = []
+#     lista.append(accion_a)
+#     lista.append(accion_b)
 
-    return lista
+#     return lista
 
 def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     lista = []

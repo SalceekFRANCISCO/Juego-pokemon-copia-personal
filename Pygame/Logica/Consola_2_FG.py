@@ -1,20 +1,20 @@
 from Logica.Consola_3_FE import *
 
-def identificar_usuarios(cantidad_usuarios:int)->list[str]: 
-    """Descripción: Permite que se registren usuarios una x cantidad de veces
+# def identificar_usuarios(cantidad_usuarios:int)->list[str]: 
+#     """Descripción: Permite que se registren usuarios una x cantidad de veces
 
-    Args:
-        cantidad_usuarios (int): cantidad de veces que se podran registrar usuarios.
+#     Args:
+#         cantidad_usuarios (int): cantidad de veces que se podran registrar usuarios.
 
-    Returns:
-        list[str]: lista con los nombres
-    """
-    jugadores = []
-    for _ in range(cantidad_usuarios):
-        usuario = get_string("Ingrese su nombre: ","Reingrese su nombre: ")
-        jugadores.append(usuario)
+#     Returns:
+#         list[str]: lista con los nombres
+#     """
+#     jugadores = []
+#     for _ in range(cantidad_usuarios):
+#         usuario = get_string("Ingrese su nombre: ","Reingrese su nombre: ")
+#         jugadores.append(usuario)
     
-    return jugadores
+#     return jugadores
 
 def guardar_cartas(pantalla:dict,funcion)->dict:
     """Descripcion: crea un diccionario de listas vacias y en una de ellas carga los datos necesarios 

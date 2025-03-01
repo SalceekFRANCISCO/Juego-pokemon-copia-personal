@@ -13,10 +13,11 @@ from Logica.Consola_1_MP import *
 #endregion
 
 # utilizar sets
+# poner fondos relacionados con pokemon
 # utilizar eventos propios
 # mejorar el dry
-# Mimificar el main  #! va queriendo
 # acomodar los modulos Funciones_pygame
+# Mimificar el main  #! va queriendo
 
 # si tengo tiempo y ganas, implementar el submenu musical
 # si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
