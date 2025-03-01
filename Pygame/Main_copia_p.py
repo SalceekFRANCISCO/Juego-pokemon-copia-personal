@@ -13,8 +13,8 @@ from Logica.Consola_1_MP import *
 #endregion
 
 # utilizar sets
-# mejorar el dry
 # utilizar eventos propios
+# mejorar el dry
 # Mimificar el main  #! va queriendo
 # acomodar los modulos Funciones_pygame
 
