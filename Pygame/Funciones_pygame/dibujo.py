@@ -39,6 +39,12 @@ def dibujar_solo_texto(texto:dict):
     """
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
 
+def dibujar_fondo(pantalla_config,fondo_principal=None):
+    if fondo_principal != None:
+        pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
+    else:
+        pantalla_config["ventana"].blit(pantalla_config["fondo_2"],(0,0))
+
 def dibujar_tiempo(tiempo_final:dict):
     """
     Muestra el tiempo en la ventana.

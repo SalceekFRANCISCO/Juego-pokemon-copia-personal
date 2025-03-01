@@ -21,18 +21,16 @@ from Funciones_pygame.Interaccion import *
 
 def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a necesitar ambos diccionarios
 
-    # dibujar(pantalla_config,rellenar_superficie)
-    pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
+    dibujar_fondo(pantalla_config)
 
     dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
 
     dibujar(pantalla_config["lista_cuadrados"],dibujar_lista_cuadrados)
 
-    mostrar_texto(pantalla_config,("Arial",30),jugadores[0],colores["negro"],(795,50),None)
-    mostrar_texto(pantalla_config,("Arial",30),jugadores[1],colores["negro"],(797,629),None)
+    mostrar_texto(pantalla_config,("Arial",30),jugadores[0],colores["negro"],(795,40),colores["rosa"])
+    mostrar_texto(pantalla_config,("Arial",30),jugadores[1],colores["negro"],(797,623),colores["rosa"])
 
     dibujar(elementos_juego["lista_rect_texto"],dibujar_cuadrados_con_textos)
-    # dibujar_cuadrados_con_textos(elementos_juego["lista_rect_texto"])
 
     dibujar_imagenes(pantalla_config["pokebola"])
     
@@ -182,8 +180,7 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
 
 def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config):
 
-    # rellenar_superficie(datos)
-    pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
+    dibujar_fondo(pantalla_config,True)
     dibujar_cuadrado_con_texto(boton)
     dibujar_cuadrado_con_texto(boton_1)
     dibujar_cuadrado_con_texto(boton_2)
@@ -235,6 +232,10 @@ def manejador_textboxs(datos,boton_1,boton_2):
                 datos["empezar_juego"] = False
                 datos["bandera_principal"] = False
 
+            # elif evento.type == pygame.MOUSEMOTION:
+            #     x,y = evento.pos
+                # print(x,y)
+
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 detectar_cambio_color(lista_de_botones,evento)
 
@@ -270,7 +271,7 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
 
     datos = crear_pantalla_datos(ventana,colores,primer_pantalla,empezar_juego,bandera_principal)
 
-    boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(650,350),(200,60),"COMENZAR")
+    boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(825,189),(200,60),"COMENZAR")
     boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 

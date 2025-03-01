@@ -17,7 +17,13 @@ def inicializar_ventana():
     icono = pygame.image.load("Poke_fotos\pokebola.png")
     pygame.display.set_icon(icono)
 
-    return ventana
+    fondo = pygame.image.load(r"Poke_fotos\fondo_pikachu.png")
+    fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
+
+    fondo_2 = pygame.image.load(r"Poke_fotos\paisaje_pokimon.png")
+    fondo_2 = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
+
+    return [ventana,fondo,fondo_2]
 
 def crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)->list:
     lista = []
@@ -31,10 +37,10 @@ def crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)->list:
     
     return lista
 
-def creacion_diccionarios()->list:
+def creacion_diccionarios(ventana)->list:
     pygame.init()
 
-    ventana = inicializar_ventana()
+    # ventana = inicializar_ventana()
 
     NEGRO = (0,0,0)
     ROJO = (255,0,0)
@@ -45,10 +51,12 @@ def creacion_diccionarios()->list:
     DORADO = (204, 153, 0)
     GRIS = (128, 128, 128)
     AMARILLO_CLARO = (254,255,145)
+    ROSA = (255, 192, 203)
+
 
     set_cuadrados = crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)
 
-    colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS)
+    colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS,ROSA)
 
     return [set_cuadrados,colores]
 
@@ -78,9 +86,9 @@ def crear_pantalla_datos(ventana,colores,primer_pantalla,empezar_juego,bandera_p
 
     return pre_pantalla
 
-def crear_datos_pantalla(ventana,fondo) -> dict:
+def crear_datos_pantalla(ventana,fondo,fondo_2) -> dict:
 
-    diccionarios = creacion_diccionarios()
+    diccionarios = creacion_diccionarios(ventana)
     lista_cuadrados = diccionarios[0]
     colores = diccionarios[1]
 
@@ -91,6 +99,7 @@ def crear_datos_pantalla(ventana,fondo) -> dict:
     pantalla = {}
     pantalla["ventana"] = ventana
     pantalla["fondo"] = fondo
+    pantalla["fondo_2"] = fondo_2
     pantalla["color_ventana"] = colores["gris"]
     pantalla["lista_cuadrados"] = lista_cuadrados
     pantalla["pokebola"] = pokebola
@@ -174,7 +183,7 @@ def crear_cuadrado(ventana, color, posicion: tuple, dimensiones: tuple) -> dict:
 
     return cuadrado
            
-def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) -> dict:
+def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS, ROSA) -> dict:
     """
     Crea un diccionario con colores definidos.
 
@@ -201,6 +210,7 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS) ->
     colores["blanco"] = BLANCO
     colores["dorado"] = DORADO
     colores["gris"] = GRIS
+    colores["rosa"] = ROSA
 
     return colores
 

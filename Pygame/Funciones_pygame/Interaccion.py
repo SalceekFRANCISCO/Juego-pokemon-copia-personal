@@ -3,7 +3,7 @@ from Funciones_pygame.Diccionarios import *
 
 def inicializar_ventana():
     ANCHO_VENTANA = 1300
-    ALTO_VENTANA = 700
+    ALTO_VENTANA = 700#! posible set
 
     pygame.init()
     pygame.mixer.init()
@@ -18,7 +18,10 @@ def inicializar_ventana():
     fondo = pygame.image.load(r"Poke_fotos\fondo_pikachu.png")
     fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
 
-    return [ventana,fondo]
+    fondo_2 = pygame.image.load(r"Poke_fotos\paisaje_pokimon.png")
+    fondo_2 = pygame.transform.scale(fondo_2,(ANCHO_VENTANA, ALTO_VENTANA))
+
+    return [ventana,fondo,fondo_2]
 
 def crear_matriz_jerarquias()-> list[list]:
 
@@ -104,13 +107,6 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
     texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             
     return texto_pantalla
-
-# def agrupar_acciones(accion_a,accion_b):
-#     lista = []
-#     lista.append(accion_a)
-#     lista.append(accion_b)
-
-#     return lista
 
 def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     lista = []

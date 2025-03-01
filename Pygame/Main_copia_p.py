@@ -1,9 +1,7 @@
 import pygame
 from Logica.Consola_1_MP import *
-
+#region
 #  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
-
-
 
 #encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
 # fijarse de hacerla en procesar entrada texto
@@ -16,9 +14,9 @@ from Logica.Consola_1_MP import *
 #endregion
 
 # utilizar sets
-# utilizar eventos propios
-# poner fondos relacionados con pokemon
+# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
 # mejorar el dry
+# poner fondos relacionados con pokemon #! OK
 # acomodar los modulos Funciones_pygame #! OK
 # Mimificar el main  #! va queriendo
 
@@ -26,6 +24,14 @@ from Logica.Consola_1_MP import *
 # si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
 
 # pedirle a ochoa que me de una devolucion del juego
+#endregion
+
+
+#!funciones independientes que funionen en general
+#!funciones que tengan una funcion clara
+#!no repetir código
+#!estudiar conceptos
+
 
 pygame.init() 
 #region
@@ -33,14 +39,15 @@ ventanas = inicializar_ventana()
 
 ventana = ventanas[0]
 fondo = ventanas[1]
+fondo_2 = ventanas[2]
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
-diccionarios = creacion_diccionarios()
+diccionarios = creacion_diccionarios(ventana)
 
 colores = diccionarios[1]
 
-pantalla_config = crear_datos_pantalla(ventana,fondo)
+pantalla_config = crear_datos_pantalla(ventana,fondo,fondo_2)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
@@ -63,7 +70,8 @@ while bandera_principal:
 
     empezar_juego = banderas[0]
     bandera_principal = banderas[1]
-    jugadores = [banderas[2],banderas[3]]
+    jugadores = [banderas[2],banderas[3]]#! posible set
+    #! evento propio para que comienze juego
 
     while empezar_juego: 
         for evento in pygame.event.get():
@@ -74,16 +82,6 @@ while bandera_principal:
             # elif evento.type == pygame.MOUSEMOTION:
             #     x,y = evento.pos
             #     print(x,y) #Saber que cordenadas son en la pantalla
-            #region antigua funcion
-            # elif evento.type == pygame.KEYDOWN:
-            #     if boton_nombre_uno["activo"]:
-            #         accion_a = detectar_escritura(boton_nombre_uno,evento)
-
-            #     elif boton_nombre_dos["activo"]:
-            #         accion_b = detectar_escritura(boton_nombre_dos,evento)
-
-            #     acciones = agrupar_acciones(accion_a,accion_b)
-            #endregion
             #endregion
                     
             elif evento.type == pygame.MOUSEBUTTONDOWN:
