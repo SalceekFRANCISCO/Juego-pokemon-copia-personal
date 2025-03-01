@@ -19,7 +19,7 @@ from Logica.Consola_1_MP import *
 # utilizar eventos propios
 # poner fondos relacionados con pokemon
 # mejorar el dry
-# acomodar los modulos Funciones_pygame
+# acomodar los modulos Funciones_pygame #! OK
 # Mimificar el main  #! va queriendo
 
 # si tengo tiempo y ganas, implementar el submenu musical
