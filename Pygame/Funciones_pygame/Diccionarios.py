@@ -78,7 +78,7 @@ def crear_pantalla_datos(ventana,colores,primer_pantalla,empezar_juego,bandera_p
 
     return pre_pantalla
 
-def crear_datos_pantalla(ventana) -> dict:
+def crear_datos_pantalla(ventana,fondo) -> dict:
 
     diccionarios = creacion_diccionarios()
     lista_cuadrados = diccionarios[0]
@@ -90,6 +90,7 @@ def crear_datos_pantalla(ventana) -> dict:
 
     pantalla = {}
     pantalla["ventana"] = ventana
+    pantalla["fondo"] = fondo
     pantalla["color_ventana"] = colores["gris"]
     pantalla["lista_cuadrados"] = lista_cuadrados
     pantalla["pokebola"] = pokebola

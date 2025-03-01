@@ -21,7 +21,8 @@ from Funciones_pygame.Interaccion import *
 
 def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a necesitar ambos diccionarios
 
-    dibujar(pantalla_config,rellenar_superficie)
+    # dibujar(pantalla_config,rellenar_superficie)
+    pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
 
     dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
 
@@ -69,6 +70,34 @@ def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_pok
             dibujar_solo_texto(texto_b)
         else:
             # mostrar_foto_pokemon(ventana,atributo,escala_poke_imagen,coordenas_imagen)
+            mostrar_foto_pokemon(pantalla,atributo,escala_poke_imagen,coordenas_imagen)
+
+def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
+    """
+    Descripcion: Muestra los datos de un Pokémon junto con su imagen en pantalla.
+
+    Args:
+        diccionario (dict): Diccionario con los datos del Pokémon.
+        ventana (Surface): Superficie de Pygame donde se dibuja.
+        colores (dict): Diccionario de colores.
+        coordenadas_texto (tuple): Coordenadas para mostrar el texto.
+        escala_poke_imagen (tuple): Escala (ancho, alto) de la imagen.
+        coordenas_imagen (tuple): Coordenadas (x, y) de la imagen.
+    """
+    
+    y = coordenadas_texto[1]
+
+    for clave, atributo in diccionario.items():
+        clave_del_pokemon = f"{clave}: "
+        atributo_del_pokemon = f" {atributo}"
+        y += 40
+        texto_a = generar_texto_renderizado(pantalla,("Arial",20),clave_del_pokemon,colores["negro"],(coordenadas_texto[0],y),colores["dorado"])
+        texto_b = generar_texto_renderizado(pantalla,("Arial",20),atributo_del_pokemon,colores["rojo"],(591,y),colores["verde"])
+
+        if clave != "poke-foto":
+            dibujar_solo_texto(texto_a)
+            dibujar_solo_texto(texto_b)
+        else:
             mostrar_foto_pokemon(pantalla,atributo,escala_poke_imagen,coordenas_imagen)
 
 def mostrar_foto_pokemon(pantalla, pokemon:str, escala_poke_imagen: tuple, coordenas_imagen: tuple):
@@ -151,9 +180,10 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
         # Mostrar el tiempo en pantalla
         dibujar(tiempo_final,dibujar_tiempo)
 
-def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2):
+def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config):
 
-    rellenar_superficie(datos)
+    # rellenar_superficie(datos)
+    pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
     dibujar_cuadrado_con_texto(boton)
     dibujar_cuadrado_con_texto(boton_1)
     dibujar_cuadrado_con_texto(boton_2)
@@ -245,7 +275,7 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
     while primer_pantalla:
-        jugadores_nombre = cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos)
+        jugadores_nombre = cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos,pantalla_config)
         
         primer_pantalla = datos["primer_pantalla"]
         empezar_juego = datos["empezar_juego"]

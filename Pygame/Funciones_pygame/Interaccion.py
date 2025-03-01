@@ -15,7 +15,10 @@ def inicializar_ventana():
     icono = pygame.image.load("Poke_fotos\pokebola.png")
     pygame.display.set_icon(icono)
 
-    return ventana
+    fondo = pygame.image.load(r"Poke_fotos\fondo_pikachu.png")
+    fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
+
+    return [ventana,fondo]
 
 def crear_matriz_jerarquias()-> list[list]:
 

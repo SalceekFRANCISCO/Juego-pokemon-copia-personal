@@ -29,7 +29,10 @@ from Logica.Consola_1_MP import *
 
 pygame.init() 
 #region
-ventana = inicializar_ventana()
+ventanas = inicializar_ventana()
+
+ventana = ventanas[0]
+fondo = ventanas[1]
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
@@ -37,7 +40,7 @@ diccionarios = creacion_diccionarios()
 
 colores = diccionarios[1]
 
-pantalla_config = crear_datos_pantalla(ventana)
+pantalla_config = crear_datos_pantalla(ventana,fondo)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
