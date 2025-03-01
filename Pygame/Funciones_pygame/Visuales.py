@@ -37,7 +37,8 @@ def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a n
     
     dibujar_rectangulo_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
 
-def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
+def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
+# def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
     """
     Descripcion: Muestra los datos de un Pokémon junto con su imagen en pantalla.
 
@@ -53,17 +54,25 @@ def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke
     y = coordenadas_texto[1]
 
     for clave, atributo in diccionario.items():
-        pokemon = f"{clave}: {atributo}"
-        texto = renderizar_mensaje(("Arial",20),pokemon,colores["negro"],colores["gris"])
-        # texto = generar_texto_renderizado(ventana,("Arial",20),pokemon,colores["negro"],(coordenadas_texto[0],y),colores["gris"])
+        # pokemon = f"{clave}: {atributo}"
+        pokemon_1 = f"{clave}: "
+        pokemon_2 = f"{atributo}"
+        # texto = renderizar_mensaje(("Arial",20),pokemon,colores["negro"],colores["gris"])
         y += 40
+        # texto = generar_texto_renderizado(pantalla,("Arial",20),pokemon,colores["negro"],(coordenadas_texto[0],y),colores["gris"])
+        texto_a = generar_texto_renderizado(pantalla,("Arial",20),pokemon_1,colores["negro"],(coordenadas_texto[0],y),colores["dorado"])
+        texto_b = generar_texto_renderizado(pantalla,("Arial",20),pokemon_2,colores["rojo"],(571,y),colores["verde"])
         if clave != "poke-foto":
-            dibujar_pantalla(ventana,texto,(coordenadas_texto[0],y))
+            # dibujar_pantalla(ventana,texto,(coordenadas_texto[0],y))
             # dibujar_solo_texto(texto)
+            dibujar_solo_texto(texto_a)
+            dibujar_solo_texto(texto_b)
         else:
-            mostrar_foto_pokemon(ventana,atributo,escala_poke_imagen,coordenas_imagen)
+            # mostrar_foto_pokemon(ventana,atributo,escala_poke_imagen,coordenas_imagen)
+            mostrar_foto_pokemon(pantalla,atributo,escala_poke_imagen,coordenas_imagen)
 
-def mostrar_foto_pokemon(ventana, pokemon:str, escala_poke_imagen: tuple, coordenas_imagen: tuple):
+def mostrar_foto_pokemon(pantalla, pokemon:str, escala_poke_imagen: tuple, coordenas_imagen: tuple):
+# def mostrar_foto_pokemon(ventana, pokemon:str, escala_poke_imagen: tuple, coordenas_imagen: tuple):
     """
     Muestra la imagen de un Pokémon en la pantalla.
 
@@ -73,7 +82,8 @@ def mostrar_foto_pokemon(ventana, pokemon:str, escala_poke_imagen: tuple, coorde
         escala_poke_imagen (tuple): Escala (ancho, alto) de la imagen.
         coordenas_imagen (tuple): Coordenadas (x, y) de la imagen.
     """
-
+    ventana = pantalla["ventana"]
+    
     imagen_final = crear_diccionario_imagen(ventana,pokemon,coordenas_imagen,escala_poke_imagen)
     
     dibujar(imagen_final,dibujar_imagenes)
