@@ -36,6 +36,8 @@ def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a n
     
     dibujar_rectangulo_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
 
+    # actualizar()
+
 def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
 # def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
     """

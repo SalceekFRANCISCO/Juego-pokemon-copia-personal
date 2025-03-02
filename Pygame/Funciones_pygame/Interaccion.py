@@ -110,7 +110,7 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
 
 def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     lista = []
-    parametros_jugar = [250,matriz,listas,pantalla_config,colores]
+    parametros_jugar = [5,matriz,listas,pantalla_config,colores]
     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
     parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
 
