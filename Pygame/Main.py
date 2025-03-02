@@ -1,91 +1,96 @@
 import pygame
 from Logica.Consola_1_MP import *
+#region
+#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
+
+#encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
+# fijarse de hacerla en procesar entrada texto
+
+#region OBJETIVOS CUMPLIDOS
+# Pedir los nombres en la pre-pantalla #!OK
+# arreglar el tema del tiempo #!OK
+# implementar cartas meza #!OK
+# ajustar la velocidad del juego #!OK
+#endregion
+
+# utilizar sets
+# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
+# mejorar el dry
+# poner fondos relacionados con pokemon #! OK
+# acomodar los modulos Funciones_pygame #! OK
+# Mimificar el main  #! va queriendo
+
+# si tengo tiempo y ganas, implementar el submenu musical
+# si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
+
+# pedirle a ochoa que me de una devolucion del juego
+#endregion
 
 
-#NUEVO OBJETIVO: 
-
-#arreglar los modulos de funciones pygame
-
-
-#MIMIFICAR EL MAIN por ahora bien
-#PROBAR CREAR EL MODULO SOLO DICCIONARIOS ya esta hecho
-#EMPEZAR CON EL MANEJADOR MUSICAL ya esta hecho
-# main mimificado
-# PEDIR CORRECTAMENTE LOS NOMBES  
-
+#!funciones independientes que funionen en general
+#!funciones que tengan una funcion clara
+#!no repetir código
+#!estudiar conceptos
 
 
 pygame.init() 
 #region
-ventana = inicializar_ventana()
+ventanas = inicializar_ventana()
 
-matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
+ventana = ventanas[0]
+fondo = ventanas[1]
+fondo_2 = ventanas[2]
 
-# jugadores = identificar_usuarios(2)
-jugadores = ["pepe","roberto"]
+matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
-diccionarios = creacion_diccionarios()
+diccionarios = creacion_diccionarios(ventana)
 
 colores = diccionarios[1]
 
-pantalla_config = crear_datos_pantalla(ventana,jugadores)
+pantalla_config = crear_datos_pantalla(ventana,fondo,fondo_2)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
 
-clock = pygame.time.Clock()
-
-tiempo_inicial = None
-cronometro_activo = False
-
-parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas,cronometro_activo,tiempo_inicial)
+parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
-boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
-boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
 lista_botones_musicales = crear_botones(ventana)
 
-elementos_juego = crear_datos_juego(colores,boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar,lista_botones_musicales)
-
-lista_botones = [boton_nombre_uno,boton_nombre_dos,nuevo_boton_jugar]
-
-bandera_juego = True
-accion_a = None
-accion_b = None
-acciones = None
-#endregion
+elementos_juego = crear_datos_juego(ventana,colores,nuevo_boton_jugar,lista_botones_musicales)
 
 cargar_musica("Musica\Atrapalos Ya!.mp3")
 
-while bandera_juego: 
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            bandera_juego = False
-        # elif evento.type == pygame.MOUSEMOTION:
-        #     x,y = evento.pos
-        #     print(x,y) #Saber que cordenadas son en la pantalla
-        elif evento.type == pygame.KEYDOWN:
-            if boton_nombre_uno["activo"]:
-                accion_a = detectar_escritura(boton_nombre_uno,evento)
+bandera_principal = True
 
-            elif boton_nombre_dos["activo"]:
-                accion_b = detectar_escritura(boton_nombre_dos,evento)
+while bandera_principal:
 
-            acciones = agrupar_acciones(accion_a,accion_b)
-                 
-        elif evento.type == pygame.MOUSEBUTTONDOWN:
-            # tiempo_inicial = pygame.time.get_ticks()  
-            # cronometro_activo = True 
-            jugabilidad(lista_botones,elementos_juego,evento)
+    banderas =  pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)
 
-            veriificar_accion_botones(lista_botones_musicales, evento)
+    empezar_juego = banderas[0]
+    bandera_principal = banderas[1]
+    jugadores = [banderas[2],banderas[3]]#! posible set
+    #! evento propio para que comienze juego
 
+    while empezar_juego: 
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                bandera_principal = False
+                empezar_juego = False
+            # region coordenadas
+            # elif evento.type == pygame.MOUSEMOTION:
+            #     x,y = evento.pos
+            #     print(x,y) #Saber que cordenadas son en la pantalla
+            #endregion
+                    
+            elif evento.type == pygame.MOUSEBUTTONDOWN:
+                detectar_accion(nuevo_boton_jugar,elementos_juego,jugadores,evento)
 
-    setear_pantalla(pantalla_config,elementos_juego)
+                verificar_botones_musicales(lista_botones_musicales, evento)
 
-    setear_acciones_pantalla_ses(acciones)
+        setear_pantalla(pantalla_config,elementos_juego,jugadores,colores)
 
-    actualizar()
+        actualizar()
 
 pygame.quit()

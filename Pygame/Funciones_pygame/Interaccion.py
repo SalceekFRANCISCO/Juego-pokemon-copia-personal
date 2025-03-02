@@ -61,9 +61,6 @@ def cambio_color(boton:dict):
     """
     boton["activo"] = not boton["activo"]
 
-    if boton["texto"] != "JUGAR" and boton["texto"] != "":
-        boton["color_actual"] = boton["color_inactivo"]
-
     if boton["activo"]:
         boton["color_actual"] = boton["color_activo"] 
     else:
@@ -108,7 +105,7 @@ def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
             
     return texto_pantalla
 
-def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
+def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:#!revisar
     lista = []
     parametros_jugar = [5,matriz,listas,pantalla_config,colores]
     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
@@ -132,10 +129,4 @@ def verificar_botones_musicales(lista_botones, evento):
     for boton in lista_botones:
         if boton["rectangulo"].collidepoint(evento.pos):
             boton["accion"]()
-
-# def mostrar_texbox_pantalla(input):
-#     superficie = input["fuente"].render(input["texto"],False,"Black")
-#     input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
-#     pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
-
 

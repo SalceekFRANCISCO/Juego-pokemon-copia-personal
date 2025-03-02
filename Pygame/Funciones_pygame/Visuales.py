@@ -2,77 +2,26 @@ import pygame
 from Funciones_pygame.Dibujo import *
 from Funciones_pygame.Interaccion import *
 #region
-# def setear_acciones_pantalla_ses(acciones):
-#     if acciones != None:
-#         for accion in acciones:
-#             if accion != None:        
-#                 dibujar_solo_texto(accion["texto_pantalla"])
-
-# def setear_accion_pantalla(accion):
-#     if accion != None and accion["bandera"]:
-#         # if accion["bandera"]:
-#             dibujar_solo_texto(accion["texto_pantalla"])
-
-# def setear_acciones_pantalla(accion_a,accion_b):
-#         setear_accion_pantalla(accion_a)
-
-#         setear_accion_pantalla(accion_b)            
 #endregion
 
-def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):#! va a necesitar ambos diccionarios
+def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):
 
     dibujar_fondo(pantalla_config)
 
-    dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones)
+    dibujar(elementos_juego["lista_botones_musicales"],dibujar_botones_musicales)
 
     dibujar(pantalla_config["lista_cuadrados"],dibujar_lista_cuadrados)
 
     mostrar_texto(pantalla_config,("Arial",30),jugadores[0],colores["negro"],(795,40),colores["rosa"])
     mostrar_texto(pantalla_config,("Arial",30),jugadores[1],colores["negro"],(797,623),colores["rosa"])
 
-    dibujar(elementos_juego["lista_rect_texto"],dibujar_cuadrados_con_textos)
+    dibujar_textos_en_cuadrados(elementos_juego["lista_rect_texto"],colores)
 
-    dibujar_imagenes(pantalla_config["pokebola"])
+    dibujar_imagen(pantalla_config["pokebola"])
     
-    dibujar_rectangulo_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
+    dibujar_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
 
-    # actualizar()
-
-def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
-# def mostrar_cartas(diccionario, ventana, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
-    """
-    Descripcion: Muestra los datos de un Pokémon junto con su imagen en pantalla.
-
-    Args:
-        diccionario (dict): Diccionario con los datos del Pokémon.
-        ventana (Surface): Superficie de Pygame donde se dibuja.
-        colores (dict): Diccionario de colores.
-        coordenadas_texto (tuple): Coordenadas para mostrar el texto.
-        escala_poke_imagen (tuple): Escala (ancho, alto) de la imagen.
-        coordenas_imagen (tuple): Coordenadas (x, y) de la imagen.
-    """
-    
-    y = coordenadas_texto[1]
-
-    for clave, atributo in diccionario.items():
-        # pokemon = f"{clave}: {atributo}"
-        pokemon_1 = f"{clave}: "
-        pokemon_2 = f"{atributo}"
-        # texto = renderizar_mensaje(("Arial",20),pokemon,colores["negro"],colores["gris"])
-        y += 40
-        # texto = generar_texto_renderizado(pantalla,("Arial",20),pokemon,colores["negro"],(coordenadas_texto[0],y),colores["gris"])
-        texto_a = generar_texto_renderizado(pantalla,("Arial",20),pokemon_1,colores["negro"],(coordenadas_texto[0],y),colores["dorado"])
-        texto_b = generar_texto_renderizado(pantalla,("Arial",20),pokemon_2,colores["rojo"],(571,y),colores["verde"])
-        if clave != "poke-foto":
-            # dibujar_pantalla(ventana,texto,(coordenadas_texto[0],y))
-            # dibujar_solo_texto(texto)
-            dibujar_solo_texto(texto_a)
-            dibujar_solo_texto(texto_b)
-        else:
-            # mostrar_foto_pokemon(ventana,atributo,escala_poke_imagen,coordenas_imagen)
-            mostrar_foto_pokemon(pantalla,atributo,escala_poke_imagen,coordenas_imagen)
-
-def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
+def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):#!revisar
     """
     Descripcion: Muestra los datos de un Pokémon junto con su imagen en pantalla.
 
@@ -95,13 +44,12 @@ def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_pok
         texto_b = generar_texto_renderizado(pantalla,("Arial",20),atributo_del_pokemon,colores["rojo"],(591,y),colores["verde"])
 
         if clave != "poke-foto":
-            dibujar_solo_texto(texto_a)
-            dibujar_solo_texto(texto_b)
+            dibujar_texto(texto_a)
+            dibujar_texto(texto_b)
         else:
             mostrar_foto_pokemon(pantalla,atributo,escala_poke_imagen,coordenas_imagen)
 
 def mostrar_foto_pokemon(pantalla, pokemon:str, escala_poke_imagen: tuple, coordenas_imagen: tuple):
-# def mostrar_foto_pokemon(ventana, pokemon:str, escala_poke_imagen: tuple, coordenas_imagen: tuple):
     """
     Muestra la imagen de un Pokémon en la pantalla.
 
@@ -115,7 +63,7 @@ def mostrar_foto_pokemon(pantalla, pokemon:str, escala_poke_imagen: tuple, coord
     
     imagen_final = crear_diccionario_imagen(ventana,pokemon,coordenas_imagen,escala_poke_imagen)
     
-    dibujar(imagen_final,dibujar_imagenes)
+    dibujar(imagen_final,dibujar_imagen)
 
 def actualizar():
     """
@@ -123,20 +71,20 @@ def actualizar():
     """
     pygame.display.update()
 
-def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_fondo_texto):#! ventana
+def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion,color_fondo_texto):
     """
     Muestra texto en la ventana.
 
     Args:
         ventana (Surface): Superficie donde se muestra el texto.
         fuente (tuple): Tipo y tamaño de fuente.
-        texto_escrito (str): Texto a mostrar.
+        texto (str): Texto a mostrar.
         color_texto (tuple): Color del texto en formato RGB.
         posicion (tuple): Coordenadas (x, y) para el texto.
     """
     texto = generar_texto_renderizado(pantalla,fuente,texto_escrito,color_texto,posicion,color_fondo_texto)
 
-    dibujar(texto,dibujar_solo_texto)
+    dibujar(texto,dibujar_texto)
 
 def obtener_tiempo(tiempo_actual, tiempo_inicial):
     """
@@ -156,7 +104,7 @@ def obtener_tiempo(tiempo_actual, tiempo_inicial):
 
     return tiempo_transcurrido
 
-def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! ventana
+def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):
     """
     Muestra un cronómetro en la ventana si está activo.
 
@@ -176,20 +124,24 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
 
         tiempo_final = generar_texto_renderizado(pantalla, ("Arial", 25),tiempo_transcurrido, colores["negro"],(58, 414), colores["rosa"])
 
-        dibujar(tiempo_final,dibujar_solo_texto)
+        dibujar(tiempo_final,dibujar_texto)
 
-def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config):
+def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colores):#!mejorar nombres
 
     dibujar_fondo(pantalla_config,True)
-    dibujar_cuadrado_con_texto(boton)
-    dibujar_cuadrado_con_texto(boton_1)
-    dibujar_cuadrado_con_texto(boton_2)
+    dibujar_texto_centralizado(boton,colores)
+    # dibujar_texto_centralizado(boton_1,colores)
+    # dibujar_texto_centralizado(boton_2,colores)
     actualizar()
 
-    verificacion_textboxs = manejador_textboxs(datos,boton_1,boton_2)#modifica llave del diccionario datos
+    verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)#modifica llave del diccionario datos
     if verificacion_textboxs[0]:
         manejador_cerrar_pantalla(datos,boton)
-    
+    else:
+        datos["primer_pantalla"] = False
+        datos["empezar_juego"] = False
+        datos["bandera_principal"] = False
+
     lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
     
     return lista
@@ -217,7 +169,7 @@ def manejador_cerrar_pantalla(datos:dict,boton:dict):
                 if boton["cuadrado"].collidepoint(evento.pos):
                     datos["primer_pantalla"] = False
 
-def manejador_textboxs(datos,boton_1,boton_2):
+def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
     lista_de_botones = [boton_1,boton_2]
     verificacion = False
     nombre_registrado = ""
@@ -250,10 +202,14 @@ def manejador_textboxs(datos,boton_1,boton_2):
 
                 nombre_registrado_2 = verificar_existencia_nombre(boton_2)
 
-        mostrar_texbox_pantalla(boton_1)
-        mostrar_texbox_pantalla(boton_2)
-        dibujar_cuadrado_con_texto(boton_1)
-        dibujar_cuadrado_con_texto(boton_2)
+        # mostrar_texbox_pantalla(boton_1)
+        # mostrar_texbox_pantalla(boton_2)
+
+        # nuevo_mostrar_texbox_pantalla(boton_1,colores)
+        # nuevo_mostrar_texbox_pantalla(boton_2,colores)
+
+        dibujar_texto_centralizado(boton_1,colores)
+        dibujar_texto_centralizado(boton_2,colores)
         actualizar()
 
         if nombre_registrado == True and nombre_registrado_2 == True:
@@ -265,7 +221,7 @@ def manejador_textboxs(datos,boton_1,boton_2):
         if verificacion != False:
             return lista
 
-def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:
+def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:#!mejorar nombres
     empezar_juego = True
     primer_pantalla = True
 
@@ -276,7 +232,7 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
     while primer_pantalla:
-        jugadores_nombre = cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos,pantalla_config)
+        jugadores_nombre = cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos,pantalla_config,colores)
         
         primer_pantalla = datos["primer_pantalla"]
         empezar_juego = datos["empezar_juego"]

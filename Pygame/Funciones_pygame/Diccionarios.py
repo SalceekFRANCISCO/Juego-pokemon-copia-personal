@@ -3,28 +3,6 @@ from Funciones_pygame.Musica import *
 
 #  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
 
-def inicializar_ventana():
-    ANCHO_VENTANA = 1300
-    ALTO_VENTANA = 700
-
-    pygame.init()
-    pygame.mixer.init()
-
-    ventana = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA))
-
-    pygame.display.set_caption("Pokemon Cards")
-
-    icono = pygame.image.load("Poke_fotos\pokebola.png")
-    pygame.display.set_icon(icono)
-
-    fondo = pygame.image.load(r"Poke_fotos\fondo_pikachu.png")
-    fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
-
-    fondo_2 = pygame.image.load(r"Poke_fotos\paisaje_pokimon.png")
-    fondo_2 = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
-
-    return [ventana,fondo,fondo_2]
-
 def crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)->list:
     lista = []
     colores = [ROJO,AZUL_CLARO,BLANCO,NEGRO,NEGRO]
@@ -40,8 +18,6 @@ def crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)->list:
 def creacion_diccionarios(ventana)->list:
     pygame.init()
 
-    # ventana = inicializar_ventana()
-
     NEGRO = (0,0,0)
     ROJO = (255,0,0)
     AZUL = (0,0,255)
@@ -54,11 +30,11 @@ def creacion_diccionarios(ventana)->list:
     ROSA = (255, 192, 203)
 
 
-    set_cuadrados = crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)
+    lista_cuadrados = crear_lista_cuadrados(ventana,ROJO,AZUL_CLARO,BLANCO,NEGRO)
 
     colores = crear_colores(NEGRO,ROJO,AZUL,AZUL_CLARO,VERDE,BLANCO,DORADO,GRIS,ROSA)
 
-    return [set_cuadrados,colores]
+    return [lista_cuadrados,colores]
 
 def crear_diccionario_listas()-> dict:
     """
@@ -127,7 +103,6 @@ def crear_texto_cuadrado(ventana, fuente, colores:tuple, posicion:tuple, dimensi
     """
     input = {}
     input["ventana"] = ventana
-    # input["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
     input["fuente"] = crear_fuente(fuente[0],fuente[1])
     input["color_actual"] = colores["blanco"]
     input["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
@@ -152,7 +127,6 @@ def crear_lista_rectangulo_con_texto(ventana,colores,boton_jugar):
     return lista
 
 def crear_datos_juego(ventana,colores,boton_jugar,lista_botones_musicales) -> dict:
-    # atributo = crear_texto_cuadrado(ventana,("Arial",20),colores,(911,366),(200,60),"Atributo Sorteado")
 
     lista_rect_texto = crear_lista_rectangulo_con_texto(ventana,colores,boton_jugar)
 
@@ -217,7 +191,6 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS, RO
 def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
     boton = {}
     boton["ventana"] = ventana
-    # boton["fuente"] = pygame.font.SysFont(fuente[0],fuente[1])
     boton["fuente"] = crear_fuente(fuente[0],fuente[1])
     boton["color_activo"] = colores["dorado"]
     boton["color_inactivo"] = colores["blanco"]
@@ -250,7 +223,7 @@ def crear_boton_musical(ventana, posicion:tuple, dimensiones:tuple,accion,imagen
 
     return boton_musical
 
-def crear_botones(ventana):          
+def crear_botones(ventana):  #!MODIFICAR        
     boton_play = crear_boton_musical(ventana,(21,453),(50,50),reproducir_musica,r"Musica\Img_musica\play.png")
     boton_pause = crear_boton_musical(ventana,(98,453),(50,50),pausar_musica,r"Musica\Img_musica\pause.png")
     boton_stop = crear_boton_musical(ventana,(164,453),(50,50),detener_musica,r"Musica\Img_musica\stop.png")
@@ -284,29 +257,29 @@ def crear_diccionario_imagen(ventana, path, coordenadas, dimensiones)->dict:
 
     return imagen
 
-def crear_temporizador(ventana, fuente, posicion, dimensiones, tiempo, color) -> dict:
-    """
-    Crea un temporizador para mostrar en pantalla.
+# def crear_temporizador(ventana, fuente, posicion, dimensiones, tiempo, color) -> dict:
+#     """
+#     Crea un temporizador para mostrar en pantalla.
 
-    Args:
-        ventana (Surface): Superficie donde se dibuja.
-        fuente (tuple): Tipo y tamaño de la fuente.
-        posicion (tuple): Coordenadas del temporizador.
-        dimensiones (tuple): Dimensiones del rectángulo del temporizador.
-        tiempo (str): Tiempo inicial a mostrar.
-        color (tuple): Color del texto.
+#     Args:
+#         ventana (Surface): Superficie donde se dibuja.
+#         fuente (tuple): Tipo y tamaño de la fuente.
+#         posicion (tuple): Coordenadas del temporizador.
+#         dimensiones (tuple): Dimensiones del rectángulo del temporizador.
+#         tiempo (str): Tiempo inicial a mostrar.
+#         color (tuple): Color del texto.
 
-    Returns:
-        dict: Diccionario con datos del temporizador.
-    """
-    texto_superficie = renderizar_mensaje((fuente[0],fuente[1]),tiempo,color,None)
+#     Returns:
+#         dict: Diccionario con datos del temporizador.
+#     """
+#     texto_superficie = renderizar_mensaje((fuente[0],fuente[1]),tiempo,color,None)
 
-    temporizador = {}
-    temporizador["ventana"] = ventana
-    temporizador["rectangulo"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
-    temporizador["texto"] = texto_superficie
+#     temporizador = {}
+#     temporizador["ventana"] = ventana
+#     temporizador["rectangulo"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
+#     temporizador["texto"] = texto_superficie
 
-    return temporizador
+#     return temporizador
 
 def generar_texto_renderizado (pantalla,fuente:tuple,texto_escrito,color_texto:tuple,posicion:tuple,color_fondo_texto)->dict:
     """la función genera texto listo para renderizar.

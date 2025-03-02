@@ -10,18 +10,31 @@ def dibujar(diccionario:dict,tipo_dibujo):
 
     tipo_dibujo(diccionario)
 
-def dibujar_cuadrados_con_textos(lista_cuadrados):
+def dibujar_textos_en_cuadrados(lista_cuadrados,colores):
     for input in lista_cuadrados:
-        dibujar_cuadrado_con_texto(input)
+        dibujar_texto_centralizado(input,colores)
+
+def dibujar_botones_musicales(lista):
+    for boton in lista:
+        dibujar_boton_musical(boton)
+
+def dibujar_lista_cuadrados(lista_cuadrados:list):
+    """
+    Dibuja una lista de cuadrados en la pantalla.
+
+    Args:
+        lista_cuadrados (list): Lista de diccionarios que representan los cuadrados.
+
+    Returns:
+        dict: Último cuadrado dibujado de la lista.
+    """
+    for cuadrado in lista_cuadrados:
+        dibujar_cuadrado(cuadrado)
 
 def dibujar_boton_musical(boton):
     boton["ventana"].blit(boton["contenido"], boton["posicion"])
 
-def dibujar_botones(lista):
-    for boton in lista:
-        dibujar_boton_musical(boton)
-
-def dibujar_cuadrados(cuadrado:dict):
+def dibujar_cuadrado(cuadrado:dict):
     """
     Dibuja un cuadrado en la ventana.
 
@@ -31,7 +44,7 @@ def dibujar_cuadrados(cuadrado:dict):
     
     pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
 
-def dibujar_solo_texto(texto:dict):
+def dibujar_texto(texto:dict):
     """Muestra solo texto en la ventana.
 
     Args:
@@ -45,16 +58,7 @@ def dibujar_fondo(pantalla_config,fondo_principal=None):
     else:
         pantalla_config["ventana"].blit(pantalla_config["fondo_2"],(0,0))
 
-def dibujar_tiempo(tiempo_final:dict):
-    """
-    Muestra el tiempo en la ventana.
-
-    Args:
-        tiempo_final (dict): Diccionario con datos del temporizador.
-    """
-    tiempo_final["ventana"].blit(tiempo_final["texto"],(tiempo_final["rectangulo"].x, tiempo_final["rectangulo"].y))
-
-def dibujar_imagenes(imagen:dict):
+def dibujar_imagen(imagen:dict):
     """
     Dibuja una imagen en la ventana en sus coordenadas asignadas.
 
@@ -73,46 +77,19 @@ def rellenar_superficie(pantalla:dict):
     """
     pantalla["ventana"].fill(pantalla["color_ventana"])
 
-def dibujar_pantalla(ventana, elemento, coordenadas:tuple):
-    """
-    Dibuja un elemento en la ventana en las coordenadas especificadas.
+def dibujar_texto_centralizado(input:dict,colores:dict):
 
-    Args:
-        ventana (Surface): Superficie de Pygame donde se dibuja el elemento.
-        elemento (Surface): Elemento a dibujar.
-        coordenadas (tuple): Coordenadas (x, y) para dibujar el elemento.
-    """
-    ventana.blit(elemento,coordenadas)
-
-def dibujar_lista_cuadrados(lista_cuadrados:list):
-    """
-    Dibuja una lista de cuadrados en la pantalla.
-
-    Args:
-        lista_cuadrados (list): Lista de diccionarios que representan los cuadrados.
-
-    Returns:
-        dict: Último cuadrado dibujado de la lista.
-    """
-    for cuadrado in lista_cuadrados:
-        dibujar_cuadrados(cuadrado)
-
-def dibujar_cuadrado_con_texto(input):
-    """
-    Dibuja un botón rectangular con un texto centrado.
-
-    Args:
-        input (dict): Diccionario con los datos del botón.
-    """
-    superficie = input["fuente"].render(input["texto"], True, "Black")
+    superficie = renderizar_texto(input["fuente"],input["texto"],colores["negro"],None)#renderizar texto
+    input["texto_escrito"] = superficie
     
-    rectangulo_texto = superficie.get_rect(center=input["cuadrado"].center)
+    rectangulo_texto = superficie.get_rect(center=input["cuadrado"].center)#se obtiene el medio
+    input["posicion"] = rectangulo_texto.topleft
     
-    dibujar(input,dibujar_cuadrados)
+    dibujar(input,dibujar_cuadrado)#dibujar cuadrado
     
-    dibujar_pantalla(input["ventana"],superficie,rectangulo_texto.topleft)
+    dibujar(input,dibujar_texto)#blitear pantalla
 
-def dibujar_rectangulo_cartas(carta_1,carta_2):
+def dibujar_cartas(carta_1,carta_2):
     """
     Dibuja dos rectángulos que representan cartas.
 
@@ -120,10 +97,39 @@ def dibujar_rectangulo_cartas(carta_1,carta_2):
         carta_1 (dict): Diccionario de la primera carta.
         carta_2 (dict): Diccionario de la segunda carta.
     """
-    dibujar(carta_1,dibujar_cuadrados)
-    dibujar(carta_2,dibujar_cuadrados)
+    dibujar(carta_1,dibujar_cuadrado)
+    dibujar(carta_2,dibujar_cuadrado)
 
-def mostrar_texbox_pantalla(input):
-    superficie = input["fuente"].render(input["texto"],False,"Black")
-    input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))
-    pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)
+def renderizar_texto(fuente_creada: str, mensaje: str, color_texto: tuple, color_fondo_texto=None):
+    """
+    Renderiza un texto con la fuente, colores de texto y fondo.
+
+    Args:
+        fuente_creada (Font): Objeto de fuente.
+        mensaje (str): Texto a renderizar.
+        color_texto (tuple): Color del texto.
+        color_fondo_texto (tuple): Color del fondo del texto.
+
+    Returns:
+        Surface: Superficie con el texto renderizado.
+    """
+    if color_fondo_texto != None:
+        texto = fuente_creada.render(mensaje,False,color_texto,color_fondo_texto)
+    else:
+        texto = fuente_creada.render(mensaje,False,color_texto)
+
+    return texto
+
+# def mostrar_texbox_pantalla(input):
+#     superficie = input["fuente"].render(input["texto"],False,"Black")#renderizar texto
+#     input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))#blitear pantalla
+#     pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)#dibujar cuadrado
+
+# def nuevo_mostrar_texbox_pantalla(input,colores):
+#     superficie = renderizar_texto(input["fuente"],input["texto"],colores["negro"],None)   
+    
+#     input["texto_escrito"] = superficie
+#     input["posicion"] = (input["cuadrado"].x+5,input["cuadrado"].y+7)
+
+#     dibujar_texto(input)
+#     dibujar_cuadrado(input)
