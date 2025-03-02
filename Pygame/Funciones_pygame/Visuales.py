@@ -172,11 +172,9 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):#! 
         # Calcular el tiempo transcurrido desde que empezó el cronómetro
         tiempo_transcurrido = obtener_tiempo(tiempo_actual, tiempo_inicial)
 
-        # Crear el temporizador con el tiempo transcurrido
-        tiempo_final = crear_temporizador(pantalla["ventana"], ("Arial", 20), (58, 414), (200, 32), tiempo_transcurrido, colores["negro"])
+        tiempo_final = generar_texto_renderizado(pantalla, ("Arial", 25),tiempo_transcurrido, colores["negro"],(58, 414), colores["rosa"])
 
-        # Mostrar el tiempo en pantalla
-        dibujar(tiempo_final,dibujar_tiempo)
+        dibujar(tiempo_final,dibujar_solo_texto)
 
 def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config):
 

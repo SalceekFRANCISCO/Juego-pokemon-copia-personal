@@ -743,5 +743,50 @@
         "nombre_jugador": "adadad",
         "fecha_victoria": "01/03/2025",
         "puntaje_obtenido": 127
+    },
+    {
+        "nombre_jugador": "pikachu",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "pikachu",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 129
+    },
+    {
+        "nombre_jugador": "pikachu",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "pikachu",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 133
+    },
+    {
+        "nombre_jugador": "adadad",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "adadad",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 129
+    },
+    {
+        "nombre_jugador": "adadad",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 134
+    },
+    {
+        "nombre_jugador": "ggg",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "pop",
+        "fecha_victoria": "01/03/2025",
+        "puntaje_obtenido": 126
     }
 ]

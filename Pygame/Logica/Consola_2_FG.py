@@ -102,7 +102,7 @@ def determinar_resultado(parametro_ganador: str|int, parametro_1: str|int, param
 
     return resultado
 
-def mostrar_ganador_ronda(resultado: str, jugadores)->str:#!MODIFICADA AHORA RETORNA AL GANADOR 
+def determinar_ganador_ronda(resultado: str, jugadores)->str:#!MODIFICADA AHORA RETORNA AL GANADOR 
     """Muestra y retorna el nombre del ganador de cada ronda.
 
     Args:
