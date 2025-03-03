@@ -130,11 +130,26 @@ def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colo
 
     dibujar_fondo(pantalla_config,True)
     dibujar_texto_centralizado(boton,colores)
-    # dibujar_texto_centralizado(boton_1,colores)
-    # dibujar_texto_centralizado(boton_2,colores)
     actualizar()
 
-    verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)#modifica llave del diccionario datos
+    # verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)#modifica llave del diccionario datos
+    # if verificacion_textboxs[0]:
+    #     manejador_cerrar_pantalla(datos,boton)
+    # else:
+    #     datos["primer_pantalla"] = False
+    #     datos["empezar_juego"] = False
+    #     datos["bandera_principal"] = False
+
+    # lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
+    
+    # return lista
+    lista_jugadores = verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores)
+
+    return lista_jugadores
+
+def verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores):
+
+    verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)
     if verificacion_textboxs[0]:
         manejador_cerrar_pantalla(datos,boton)
     else:
@@ -146,7 +161,7 @@ def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colo
     
     return lista
 
-def verificar_existencia_nombre(boton):
+def verificar_nombre_ingresado(boton):
     hay_nombre_valido = None
     if boton["activo"] == False:
         longitud = len(boton["texto"])
@@ -198,9 +213,9 @@ def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
                 elif boton_2["activo"]:
                     detectar_escritura(boton_2,evento)
 
-                nombre_registrado = verificar_existencia_nombre(boton_1)
+                nombre_registrado = verificar_nombre_ingresado(boton_1)
 
-                nombre_registrado_2 = verificar_existencia_nombre(boton_2)
+                nombre_registrado_2 = verificar_nombre_ingresado(boton_2)
 
         # mostrar_texbox_pantalla(boton_1)
         # mostrar_texbox_pantalla(boton_2)
@@ -227,9 +242,7 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
 
     datos = crear_banderas_pantalla_inicial(ventana,primer_pantalla,empezar_juego,bandera_principal)
 
-    # boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(825,189),(200,60),"COMENZAR")
     boton_comenzar = crear_cuadrado(ventana,colores["blanco"],(825,189),(200,60),("Arial",20),"COMENZAR")
-
     boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
