@@ -43,11 +43,9 @@ fondo_2 = ventanas[2]
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
-diccionarios = creacion_diccionarios(ventana)
+colores = crear_diccionario_colores()
 
-colores = diccionarios[1]
-
-pantalla_config = crear_datos_pantalla(ventana,fondo,fondo_2)
+pantalla_config = crear_datos_pantalla(ventana,fondo,fondo_2,colores)
 
 listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
@@ -56,7 +54,7 @@ parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerar
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
 
-lista_botones_musicales = crear_botones(ventana)
+lista_botones_musicales = crear_lista_botones_musicales(ventana)
 
 elementos_juego = crear_datos_juego(ventana,colores,nuevo_boton_jugar,lista_botones_musicales)
 

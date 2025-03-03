@@ -225,9 +225,11 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
     empezar_juego = True
     primer_pantalla = True
 
-    datos = crear_pantalla_datos(ventana,colores,primer_pantalla,empezar_juego,bandera_principal)
+    datos = crear_banderas_pantalla_inicial(ventana,primer_pantalla,empezar_juego,bandera_principal)
 
-    boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(825,189),(200,60),"COMENZAR")
+    # boton_comenzar = crear_texto_cuadrado(ventana,("Arial",20),colores,(825,189),(200,60),"COMENZAR")
+    boton_comenzar = crear_cuadrado(ventana,colores["blanco"],(825,189),(200,60),("Arial",20),"COMENZAR")
+
     boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
