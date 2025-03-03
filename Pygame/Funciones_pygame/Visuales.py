@@ -132,23 +132,11 @@ def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colo
     dibujar_texto_centralizado(boton,colores)
     actualizar()
 
-    # verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)#modifica llave del diccionario datos
-    # if verificacion_textboxs[0]:
-    #     manejador_cerrar_pantalla(datos,boton)
-    # else:
-    #     datos["primer_pantalla"] = False
-    #     datos["empezar_juego"] = False
-    #     datos["bandera_principal"] = False
-
-    # lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
-    
-    # return lista
     lista_jugadores = verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores)
 
     return lista_jugadores
 
 def verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores):
-
     verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)
     if verificacion_textboxs[0]:
         manejador_cerrar_pantalla(datos,boton)
@@ -198,10 +186,6 @@ def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
                 datos["primer_pantalla"] = False
                 datos["empezar_juego"] = False
                 datos["bandera_principal"] = False
-
-            # elif evento.type == pygame.MOUSEMOTION:
-            #     x,y = evento.pos
-                # print(x,y)
 
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 detectar_cambio_color(lista_de_botones,evento)

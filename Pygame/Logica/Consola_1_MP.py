@@ -42,7 +42,7 @@ def jugar(parametros,elementos_juego,jugadores):
     guardar_resultados_finales(jugadores,ganador_partida,listas,pantalla_config)
 
 def mostrar_cartas_mesa(pantalla:dict,colores:dict,resultado:str,listas:dict):
-    mostrar_texto(pantalla,("Arial", 18),"CARTAS MEZA:",colores["negro"],(910,156),None)
+    mostrar_texto(pantalla,("Arial", 18),"CARTAS MESA:",colores["negro"],(910,156),None)
     cartas_en_la_meza = "0"
 
     if resultado == "Empate":
