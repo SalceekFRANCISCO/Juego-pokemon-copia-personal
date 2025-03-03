@@ -154,8 +154,8 @@ def verificar_existencia_de_nombres(datos:dict,boton:dict,boton_1:dict,boton_2:d
         lista = [None]
 
     elif verificar_textboxs[0]:
-        manejador_cerrar_pantalla(datos,boton)
         lista = [verificar_textboxs[1],verificar_textboxs[2]]
+        manejador_cerrar_pantalla(datos,boton)
 
     return lista
 

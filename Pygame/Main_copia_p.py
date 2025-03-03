@@ -1,40 +1,28 @@
 import pygame
 from Logica.Consola_1_MP import *
 #region
-#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
 
-#encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
-# fijarse de hacerla en procesar entrada texto
-
-#region OBJETIVOS CUMPLIDOS
-# Pedir los nombres en la pre-pantalla #!OK
-# arreglar el tema del tiempo #!OK
-# implementar cartas meza #!OK
-# ajustar la velocidad del juego #!OK
-#endregion
-
+#cosas que faltan:
 # utilizar sets
 # utilizar eventos propios #! ME HAGO EL BOLUDO OK 
-# mejorar el dry
-# poner fondos relacionados con pokemon #! OK
-# acomodar los modulos Funciones_pygame #! OK
 # Mimificar el main  #! va queriendo
-
-# si tengo tiempo y ganas, implementar el submenu musical
-# si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
-
-# pedirle a ochoa que me de una devolucion del juego
-#endregion
-
+# validar texto largo en textboxs  
+# echarle una mirada a el modulo de logica
+# renombrar el modulo logica
+# mejorar la funcion mostrar cartas
 
 #!funciones independientes que funionen en general
 #!funciones que tengan una funcion clara
 #!no repetir código
 #!estudiar conceptos
 
+#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
+# mejorar el dry
+
+#endregion
 
 pygame.init() 
-#region
+
 ventanas = inicializar_ventana()
 
 ventana = ventanas[0]
