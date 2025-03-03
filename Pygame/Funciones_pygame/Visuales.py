@@ -126,7 +126,7 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):
 
         dibujar(tiempo_final,dibujar_texto)
 
-def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colores):#!mejorar nombres
+def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colores):
 
     dibujar_fondo(pantalla_config,True)
     dibujar_texto_centralizado(boton,colores)
@@ -136,20 +136,22 @@ def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colo
 
     return lista_jugadores
 
-def verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores):
+def verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores): #! TRABAJAR
     verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)
-    if verificacion_textboxs[0]:
-        manejador_cerrar_pantalla(datos,boton)
-    else:
+
+    if verificacion_textboxs == None or verificacion_textboxs[0] == False:
         datos["primer_pantalla"] = False
         datos["empezar_juego"] = False
         datos["bandera_principal"] = False
+        lista = [None]
 
-    lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
-    
+    elif verificacion_textboxs[0]:
+        manejador_cerrar_pantalla(datos,boton)
+        lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
+
     return lista
 
-def verificar_nombre_ingresado(boton):
+def verificar_nombre_valido(boton):
     hay_nombre_valido = None
     if boton["activo"] == False:
         longitud = len(boton["texto"])
@@ -159,6 +161,16 @@ def verificar_nombre_ingresado(boton):
             hay_nombre_valido = False
 
     return hay_nombre_valido
+
+def guardar_nombres_usuarios(nombre_registrado,nombre_registrado_2,boton_1,boton_2):
+    lista = [False]
+    if nombre_registrado == True and nombre_registrado_2 == True:
+        lista.clear()
+        lista.append(True)
+        lista.append(boton_1["texto"])
+        lista.append(boton_2["texto"])
+    
+    return lista
 
 def manejador_cerrar_pantalla(datos:dict,boton:dict):
     while datos["primer_pantalla"]:
@@ -172,12 +184,10 @@ def manejador_cerrar_pantalla(datos:dict,boton:dict):
                 if boton["cuadrado"].collidepoint(evento.pos):
                     datos["primer_pantalla"] = False
 
-def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
+def manejador_pedir_nombres(datos,boton_1,boton_2,colores):#! TRABAJAR
     lista_de_botones = [boton_1,boton_2]
-    verificacion = False
-    nombre_registrado = ""
-    nombre_registrado_2 = ""
-    lista = []
+    nombre_registrado = None
+    nombre_registrado_2 = None
 
     while datos["primer_pantalla"]:
 
@@ -197,30 +207,21 @@ def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
                 elif boton_2["activo"]:
                     detectar_escritura(boton_2,evento)
 
-                nombre_registrado = verificar_nombre_ingresado(boton_1)
+                nombre_registrado = verificar_nombre_valido(boton_1)
 
-                nombre_registrado_2 = verificar_nombre_ingresado(boton_2)
-
-        # mostrar_texbox_pantalla(boton_1)
-        # mostrar_texbox_pantalla(boton_2)
-
-        # nuevo_mostrar_texbox_pantalla(boton_1,colores)
-        # nuevo_mostrar_texbox_pantalla(boton_2,colores)
+                nombre_registrado_2 = verificar_nombre_valido(boton_2)
 
         dibujar_texto_centralizado(boton_1,colores)
         dibujar_texto_centralizado(boton_2,colores)
         actualizar()
+        
+        lista = guardar_nombres_usuarios(nombre_registrado,nombre_registrado_2,boton_1,boton_2)
 
-        if nombre_registrado == True and nombre_registrado_2 == True:
-            verificacion = True
-            lista.append(verificacion)
-            lista.append(boton_1["texto"])
-            lista.append(boton_2["texto"])
+        if lista[0] != False:
 
-        if verificacion != False:
             return lista
 
-def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:#!mejorar nombres
+def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:#! TRABAJAR
     empezar_juego = True
     primer_pantalla = True
 
@@ -243,6 +244,10 @@ def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,c
         setear_pantalla(pantalla_config,elementos_juego,jugadores_nombre,colores)
         actualizar()
 
-    lista = [empezar_juego, bandera_principal,jugadores_nombre[0],jugadores_nombre[1]]
+    if jugadores_nombre[0] == None:
+        lista = [empezar_juego, bandera_principal,None,None]
+    else:
+        lista = [empezar_juego, bandera_principal,jugadores_nombre[0],jugadores_nombre[1]]
+
 
     return lista
