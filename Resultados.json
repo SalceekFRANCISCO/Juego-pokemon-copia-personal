@@ -83,5 +83,20 @@
         "nombre_jugador": "tita",
         "fecha_victoria": "02/03/2025",
         "puntaje_obtenido": 132
+    },
+    {
+        "nombre_jugador": "adadad",
+        "fecha_victoria": "03/03/2025",
+        "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "hhhh",
+        "fecha_victoria": "03/03/2025",
+        "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "Empate",
+        "fecha_victoria": "03/03/2025",
+        "puntaje_obtenido": 125
     }
 ]

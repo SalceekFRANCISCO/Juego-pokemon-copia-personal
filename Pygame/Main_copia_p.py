@@ -64,7 +64,7 @@ bandera_principal = True
 
 while bandera_principal:
 
-    banderas =  pantalla_inicial(bandera_principal,configuracion_pantalla,elementos_juego,ventana,colores,parametros)
+    banderas =  cargar_pantalla_inicial(bandera_principal,configuracion_pantalla,elementos_juego,ventana,colores,parametros)
 
     empezar_juego = banderas[0]
     bandera_principal = banderas[1]

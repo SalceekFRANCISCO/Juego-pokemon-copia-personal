@@ -41,7 +41,7 @@ def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_pok
         atributo_del_pokemon = f" {atributo}"
         y += 40
         texto_a = generar_texto_renderizado(pantalla,("Arial",20),clave_del_pokemon,colores["negro"],(coordenadas_texto[0],y),colores["dorado"])
-        texto_b = generar_texto_renderizado(pantalla,("Arial",20),atributo_del_pokemon,colores["rojo"],(591,y),colores["verde"])
+        texto_b = generar_texto_renderizado(pantalla,("Arial",20),atributo_del_pokemon,colores["negro"],(591,y),colores["verde"])
 
         if clave != "poke-foto":
             dibujar_texto(texto_a)
@@ -126,28 +126,36 @@ def mostrar_cronometro(pantalla, cronometro_activo, tiempo_inicial, colores):
 
         dibujar(tiempo_final,dibujar_texto)
 
-def cargar_pantalla_inicio(datos:dict,boton,boton_1,boton_2,pantalla_config,colores):
-
+def mostrar_pantalla_inicio(boton,pantalla_config,colores):
     dibujar_fondo(pantalla_config,True)
     dibujar_texto_centralizado(boton,colores)
     actualizar()
 
-    lista_jugadores = verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores)
+def verificar_existencia_de_nombres(datos:dict,boton:dict,boton_1:dict,boton_2:dict,colores:dict):
+    """Descripción: Verifica que se hayan ingresado los nombres de los jugadores, en caso contrario,
+      se tomara que no se desea jugar.
 
-    return lista_jugadores
+    Args:
+        datos (dict): _description_
+        boton (dict): _description_
+        boton_1 (dict): _description_
+        boton_2 (dict): _description_
+        colores (dict): _description_
 
-def verificar_existencia_de_nombres(datos,boton,boton_1,boton_2,colores): #! TRABAJAR
-    verificacion_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)
+    Returns:
+        _type_: _description_
+    """
+    verificar_textboxs = manejador_pedir_nombres(datos,boton_1,boton_2,colores)
 
-    if verificacion_textboxs == None or verificacion_textboxs[0] == False:
+    if verificar_textboxs == None:
         datos["primer_pantalla"] = False
         datos["empezar_juego"] = False
         datos["bandera_principal"] = False
         lista = [None]
 
-    elif verificacion_textboxs[0]:
+    elif verificar_textboxs[0]:
         manejador_cerrar_pantalla(datos,boton)
-        lista = [verificacion_textboxs[1],verificacion_textboxs[2]]
+        lista = [verificar_textboxs[1],verificar_textboxs[2]]
 
     return lista
 
@@ -184,7 +192,7 @@ def manejador_cerrar_pantalla(datos:dict,boton:dict):
                 if boton["cuadrado"].collidepoint(evento.pos):
                     datos["primer_pantalla"] = False
 
-def manejador_pedir_nombres(datos,boton_1,boton_2,colores):#! TRABAJAR
+def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
     lista_de_botones = [boton_1,boton_2]
     nombre_registrado = None
     nombre_registrado_2 = None
@@ -221,33 +229,42 @@ def manejador_pedir_nombres(datos,boton_1,boton_2,colores):#! TRABAJAR
 
             return lista
 
-def pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:#! TRABAJAR
+def cargar_pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:
     empezar_juego = True
     primer_pantalla = True
 
     datos = crear_banderas_pantalla_inicial(ventana,primer_pantalla,empezar_juego,bandera_principal)
-
     boton_comenzar = crear_cuadrado(ventana,colores["blanco"],(825,189),(200,60),("Arial",20),"COMENZAR")
     boton_nombre_uno = crear_boton(ventana,("Arial",20),colores,(1115,27),(175,60),procesar_entrada_texto,parametros[1],"")
     boton_nombre_dos = crear_boton(ventana,("Arial",20),colores,(1115,101),(175,60),procesar_entrada_texto,parametros[2],"")
 
     while primer_pantalla:
-        jugadores_nombre = cargar_pantalla_inicio(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos,pantalla_config,colores)
-        
+        mostrar_pantalla_inicio(boton_comenzar,pantalla_config,colores)
+        jugadores_nombre = verificar_existencia_de_nombres(datos,boton_comenzar,boton_nombre_uno,boton_nombre_dos,colores)
+
         primer_pantalla = datos["primer_pantalla"]
         empezar_juego = datos["empezar_juego"]
         bandera_principal = datos["bandera_principal"]
 
         actualizar()
 
+    lista = chequear_nombres(jugadores_nombre,empezar_juego,bandera_principal)
+
     if bandera_principal != False or empezar_juego != False:
-        setear_pantalla(pantalla_config,elementos_juego,jugadores_nombre,colores)
-        actualizar()
-
-    if jugadores_nombre[0] == None:
-        lista = [empezar_juego, bandera_principal,None,None]
-    else:
-        lista = [empezar_juego, bandera_principal,jugadores_nombre[0],jugadores_nombre[1]]
-
+        iniciar_partida(pantalla_config,elementos_juego,jugadores_nombre,colores)
 
     return lista
+
+def chequear_nombres(jugadores_nombre,empezar_juego,bandera_principal):
+    lista = [empezar_juego, bandera_principal,None,None]
+
+    if jugadores_nombre[0] != None:
+        lista = [empezar_juego, bandera_principal,jugadores_nombre[0],jugadores_nombre[1]]
+
+    return lista
+
+def iniciar_partida(pantalla_config,elementos_juego,jugadores_nombre,colores):
+
+    setear_pantalla(pantalla_config,elementos_juego,jugadores_nombre,colores)
+    actualizar()
+
