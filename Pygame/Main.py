@@ -1,5 +1,5 @@
 import pygame
-from Logica.Consola_1_MP import *
+from Logica.Log_1_modulo_principal import *
 #region
 #  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
 

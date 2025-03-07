@@ -1,5 +1,5 @@
 import pygame
-from Logica.Consola_1_MP import *
+from Logica.Log_1_modulo_principal import *
 #region
 
 #cosas que faltan:
