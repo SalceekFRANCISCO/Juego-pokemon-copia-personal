@@ -1,29 +1,6 @@
 from Logica.Log_4_implementacion_cartas import *
 from Logica.Log_5_manejo_archivos import *
 
-def validate_lenght(caracter: str,mensaje_error: str) -> bool:
-        while caracter.islower() != True:
-            caracter = input(mensaje_error)
-
-        return caracter
-
-def get_string(mensaje: str,mensaje_error: str)->str:
-    """Descripción: Valida si el carácter ingresado esta dentro del limite permitido.
-
-    Args:
-        longitud (int): El largo permitido.
-        mensaje (str): Mensaje para pedir el dato.
-        mensaje_error (str): Mensaje de error, vuelve a pedir el dato.
-
-    Returns:
-        str: Informa si pudo validar el caracter.
-    """
-    string_txt = input(mensaje)
-
-    texto = validate_lenght(string_txt,mensaje_error)
-
-    return texto
-
 def obtener_valores_numericos(caracter:str, entero=False)-> int|float:
     """Convierte una cadena numerico a valor entero o flotante.
 

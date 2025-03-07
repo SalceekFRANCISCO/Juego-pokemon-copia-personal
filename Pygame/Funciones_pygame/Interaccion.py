@@ -36,7 +36,23 @@ def crear_matriz_jerarquias()-> list[list]:
 
     return matriz_jerarquias_mezclada
 
-def escribir_teclado(boton, evento)->str:
+# def escribir_teclado(boton, evento)->str:
+#     if boton["activo"]:
+#         if evento.key == pygame.K_BACKSPACE:
+#             boton["texto"] = boton["texto"][:-1]
+
+#         elif evento.key == pygame.K_RCTRL:
+#             boton["texto"] = ""
+
+#         elif evento.key == pygame.K_RETURN:
+#             boton["activo"] = False
+#             boton["color_actual"] = boton["color_inactivo"]
+#         else:
+#             boton["texto"] += evento.unicode
+
+    # return boton["texto"]
+
+def escribir_teclado(boton, evento):
     if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
             boton["texto"] = boton["texto"][:-1]
@@ -47,10 +63,10 @@ def escribir_teclado(boton, evento)->str:
         elif evento.key == pygame.K_RETURN:
             boton["activo"] = False
             boton["color_actual"] = boton["color_inactivo"]
-        else:
-            boton["texto"] += evento.unicode
 
-    return boton["texto"]
+        else:
+            if len(boton["texto"]) < 16:
+                boton["texto"] += evento.unicode
 
 def cambio_color(boton:dict):
     """
@@ -80,30 +96,30 @@ def detectar_cambio_nombre(boton):
         boton["texto"]= "REINICIO"
 
 def detectar_escritura(boton,evento):
-    boton["accion"](boton["lista_parametros"],boton,evento)
+    boton["accion"](boton,evento)
 
-def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
-    """Registra el texto que se ingresa por teclado
+# def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
+#     """Registra el texto que se ingresa por teclado
 
-    Args:
-        parametros (list): lista de parametros que se utilizaran
-        boton_nombre (dict): diccionario de donde sacaremos los datos
-        evento (_type_): ele tipo de evento que se registro
+#     Args:
+#         parametros (list): lista de parametros que se utilizaran
+#         boton_nombre (dict): diccionario de donde sacaremos los datos
+#         evento (_type_): ele tipo de evento que se registro
 
-    Returns:
-        dict: retorna un diccionario con los datos del texto
-    """
-    pantalla = parametros[0]
-    fuente = parametros[1]
-    color_texto = parametros[2]
-    posicion_texto =  parametros[3]
-    color_fondo_texto = parametros[4]
+#     Returns:
+#         dict: retorna un diccionario con los datos del texto
+#     """
+#     pantalla = parametros[0]
+#     fuente = parametros[1]
+#     color_texto = parametros[2]
+#     posicion_texto =  parametros[3]
+#     color_fondo_texto = parametros[4]
 
-    nombre_final = escribir_teclado(boton_nombre,evento)
+#     nombre_final = escribir_teclado(boton_nombre,evento)
 
-    texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
+#     # texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
             
-    return texto_pantalla
+#     # return texto_pantalla
 
 def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:#!revisar
     lista = []

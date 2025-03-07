@@ -1,21 +1,5 @@
 from Logica.Log_3_funciones_especificas import *
 
-# def identificar_usuarios(cantidad_usuarios:int)->list[str]: 
-#     """Descripción: Permite que se registren usuarios una x cantidad de veces
-
-#     Args:
-#         cantidad_usuarios (int): cantidad de veces que se podran registrar usuarios.
-
-#     Returns:
-#         list[str]: lista con los nombres
-#     """
-#     jugadores = []
-#     for _ in range(cantidad_usuarios):
-#         usuario = get_string("Ingrese su nombre: ","Reingrese su nombre: ")
-#         jugadores.append(usuario)
-    
-#     return jugadores
-
 def guardar_cartas(pantalla:dict,funcion)->dict:
     """Descripcion: crea un diccionario de listas vacias y en una de ellas carga los datos necesarios 
 
@@ -114,15 +98,12 @@ def determinar_ganador_ronda(resultado: str, jugadores)->str:#!MODIFICADA AHORA 
     jugador_ganador = None
     
     if resultado == "1":
-        # print(f"GANA: ¡¡{jugador_1}!!")
         jugador_ganador = jugadores[0]#!jugadores, otro diccionario
 
     elif resultado == "2":
-        # print(f"GANA: ¡¡{jugador_2}!!")
         jugador_ganador = jugadores[1]#!jugadores, otro diccionario
 
     elif resultado == "Empate":
-        # print("¡¡Es un empate!!")
         jugador_ganador = "Empate"
     
     return jugador_ganador
@@ -151,7 +132,8 @@ def comparar_valores(valor_1: int|float, valor_2: int|float) -> str:
 
 def sortear_atributos(lista_cartas: list[dict]) -> str: 
     """Genera un indice aleatorio de esa lista, y despues busca el valor relacionado 
-                    a ese indice.
+    a ese indice.
+
     Args:
         lista_atributos (list): lista de atributos recibida por parametro.
 
@@ -159,7 +141,11 @@ def sortear_atributos(lista_cartas: list[dict]) -> str:
         str: atributo aleatorio.
     """
 
-    lista_de_atributos = guardar_atributos(lista_cartas)
+    # lista_de_atributos = guardar_atributos(lista_cartas)
+    # lista_de_atributos = guardar_atributos_set(lista_cartas)
+
+    set_atributos = guardar_atributos(lista_cartas)
+    lista_de_atributos = list(set_atributos)
 
     indice = random.randint(0,len(lista_de_atributos)-1)
     
@@ -167,9 +153,9 @@ def sortear_atributos(lista_cartas: list[dict]) -> str:
 
     return atributo_sorteado
 
-def guardar_atributos(lista_cartas: list[dict]) -> list: 
-    """Guarda en una lista las llaves (atributos) del primer elemento de una lista de diccionarios 
-    recibida por parametro exeptuando el nombre.
+def guardar_atributos(lista_cartas: list[dict]) -> set: 
+    """Guarda en un set las llaves (atributos) del primer elemento de una lista de diccionarios 
+    recibida por parametro exceptuando el nombre.
 
     Args:
         lista_cartas (list[dict]): lista de diccionarios recibida por parametro.
@@ -177,14 +163,14 @@ def guardar_atributos(lista_cartas: list[dict]) -> list:
     Returns:
         list: lista con los atributos o claves de los diccionarios
     """
-    lista_atributos = []
+    set_atributos = set()
     diccionario = lista_cartas[0]
 
     for atributo in diccionario.keys():
         if atributo != "poke-nombre" and atributo != "poke-foto" :
-            lista_atributos.append(atributo)
+            set_atributos.add(atributo)
 
-    return lista_atributos
+    return set_atributos
 
 def determinar_ganador_partida(jugadores,listas:dict) -> str:
     """Determina el ganador de la partida comparando la cantidad de cartas que cada jugador posee. 
@@ -250,94 +236,24 @@ def obtener_datos(pantalla:dict)->list[dict]:
         
     return nueva_lista
 
-#region sin uso
 
-# def jugar(path_csv: str, path_json, matriz_jerarquias, cantidad_rondas: int):
-#     # matriz_jerarquias = leer_csv_matriz(path_jerarquias)
+###############PRUEBA
 
-#     lista_jugador_uno = []
-#     lista_jugador_dos = []
-#     cartas_jugadores = []
-#     cartas_meza = []
-#     lista_cartas = []
+# def guardar_atributos(lista_cartas: list[dict]) -> list: 
+#     """Guarda en una lista las llaves (atributos) del primer elemento de una lista de diccionarios 
+#     recibida por parametro exeptuando el nombre.
 
-#     jugadores = identificar_usuarios(2)
-    
-#     jugador_1 = jugadores[0]
-#     jugador_2 = jugadores[1]
-    
-#     lista_cartas = obtener_datos(path_csv)
-#     mezclar_mazo_cartas(lista_cartas)
-#     repartir_cartas(lista_cartas, lista_jugador_uno, lista_jugador_dos)
-    
-#     jugador_sin_cartas = False
-#     contador = 0
+#     Args:
+#         lista_cartas (list[dict]): lista de diccionarios recibida por parametro.
 
+#     Returns:
+#         list: lista con los atributos o claves de los diccionarios
+#     """
+#     lista_atributos = []
+#     diccionario = lista_cartas[0]
 
-#     while contador < cantidad_rondas or jugador_sin_cartas == True:
-#         contador += 1
-#         if len(lista_jugador_uno) == 0 or len(lista_jugador_dos) == 0:  
-#             jugador_sin_cartas = True
+#     for atributo in diccionario.keys():
+#         if atributo != "poke-nombre" and atributo != "poke-foto" :
+#             lista_atributos.append(atributo)
 
-
-#         obtener_cartas_cada_jugador(lista_jugador_uno, lista_jugador_dos, cartas_jugadores)
-#         print(f"RONDA NÚMERO: {contador}")
-#         resultado = comparar_atributos(lista_cartas, cartas_jugadores, matriz_jerarquias)
-        
-#         agregar_cartas(resultado, lista_jugador_uno, lista_jugador_dos, cartas_meza, cartas_jugadores)
-
-#         print("---------------ESTADISTICAS------------------")
-        
-#         print(f"El Mazo de la mesa tiene: {len(cartas_meza)} cartas.")
-#         print(f"Mazo jugador 1: {jugadores[0]} -- {len(lista_jugador_uno)} cartas.")
-#         print(f"Mazo jugador 2: {jugadores[1]} -- {len(lista_jugador_dos)} cartas.")
-#         mostrar_ganador_ronda(resultado, jugadores[0], jugadores[1])
-#         time.sleep(2)
-#         print()
-        
-#     ganador = determinar_ganador_partida(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2)
-#     puntaje = calcular_puntaje(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2, ganador)
-#     guardar_resultados(path_json, puntaje, ganador)
-
-#!Version sin prints
-# def jugar(path_csv: str, path_json, matriz_jerarquias, cantidad_rondas: int):
-#     lista_jugador_uno = []
-#     lista_jugador_dos = []
-#     cartas_jugadores = []
-#     cartas_meza = []
-#     lista_cartas = []
-
-#     jugadores = identificar_usuarios(2)
-    
-#     jugador_1 = jugadores[0]
-#     jugador_2 = jugadores[1]
-    
-#     lista_cartas = obtener_datos(path_csv)
-#     mezclar_mazo_cartas(lista_cartas)
-#     repartir_cartas(lista_cartas, lista_jugador_uno, lista_jugador_dos)
-    
-#     jugador_sin_cartas = False
-#     contador = 0
-
-#     while contador < cantidad_rondas or jugador_sin_cartas == True:
-#         contador += 1
-#         if len(lista_jugador_uno) == 0 or len(lista_jugador_dos) == 0:  
-#             jugador_sin_cartas = True
-
-
-#         obtener_cartas_cada_jugador(lista_jugador_uno, lista_jugador_dos, cartas_jugadores)
-#         resultado = comparar_atributos(lista_cartas, cartas_jugadores, matriz_jerarquias)
-        
-#         agregar_cartas(resultado, lista_jugador_uno, lista_jugador_dos, cartas_meza, cartas_jugadores)
-
-      
-#         mostrar_ganador_ronda(resultado, jugadores[0], jugadores[1])
-#         time.sleep(2)
-        
-#     ganador = determinar_ganador_partida(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2)
-#     puntaje = calcular_puntaje(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2, ganador)
-#     guardar_resultados(path_json, puntaje, ganador)
-
-
-
-#endregion
+#     return lista_atributos

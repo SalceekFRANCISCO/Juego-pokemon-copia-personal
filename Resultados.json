@@ -98,5 +98,10 @@
         "nombre_jugador": "Empate",
         "fecha_victoria": "03/03/2025",
         "puntaje_obtenido": 125
+    },
+    {
+        "nombre_jugador": "adad",
+        "fecha_victoria": "07/03/2025",
+        "puntaje_obtenido": 126
     }
 ]

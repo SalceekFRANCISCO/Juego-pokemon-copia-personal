@@ -181,6 +181,45 @@
 
 # #endregion
 # #endregion
+# def validate_lenght(caracter: str,mensaje_error: str) -> bool:
+#         while caracter.islower() != True:
+#             caracter = input(mensaje_error)
+
+#         return caracter
+
+# def get_string(mensaje: str,mensaje_error: str)->str:
+#     """Descripción: Valida si el carácter ingresado esta dentro del limite permitido.
+
+#     Args:
+#         longitud (int): El largo permitido.
+#         mensaje (str): Mensaje para pedir el dato.
+#         mensaje_error (str): Mensaje de error, vuelve a pedir el dato.
+
+#     Returns:
+#         str: Informa si pudo validar el caracter.
+#     """
+#     string_txt = input(mensaje)
+
+#     texto = validate_lenght(string_txt,mensaje_error)
+
+#     return texto
+
+# def identificar_usuarios(cantidad_usuarios:int)->list[str]: 
+#     """Descripción: Permite que se registren usuarios una x cantidad de veces
+
+#     Args:
+#         cantidad_usuarios (int): cantidad de veces que se podran registrar usuarios.
+
+#     Returns:
+#         list[str]: lista con los nombres
+#     """
+#     jugadores = []
+#     for _ in range(cantidad_usuarios):
+#         usuario = get_string("Ingrese su nombre: ","Reingrese su nombre: ")
+#         jugadores.append(usuario)
+    
+#     return jugadores
+
 
 # import pygame
 # from Funciones_pygame.Musica import *
@@ -244,6 +283,97 @@
 #     for boton in lista_botones:
 #         if boton["rectangulo"].collidepoint(evento.pos):
 #             boton["accion"]()
+
+
+
+# def jugar(path_csv: str, path_json, matriz_jerarquias, cantidad_rondas: int):
+#     # matriz_jerarquias = leer_csv_matriz(path_jerarquias)
+
+#     lista_jugador_uno = []
+#     lista_jugador_dos = []
+#     cartas_jugadores = []
+#     cartas_meza = []
+#     lista_cartas = []
+
+#     jugadores = identificar_usuarios(2)
+    
+#     jugador_1 = jugadores[0]
+#     jugador_2 = jugadores[1]
+    
+#     lista_cartas = obtener_datos(path_csv)
+#     mezclar_mazo_cartas(lista_cartas)
+#     repartir_cartas(lista_cartas, lista_jugador_uno, lista_jugador_dos)
+    
+#     jugador_sin_cartas = False
+#     contador = 0
+
+
+#     while contador < cantidad_rondas or jugador_sin_cartas == True:
+#         contador += 1
+#         if len(lista_jugador_uno) == 0 or len(lista_jugador_dos) == 0:  
+#             jugador_sin_cartas = True
+
+
+#         obtener_cartas_cada_jugador(lista_jugador_uno, lista_jugador_dos, cartas_jugadores)
+#         print(f"RONDA NÚMERO: {contador}")
+#         resultado = comparar_atributos(lista_cartas, cartas_jugadores, matriz_jerarquias)
+        
+#         agregar_cartas(resultado, lista_jugador_uno, lista_jugador_dos, cartas_meza, cartas_jugadores)
+
+#         print("---------------ESTADISTICAS------------------")
+        
+#         print(f"El Mazo de la mesa tiene: {len(cartas_meza)} cartas.")
+#         print(f"Mazo jugador 1: {jugadores[0]} -- {len(lista_jugador_uno)} cartas.")
+#         print(f"Mazo jugador 2: {jugadores[1]} -- {len(lista_jugador_dos)} cartas.")
+#         mostrar_ganador_ronda(resultado, jugadores[0], jugadores[1])
+#         time.sleep(2)
+#         print()
+        
+#     ganador = determinar_ganador_partida(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2)
+#     puntaje = calcular_puntaje(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2, ganador)
+#     guardar_resultados(path_json, puntaje, ganador)
+
+#!Version sin prints
+# def jugar(path_csv: str, path_json, matriz_jerarquias, cantidad_rondas: int):
+#     lista_jugador_uno = []
+#     lista_jugador_dos = []
+#     cartas_jugadores = []
+#     cartas_meza = []
+#     lista_cartas = []
+
+#     jugadores = identificar_usuarios(2)
+    
+#     jugador_1 = jugadores[0]
+#     jugador_2 = jugadores[1]
+    
+#     lista_cartas = obtener_datos(path_csv)
+#     mezclar_mazo_cartas(lista_cartas)
+#     repartir_cartas(lista_cartas, lista_jugador_uno, lista_jugador_dos)
+    
+#     jugador_sin_cartas = False
+#     contador = 0
+
+#     while contador < cantidad_rondas or jugador_sin_cartas == True:
+#         contador += 1
+#         if len(lista_jugador_uno) == 0 or len(lista_jugador_dos) == 0:  
+#             jugador_sin_cartas = True
+
+
+#         obtener_cartas_cada_jugador(lista_jugador_uno, lista_jugador_dos, cartas_jugadores)
+#         resultado = comparar_atributos(lista_cartas, cartas_jugadores, matriz_jerarquias)
+        
+#         agregar_cartas(resultado, lista_jugador_uno, lista_jugador_dos, cartas_meza, cartas_jugadores)
+
+      
+#         mostrar_ganador_ronda(resultado, jugadores[0], jugadores[1])
+#         time.sleep(2)
+        
+#     ganador = determinar_ganador_partida(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2)
+#     puntaje = calcular_puntaje(lista_jugador_uno, lista_jugador_dos, jugador_1, jugador_2, ganador)
+#     guardar_resultados(path_json, puntaje, ganador)
+
+
+
 
 
 #endregion
@@ -424,3 +554,19 @@ def manejador_eventos_pantalla (datos,boton):
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if boton["cuadrado"].collidepoint(evento.pos):
                 datos["bandera_1"] = False
+
+
+
+# def mostrar_texbox_pantalla(input):
+#     superficie = input["fuente"].render(input["texto"],False,"Black")#renderizar texto
+#     input["ventana"].blit(superficie,(input["cuadrado"].x+5,input["cuadrado"].y+7))#blitear pantalla
+#     pygame.draw.rect(input["ventana"],input["color_actual"],input["cuadrado"],2)#dibujar cuadrado
+
+# def nuevo_mostrar_texbox_pantalla(input,colores):
+#     superficie = renderizar_texto(input["fuente"],input["texto"],colores["negro"],None)   
+    
+#     input["texto_escrito"] = superficie
+#     input["posicion"] = (input["cuadrado"].x+5,input["cuadrado"].y+7)
+
+#     dibujar_texto(input)
+#     dibujar_cuadrado(input)

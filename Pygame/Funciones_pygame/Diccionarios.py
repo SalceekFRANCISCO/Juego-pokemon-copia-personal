@@ -161,7 +161,7 @@ def crear_colores(NEGRO, ROJO, AZUL, AZUL_CLARO, VERDE, BLANCO, DORADO, GRIS, RO
 
     return colores
 
-def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros,texto=None) -> dict:
+def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tuple,accion,lista_parametros=None,texto=None) -> dict:
     boton = {}
     boton["ventana"] = ventana
     boton["fuente"] = crear_fuente(fuente[0],fuente[1])
@@ -171,7 +171,9 @@ def crear_boton(ventana, fuente, colores:tuple, posicion:tuple, dimensiones:tupl
     boton["cuadrado"] = pygame.Rect(posicion[0],posicion[1],dimensiones[0],dimensiones[1])
     boton["color_actual"] = colores["blanco"]
     boton["accion"] = accion
-    boton["lista_parametros"] = lista_parametros
+
+    if lista_parametros != None:
+        boton["lista_parametros"] = lista_parametros
 
     if texto != None:
         boton["texto"] = texto

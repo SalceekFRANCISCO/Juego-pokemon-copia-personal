@@ -3,21 +3,23 @@ from Logica.Log_1_modulo_principal import *
 #region
 
 #cosas que faltan:
-# utilizar sets
-# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
-# Mimificar el main  #! va queriendo
-# validar texto largo en textboxs  
-# echarle una mirada a el modulo de logica
-# renombrar el modulo logica
 # mejorar la funcion mostrar cartas
+# echarle una mirada a el modulo de logica
+# Mimificar el main  #! va queriendo
+# mejorar el dry
+
+
+# utilizar sets #!OK
+# validar texto largo en textboxs  #!OK
+# renombrar el modulo logica #!OK
+# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
+
 
 #!funciones independientes que funionen en general
 #!funciones que tengan una funcion clara
 #!no repetir código
 #!estudiar conceptos
 
-#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
-# mejorar el dry
 
 #endregion
 
