@@ -1,14 +1,16 @@
 import pygame
 from Funciones_pygame.Diccionarios import *
 
-def inicializar_ventana():
-    """Descripción:
+def inicializar_elementos_ventana()->list:
+    """Descripción: Carga los elementos de la ventana principal.
 
     Returns:
-        _type_: _description_
+        list: Elementos de la ventana principal
     """
+    
     ANCHO_VENTANA = 1300
     ALTO_VENTANA = 700
+    lista = []
 
     pygame.init()
     pygame.mixer.init()
@@ -17,16 +19,18 @@ def inicializar_ventana():
 
     pygame.display.set_caption("Pokemon Cards")
 
-    icono = pygame.image.load("Poke_fotos\pokebola.png")
+    icono = cargar_imagen("Poke_fotos\pokebola.png")
     pygame.display.set_icon(icono)
 
-    fondo = pygame.image.load(r"Poke_fotos\fondo_pikachu.png")
-    fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
+    fondo = cargar_imagenes(r"Poke_fotos\fondo_pikachu.png",(ANCHO_VENTANA, ALTO_VENTANA))
 
-    fondo_2 = pygame.image.load(r"Poke_fotos\paisaje_pokimon.png")
-    fondo_2 = pygame.transform.scale(fondo_2,(ANCHO_VENTANA, ALTO_VENTANA))
+    fondo_2 = cargar_imagenes(r"Poke_fotos\paisaje_pokimon.png",(ANCHO_VENTANA, ALTO_VENTANA))
 
-    return [ventana,fondo,fondo_2]
+    lista.append(ventana)
+    lista.append(fondo)
+    lista.append(fondo_2)
+
+    return lista
 
 def crear_matriz_jerarquias()-> list[list]:
     """Descripción:
@@ -46,12 +50,12 @@ def crear_matriz_jerarquias()-> list[list]:
 
     return matriz_jerarquias_mezclada
 
-def escribir_teclado(boton, evento):
-    """Descripción:
+def escribir_teclado(boton:dict, evento):
+    """Descripción: Permite escribir por teclado.
 
     Args:
-        boton (_type_): _description_
-        evento (_type_): _description_
+        boton (dict): Diccioanrio donde se guardan los datos.
+        evento (_type_): evento que se produzca.
     """
     if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
@@ -70,7 +74,7 @@ def escribir_teclado(boton, evento):
 
 def cambio_color(boton:dict):
     """
-    Cambia el color de un campo de entrada basado en su estado (activo/inactivo).
+    Descripción: Cambia el color de un campo de entrada basado en su estado (activo/inactivo).
 
     Args:
         boton (dict): Diccionario del campo de entrada.
@@ -82,23 +86,23 @@ def cambio_color(boton:dict):
     else:
         boton["color_actual"] = boton["color_inactivo"]
 
-def detectar_cambio_color(lista,evento):
-    """Descripción:
+def detectar_cambio_color(lista:list,evento):
+    """Descripción: Detecta la acción de cambiar de color.
 
     Args:
-        lista (_type_): _description_
-        evento (_type_): _description_
+        lista (list): lista de botones
+        evento (): evento capturado
     """
     for boton in lista:
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
 
-def detectar_jugabilidad(boton,evento,elementos_juego,jugadores):
+def detectar_jugabilidad(boton:dict,evento,elementos_juego,jugadores):
     """Descripción:
 
     Args:
-        boton (_type_): _description_
-        evento (_type_): _description_
+        boton (dict): Diccionario donde sacamos los datos.
+        evento (_type_): evento capturado.
         elementos_juego (_type_): _description_
         jugadores (_type_): _description_
     """

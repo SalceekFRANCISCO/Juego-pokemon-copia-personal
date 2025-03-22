@@ -158,6 +158,14 @@ def verificar_existencia_de_nombres(datos:dict,boton:dict,boton_1:dict,boton_2:d
     return lista
 
 def verificar_nombre_valido(boton):
+    """_summary_
+
+    Args:
+        boton (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     hay_nombre_valido = None
     if boton["activo"] == False:
         longitud = len(boton["texto"])
@@ -169,6 +177,17 @@ def verificar_nombre_valido(boton):
     return hay_nombre_valido
 
 def guardar_nombres_usuarios(nombre_registrado,nombre_registrado_2,boton_1,boton_2):
+    """_summary_
+
+    Args:
+        nombre_registrado (_type_): _description_
+        nombre_registrado_2 (_type_): _description_
+        boton_1 (_type_): _description_
+        boton_2 (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     lista = [False]
     if nombre_registrado == True and nombre_registrado_2 == True:
         lista.clear()
@@ -179,6 +198,12 @@ def guardar_nombres_usuarios(nombre_registrado,nombre_registrado_2,boton_1,boton
     return lista
 
 def manejador_cerrar_pantalla(datos:dict,boton:dict):
+    """_summary_
+
+    Args:
+        datos (dict): _description_
+        boton (dict): _description_
+    """
     while datos["primer_pantalla"]:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -191,6 +216,17 @@ def manejador_cerrar_pantalla(datos:dict,boton:dict):
                     datos["primer_pantalla"] = False
 
 def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
+    """_summary_
+
+    Args:
+        datos (_type_): _description_
+        boton_1 (_type_): _description_
+        boton_2 (_type_): _description_
+        colores (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     lista_de_botones = [boton_1,boton_2]
     nombre_registrado = None
     nombre_registrado_2 = None
@@ -228,6 +264,19 @@ def manejador_pedir_nombres(datos,boton_1,boton_2,colores):
             return lista
 
 def cargar_pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)->list:
+    """_summary_
+
+    Args:
+        bandera_principal (_type_): _description_
+        pantalla_config (_type_): _description_
+        elementos_juego (_type_): _description_
+        ventana (_type_): _description_
+        colores (_type_): _description_
+        parametros (_type_): _description_
+
+    Returns:
+        list: _description_
+    """
     empezar_juego = True
     primer_pantalla = True
 
@@ -254,6 +303,16 @@ def cargar_pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ve
     return lista
 
 def chequear_nombres(jugadores_nombre,empezar_juego,bandera_principal):
+    """_summary_
+
+    Args:
+        jugadores_nombre (_type_): _description_
+        empezar_juego (_type_): _description_
+        bandera_principal (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     lista = [empezar_juego, bandera_principal,None,None]
 
     if jugadores_nombre[0] != None:
@@ -262,6 +321,14 @@ def chequear_nombres(jugadores_nombre,empezar_juego,bandera_principal):
     return lista
 
 def iniciar_partida(pantalla_config,elementos_juego,jugadores_nombre,colores):
+    """_summary_
+
+    Args:
+        pantalla_config (_type_): _description_
+        elementos_juego (_type_): _description_
+        jugadores_nombre (_type_): _description_
+        colores (_type_): _description_
+    """
 
     setear_pantalla(pantalla_config,elementos_juego,jugadores_nombre,colores)
     actualizar()

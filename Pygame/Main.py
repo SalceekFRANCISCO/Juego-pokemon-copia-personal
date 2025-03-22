@@ -6,7 +6,7 @@ from Logica.Log_1_modulo_principal import *
 # mejorar la funcion mostrar cartas
 # echarle una mirada a el modulo de logica
 # Mimificar el main  #! va queriendo
-# mejorar el dry
+# mejorar el dry #! va queriendo
 
 
 # utilizar sets #!OK
@@ -25,11 +25,11 @@ from Logica.Log_1_modulo_principal import *
 
 pygame.init() 
 
-ventanas = inicializar_ventana()
+elementos_ventana = inicializar_elementos_ventana()
 
-ventana = ventanas[0]
-fondo = ventanas[1]
-fondo_2 = ventanas[2]
+ventana = elementos_ventana[0]
+fondo = elementos_ventana[1]
+fondo_2 = elementos_ventana[2]
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
