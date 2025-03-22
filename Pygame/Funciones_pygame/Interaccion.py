@@ -2,8 +2,13 @@ import pygame
 from Funciones_pygame.Diccionarios import *
 
 def inicializar_ventana():
+    """Descripción:
+
+    Returns:
+        _type_: _description_
+    """
     ANCHO_VENTANA = 1300
-    ALTO_VENTANA = 700#! posible set
+    ALTO_VENTANA = 700
 
     pygame.init()
     pygame.mixer.init()
@@ -24,6 +29,11 @@ def inicializar_ventana():
     return [ventana,fondo,fondo_2]
 
 def crear_matriz_jerarquias()-> list[list]:
+    """Descripción:
+
+    Returns:
+        list[list]: _description_
+    """
 
     matriz_jerarquias_mezclada = [["Agua", ("Fuego", "Tierra")],
                     [("Electricidad", "Fuego"),"Tierra"],
@@ -37,6 +47,12 @@ def crear_matriz_jerarquias()-> list[list]:
     return matriz_jerarquias_mezclada
 
 def escribir_teclado(boton, evento):
+    """Descripción:
+
+    Args:
+        boton (_type_): _description_
+        evento (_type_): _description_
+    """
     if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
             boton["texto"] = boton["texto"][:-1]
@@ -67,45 +83,58 @@ def cambio_color(boton:dict):
         boton["color_actual"] = boton["color_inactivo"]
 
 def detectar_cambio_color(lista,evento):
+    """Descripción:
+
+    Args:
+        lista (_type_): _description_
+        evento (_type_): _description_
+    """
     for boton in lista:
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
 
 def detectar_jugabilidad(boton,evento,elementos_juego,jugadores):
+    """Descripción:
+
+    Args:
+        boton (_type_): _description_
+        evento (_type_): _description_
+        elementos_juego (_type_): _description_
+        jugadores (_type_): _description_
+    """
     if boton["cuadrado"].collidepoint(evento.pos):
         boton["accion"](boton["lista_parametros"],elementos_juego,jugadores)
 
 def detectar_cambio_nombre(boton):
+    """Descripción:
+
+    Args:
+        boton (_type_): _description_
+    """
     if boton["activo"]: 
         boton["texto"]= "REINICIO"
 
 def detectar_escritura(boton,evento):
+    """Descripción:
+
+    Args:
+        boton (_type_): _description_
+        evento (_type_): _description_
+    """
     boton["accion"](boton,evento)
 
-# def procesar_entrada_texto(parametros:list,boton_nombre:dict,evento)->dict:
-#     """Registra el texto que se ingresa por teclado
-
-#     Args:
-#         parametros (list): lista de parametros que se utilizaran
-#         boton_nombre (dict): diccionario de donde sacaremos los datos
-#         evento (_type_): ele tipo de evento que se registro
-
-#     Returns:
-#         dict: retorna un diccionario con los datos del texto
-#     """
-#     pantalla = parametros[0]
-#     fuente = parametros[1]
-#     color_texto = parametros[2]
-#     posicion_texto =  parametros[3]
-#     color_fondo_texto = parametros[4]
-
-#     nombre_final = escribir_teclado(boton_nombre,evento)
-
-#     # texto_pantalla = generar_texto_renderizado(pantalla,fuente,nombre_final,color_texto,posicion_texto,color_fondo_texto)
-            
-#     # return texto_pantalla
-
 def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
+    """Descripción:
+
+    Args:
+        pantalla_config (_type_): _description_
+        listas (_type_): _description_
+        colores (_type_): _description_
+        matriz (_type_): _description_
+
+    Returns:
+        list: _description_
+    """
     lista = []
     parametros_jugar = [10,matriz,listas,pantalla_config,colores]
     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
@@ -118,6 +147,14 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     return lista
 
 def detectar_accion(boton_jugar,elementos_juego,jugadores,evento):
+    """Descripción:
+
+    Args:
+        boton_jugar (_type_): _description_
+        elementos_juego (_type_): _description_
+        jugadores (_type_): _description_
+        evento (_type_): _description_
+    """
     if boton_jugar["cuadrado"].collidepoint(evento.pos):
         cambio_color(boton_jugar)
 
@@ -126,6 +163,12 @@ def detectar_accion(boton_jugar,elementos_juego,jugadores,evento):
     detectar_cambio_nombre(boton_jugar)
 
 def verificar_botones_musicales(lista_botones, evento):
+    """Descripción:
+
+    Args:
+        lista_botones (_type_): _description_
+        evento (_type_): _description_
+    """
     for boton in lista_botones:
         if boton["rectangulo"].collidepoint(evento.pos):
             boton["accion"]()

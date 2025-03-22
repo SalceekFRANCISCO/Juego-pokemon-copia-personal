@@ -1,30 +1,18 @@
 import pygame
 from Logica.Log_1_modulo_principal import *
 #region
-#  los conjuntos (set) solo pueden contener elementos inmutables (hashables), como números, cadenas y tuplas
 
-#encontrar una forma de validar que el texto que se escribe tenga mas de 3 caracteres
-# fijarse de hacerla en procesar entrada texto
-
-#region OBJETIVOS CUMPLIDOS
-# Pedir los nombres en la pre-pantalla #!OK
-# arreglar el tema del tiempo #!OK
-# implementar cartas meza #!OK
-# ajustar la velocidad del juego #!OK
-#endregion
-
-# utilizar sets
-# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
-# mejorar el dry
-# poner fondos relacionados con pokemon #! OK
-# acomodar los modulos Funciones_pygame #! OK
+#cosas que faltan:
+# mejorar la funcion mostrar cartas
+# echarle una mirada a el modulo de logica
 # Mimificar el main  #! va queriendo
+# mejorar el dry
 
-# si tengo tiempo y ganas, implementar el submenu musical
-# si tengo tiempo y ganas, implementar diccionarios de donde sacar datos
 
-# pedirle a ochoa que me de una devolucion del juego
-#endregion
+# utilizar sets #!OK
+# validar texto largo en textboxs  #!OK
+# renombrar el modulo logica #!OK
+# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
 
 
 #!funciones independientes que funionen en general
@@ -33,8 +21,10 @@ from Logica.Log_1_modulo_principal import *
 #!estudiar conceptos
 
 
+#endregion
+
 pygame.init() 
-#region
+
 ventanas = inicializar_ventana()
 
 ventana = ventanas[0]
@@ -43,20 +33,18 @@ fondo_2 = ventanas[2]
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()#estaria bueno que venga de un csv yque tambien se ordene 
 
-diccionarios = creacion_diccionarios(ventana)
+colores = crear_diccionario_colores()
 
-colores = diccionarios[1]
+configuracion_pantalla = crear_datos_pantalla(ventana,fondo,fondo_2,colores)
 
-pantalla_config = crear_datos_pantalla(ventana,fondo,fondo_2)
-
-listas = guardar_cartas(pantalla_config,crear_diccionario_listas)
+listas = guardar_cartas(configuracion_pantalla,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
 
-parametros = crear_listas_parametros(pantalla_config,listas,colores,matriz_jerarquias_mezcladas)
+parametros = crear_listas_parametros(configuracion_pantalla,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
 
-lista_botones_musicales = crear_botones(ventana)
+lista_botones_musicales = crear_lista_botones_musicales(ventana)
 
 elementos_juego = crear_datos_juego(ventana,colores,nuevo_boton_jugar,lista_botones_musicales)
 
@@ -66,7 +54,7 @@ bandera_principal = True
 
 while bandera_principal:
 
-    banderas =  pantalla_inicial(bandera_principal,pantalla_config,elementos_juego,ventana,colores,parametros)
+    banderas =  cargar_pantalla_inicial(bandera_principal,configuracion_pantalla,elementos_juego,ventana,colores,parametros)
 
     empezar_juego = banderas[0]
     bandera_principal = banderas[1]
@@ -89,7 +77,7 @@ while bandera_principal:
 
                 verificar_botones_musicales(lista_botones_musicales, evento)
 
-        setear_pantalla(pantalla_config,elementos_juego,jugadores,colores)
+        setear_pantalla(configuracion_pantalla,elementos_juego,jugadores,colores)
 
         actualizar()
 

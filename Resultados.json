@@ -8,5 +8,10 @@
         "nombre_jugador": "ssss",
         "fecha_victoria": "22/03/2025",
         "puntaje_obtenido": 129
+    },
+    {
+        "nombre_jugador": "gonza",
+        "fecha_victoria": "22/03/2025",
+        "puntaje_obtenido": 129
     }
 ]
