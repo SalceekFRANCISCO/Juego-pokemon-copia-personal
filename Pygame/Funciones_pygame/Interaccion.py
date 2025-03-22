@@ -36,22 +36,6 @@ def crear_matriz_jerarquias()-> list[list]:
 
     return matriz_jerarquias_mezclada
 
-# def escribir_teclado(boton, evento)->str:
-#     if boton["activo"]:
-#         if evento.key == pygame.K_BACKSPACE:
-#             boton["texto"] = boton["texto"][:-1]
-
-#         elif evento.key == pygame.K_RCTRL:
-#             boton["texto"] = ""
-
-#         elif evento.key == pygame.K_RETURN:
-#             boton["activo"] = False
-#             boton["color_actual"] = boton["color_inactivo"]
-#         else:
-#             boton["texto"] += evento.unicode
-
-    # return boton["texto"]
-
 def escribir_teclado(boton, evento):
     if boton["activo"]:
         if evento.key == pygame.K_BACKSPACE:
@@ -121,9 +105,9 @@ def detectar_escritura(boton,evento):
             
 #     # return texto_pantalla
 
-def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:#!revisar
+def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
     lista = []
-    parametros_jugar = [5,matriz,listas,pantalla_config,colores]
+    parametros_jugar = [10,matriz,listas,pantalla_config,colores]
     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
     parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
 

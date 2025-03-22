@@ -11,10 +11,21 @@ def dibujar(diccionario:dict,tipo_dibujo):
     tipo_dibujo(diccionario)
 
 def dibujar_textos_en_cuadrados(lista_cuadrados,colores):
+    """Descripción:
+
+    Args:
+        lista_cuadrados (_type_): _description_
+        colores (_type_): _description_
+    """
     for input in lista_cuadrados:
         dibujar_texto_centralizado(input,colores)
 
 def dibujar_botones_musicales(lista):
+    """Descripción:
+
+    Args:
+        lista (_type_): _description_
+    """
     for boton in lista:
         dibujar_boton_musical(boton)
 
@@ -32,6 +43,11 @@ def dibujar_lista_cuadrados(lista_cuadrados:list):
         dibujar_cuadrado(cuadrado)
 
 def dibujar_boton_musical(boton):
+    """Descripción:
+
+    Args:
+        boton (_type_): _description_
+    """
     boton["ventana"].blit(boton["contenido"], boton["posicion"])
 
 def dibujar_cuadrado(cuadrado:dict):
@@ -53,6 +69,12 @@ def dibujar_texto(texto:dict):
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
 
 def dibujar_fondo(pantalla_config,fondo_principal=None):
+    """Descripción:
+
+    Args:
+        pantalla_config (_type_): _description_
+        fondo_principal (_type_, optional): _description_. Defaults to None.
+    """
     if fondo_principal != None:
         pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
     else:
@@ -78,7 +100,12 @@ def rellenar_superficie(pantalla:dict):
     pantalla["ventana"].fill(pantalla["color_ventana"])
 
 def dibujar_texto_centralizado(input:dict,colores:dict):
+    """Descripción:
 
+    Args:
+        input (dict): _description_
+        colores (dict): _description_
+    """
     superficie = renderizar_texto(input["fuente"],input["texto"],colores["negro"],None)#renderizar texto
     input["texto_escrito"] = superficie
     
