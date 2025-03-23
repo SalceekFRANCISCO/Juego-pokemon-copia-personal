@@ -1,5 +1,5 @@
 import pygame
-from Funciones_pygame.Dibujo import *
+from Funciones_pygame.Dibujar import *
 from Funciones_pygame.Interaccion import *
 
 def setear_pantalla(pantalla_config,elementos_juego,jugadores,colores):
