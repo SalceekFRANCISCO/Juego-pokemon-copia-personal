@@ -11,20 +11,20 @@ def dibujar(diccionario:dict,tipo_dibujo):
     tipo_dibujo(diccionario)
 
 def dibujar_textos_en_cuadrados(lista_cuadrados,colores):
-    """Descripción:
+    """Descripción: Dibuja texto en los respectivos cuadrados.
 
     Args:
-        lista_cuadrados (_type_): _description_
-        colores (_type_): _description_
+        lista_cuadrados (list): lista de cuadrados
+        colores (dict): diccionario de colores
     """
     for input in lista_cuadrados:
         dibujar_texto_centralizado(input,colores)
 
-def dibujar_botones_musicales(lista):
-    """Descripción:
+def dibujar_botones_musicales(lista:list):
+    """Descripción: dibuja los botones de la lista musical.
 
     Args:
-        lista (_type_): _description_
+        lista (list): lista de botones musicales.
     """
     for boton in lista:
         dibujar_boton_musical(boton)
@@ -43,16 +43,16 @@ def dibujar_lista_cuadrados(lista_cuadrados:list):
         dibujar_cuadrado(cuadrado)
 
 def dibujar_boton_musical(boton):
-    """Descripción:
+    """Descripción: dibuja un boton musical.
 
     Args:
-        boton (_type_): _description_
+        boton (): diccionario de donde sacamos los datos.
     """
     boton["ventana"].blit(boton["contenido"], boton["posicion"])
 
 def dibujar_cuadrado(cuadrado:dict):
     """
-    Dibuja un cuadrado en la ventana.
+    Descripción: Dibuja un cuadrado en la ventana.
 
     Args:
         cuadrado (dict): Diccionario con los datos del cuadrado.
@@ -61,19 +61,19 @@ def dibujar_cuadrado(cuadrado:dict):
     pygame.draw.rect(cuadrado["ventana"], cuadrado["color_actual"], cuadrado["cuadrado"])
 
 def dibujar_texto(texto:dict):
-    """Muestra solo texto en la ventana.
+    """Descripción: Muestra solo texto en la ventana.
 
     Args:
         texto (dict): Diccionario con datos del texto.
     """
     texto["ventana"].blit(texto["texto_escrito"],texto["posicion"])
 
-def dibujar_fondo(pantalla_config,fondo_principal=None):
-    """Descripción:
+def dibujar_fondo(pantalla_config:dict,fondo_principal=None):
+    """Descripción: Dibuja un fondo de pantalla, dependiendo el parametro opcional, dibujara uno u otro.
 
     Args:
-        pantalla_config (_type_): _description_
-        fondo_principal (_type_, optional): _description_. Defaults to None.
+        pantalla_config (dict): Diccionario donde se obtendran los datos.
+        fondo_principal (_type_, optional): parametro opcional que determinara que fondo se dibuja.
     """
     if fondo_principal != None:
         pantalla_config["ventana"].blit(pantalla_config["fondo"],(0,0))
@@ -99,12 +99,12 @@ def rellenar_superficie(pantalla:dict):
     """
     pantalla["ventana"].fill(pantalla["color_ventana"])
 
-def dibujar_texto_centralizado(input:dict,colores:dict):
-    """Descripción:
+def dibujar_texto_centralizado(input:dict,colores:dict):#!
+    """Descripción: Dibuja el texto centralizado 
 
     Args:
-        input (dict): _description_
-        colores (dict): _description_
+        input (dict): Diccionario donde se obtendran los datos.
+        colores (dict): diccionario de colores
     """
     superficie = renderizar_texto(input["fuente"],input["texto"],colores["negro"],None)#renderizar texto
     input["texto_escrito"] = superficie

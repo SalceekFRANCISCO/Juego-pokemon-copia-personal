@@ -97,37 +97,37 @@ def detectar_cambio_color(lista:list,evento):
         if boton["cuadrado"].collidepoint(evento.pos):
             cambio_color(boton)
 
-def detectar_jugabilidad(boton:dict,evento,elementos_juego,jugadores):
-    """Descripción:
+def detectar_jugabilidad(boton:dict,evento,elementos_juego:dict,jugadores:list):
+    """Descripción: Detecta la acción de iniciar el juego.
 
     Args:
         boton (dict): Diccionario donde sacamos los datos.
-        evento (_type_): evento capturado.
-        elementos_juego (_type_): _description_
-        jugadores (_type_): _description_
+        evento (): evento capturado.
+        elementos_juego (dict): elementos que la funcion de jugar va a necesitar.
+        jugadores (list): los jugadores de la partida.
     """
     if boton["cuadrado"].collidepoint(evento.pos):
         boton["accion"](boton["lista_parametros"],elementos_juego,jugadores)
 
-def detectar_cambio_nombre(boton):
-    """Descripción:
+def detectar_cambio_nombre(boton:dict):
+    """Descripcion: Cambia el nombre del boton.
 
     Args:
-        boton (_type_): _description_
+        boton (dict): donde se cambiara el nombre.
     """
     if boton["activo"]: 
         boton["texto"]= "REINICIO"
 
-def detectar_escritura(boton,evento):
-    """Descripción:
+def detectar_escritura(boton:dict,evento):
+    """Descripción: Activa la funcion escribir teclado.
 
     Args:
-        boton (_type_): _description_
-        evento (_type_): _description_
+        boton (dict): el boton de donde scaremos los datos.
+        evento (): el evento capturado.
     """
     boton["accion"](boton,evento)
 
-def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
+def crear_listas_parametros(cantidad_rondas,pantalla_config,listas,colores,matriz)-> list:
     """Descripción:
 
     Args:
@@ -140,7 +140,7 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
         list: _description_
     """
     lista = []
-    parametros_jugar = [10,matriz,listas,pantalla_config,colores]
+    parametros_jugar = [cantidad_rondas,matriz,listas,pantalla_config,colores]
     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
     parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
 
@@ -150,14 +150,15 @@ def crear_listas_parametros(pantalla_config,listas,colores,matriz)-> list:
 
     return lista
 
-def detectar_accion(boton_jugar,elementos_juego,jugadores,evento):
-    """Descripción:
+def gestionar_interacciones(boton_jugar:dict,elementos_juego:list,jugadores:list,lista_botones_musicales:list,evento):
+    """Descripción: Verifica las funciones que deben activarse.
 
     Args:
-        boton_jugar (_type_): _description_
-        elementos_juego (_type_): _description_
-        jugadores (_type_): _description_
-        evento (_type_): _description_
+        boton_jugar (dict): diccionario donde sacaremos los datos.
+        elementos_juego (list): elementos que la funcion de jugar va a necesitar.
+        jugadores (list): los jugadores de la partida.
+        lista_botones (list): lista con cada uno de los botones musicales.
+        evento (): evento capturado.
     """
     if boton_jugar["cuadrado"].collidepoint(evento.pos):
         cambio_color(boton_jugar)
@@ -166,14 +167,15 @@ def detectar_accion(boton_jugar,elementos_juego,jugadores,evento):
 
     detectar_cambio_nombre(boton_jugar)
 
+    verificar_botones_musicales(lista_botones_musicales, evento)
+
 def verificar_botones_musicales(lista_botones, evento):
-    """Descripción:
+    """Descripción: Por cada boton en la lista musical, activara la accion del boton que corresponda.
 
     Args:
-        lista_botones (_type_): _description_
-        evento (_type_): _description_
+        lista_botones (list): lista con cada uno de los botones musicales. 
+        evento(): el evento capturado.
     """
     for boton in lista_botones:
         if boton["rectangulo"].collidepoint(evento.pos):
             boton["accion"]()
-

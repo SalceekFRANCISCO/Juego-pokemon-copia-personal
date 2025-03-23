@@ -40,7 +40,7 @@ configuracion_pantalla = crear_datos_pantalla(ventana,fondo,fondo_2,colores)
 listas = guardar_cartas(configuracion_pantalla,crear_diccionario_listas)
 activar_cartas(listas,matriz_jerarquias_mezcladas)
 
-parametros = crear_listas_parametros(configuracion_pantalla,listas,colores,matriz_jerarquias_mezcladas)
+parametros = crear_listas_parametros(5,configuracion_pantalla,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
 
@@ -73,9 +73,9 @@ while bandera_principal:
             #endregion
                     
             elif evento.type == pygame.MOUSEBUTTONDOWN:
-                detectar_accion(nuevo_boton_jugar,elementos_juego,jugadores,evento)
+                gestionar_interacciones(nuevo_boton_jugar,elementos_juego,jugadores,lista_botones_musicales,evento)
 
-                verificar_botones_musicales(lista_botones_musicales, evento)
+                # verificar_botones_musicales(lista_botones_musicales, evento) #! UNIFICAR CON LA DE ARRIBA
 
         setear_pantalla(configuracion_pantalla,elementos_juego,jugadores,colores)
 
