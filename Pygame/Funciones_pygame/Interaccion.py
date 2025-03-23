@@ -150,6 +150,33 @@ def crear_listas_parametros(cantidad_rondas,pantalla_config,listas,colores,matri
 
     return lista
 
+
+def crear_listas_parametros(cantidad_rondas:int, pantalla_config:dict, listas:dict, colores:dict, matriz:list[list]) -> list:
+    """
+    Descripción: Crea y devuelve una lista con parámetros que se utilizaran más adelante.
+
+    Args:
+        cantidad_rondas (int): La cantidad de rondas que se jugarán en el juego.
+        pantalla_config (dict): Un diccionario con la configuración de la pantalla, como el tamaño, fondo, etc.
+        listas (dict): Un diccionario con las listas definidas.
+        colores (dict): Un diccionario con los colores definidos.
+        matriz (list[list]): Las jerarquias de elementos.
+
+   Return:
+        list: Una lista que contiene listas  con parámetros.
+    """
+    lista = []
+    parametros_jugar = [cantidad_rondas, matriz, listas, pantalla_config, colores]
+    parametros_boton_nombre_uno = [pantalla_config, ("Arial", 20), colores["negro"], (795, 50), None]
+    parametros_boton_nombre_dos = [pantalla_config, ("Arial", 20), colores["negro"], (797, 629), None]
+
+    lista.append(parametros_jugar)
+    lista.append(parametros_boton_nombre_uno)
+    lista.append(parametros_boton_nombre_dos)
+
+    return lista
+
+
 def gestionar_interacciones(boton_jugar:dict,elementos_juego:list,jugadores:list,lista_botones_musicales:list,evento):
     """Descripción: Verifica las funciones que deben activarse.
 

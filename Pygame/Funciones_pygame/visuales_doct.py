@@ -4,7 +4,7 @@ from Funciones_pygame.Interaccion import *
 
 def setear_pantalla(pantalla_config, elementos_juego, jugadores, colores):
     """
-    Configura y dibuja todos los elementos en la pantalla inicial del juego, como los fondos, botones, texto, imágenes, etc.
+    Descripción: Configura y dibuja todos los elementos en la pantalla inicial del juego, como los fondos, botones, texto, imágenes, etc.
 
     Args:
         pantalla_config (dict): Configuración de la pantalla, como la superficie, colores, etc.
@@ -27,9 +27,9 @@ def setear_pantalla(pantalla_config, elementos_juego, jugadores, colores):
     
     dibujar_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
 
-def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):
+def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):#!
     """
-    Muestra los datos de un Pokémon junto con su imagen en pantalla.
+    Descripción: Muestra los datos de un Pokémon junto con su imagen en pantalla.
 
     Args:
         diccionario (dict): Diccionario con los datos del Pokémon.
@@ -55,7 +55,7 @@ def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_pok
 
 def mostrar_foto_pokemon(pantalla, pokemon, escala_poke_imagen, coordenas_imagen):
     """
-    Muestra la imagen de un Pokémon en la pantalla.
+    Descripción: Muestra la imagen de un Pokémon en la pantalla.
 
     Args:
         pantalla (Surface): Superficie donde se dibuja la imagen.
@@ -69,14 +69,14 @@ def mostrar_foto_pokemon(pantalla, pokemon, escala_poke_imagen, coordenas_imagen
 
 def actualizar():
     """
-    Actualiza la pantalla con los cambios realizados.
+    Descripción: Actualiza la pantalla con los cambios realizados.
 
     """
     pygame.display.update()
 
 def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion, color_fondo_texto):
     """
-    Muestra texto en la ventana.
+    Descripción: Muestra texto en la ventana.
 
     Args:
         pantalla (Surface): Superficie donde se muestra el texto.
@@ -91,7 +91,7 @@ def mostrar_texto(pantalla, fuente, texto_escrito, color_texto, posicion, color_
 
 def obtener_tiempo(tiempo_actual, tiempo_inicial):
     """
-    Calcula el tiempo transcurrido en segundos.
+    Descripción: Calcula el tiempo transcurrido en segundos.
 
     Args:
         tiempo_actual (int): Tiempo actual en milisegundos.
@@ -108,7 +108,7 @@ def obtener_tiempo(tiempo_actual, tiempo_inicial):
 
 def mostrar_cronometro(pantalla:dict, cronometro_activo:bool, tiempo_inicial:int, colores:dict):
     """
-    Muestra el cronómetro en la ventana si está activo.
+    Descripción: Muestra el cronómetro en la ventana si está activo.
 
     Args:
         pantalla (dict): Diccionario con los datos de la pantalla.
@@ -127,7 +127,7 @@ def mostrar_cronometro(pantalla:dict, cronometro_activo:bool, tiempo_inicial:int
 
 def mostrar_pantalla_inicio(boton:dict, pantalla_config:dict, colores:dict):
     """
-    Muestra la pantalla de inicio con el botón centrado.
+    Descripción: Muestra la pantalla de inicio con el botón centrado.
 
     Args:
         boton (dict): Botón para iniciar el juego.
@@ -140,7 +140,7 @@ def mostrar_pantalla_inicio(boton:dict, pantalla_config:dict, colores:dict):
 
 def verificar_existencia_de_nombres(datos:dict, boton:dict, boton_1:dict, boton_2:dict, colores:dict):
     """
-    Verifica que se hayan ingresado los nombres de los jugadores, en caso contrario,
+    Descripción: Verifica que se hayan ingresado los nombres de los jugadores, en caso contrario,
     se tomará que no se desea jugar.
 
     Args:
@@ -168,7 +168,7 @@ def verificar_existencia_de_nombres(datos:dict, boton:dict, boton_1:dict, boton_
 
 def verificar_nombre_valido(boton:dict):
     """
-    Verifica si el nombre ingresado en el botón es válido (tiene al menos 3 caracteres).
+    Descripción: Verifica si el nombre ingresado en el botón es válido (tiene al menos 3 caracteres).
 
     Args:
         boton (dict): Botón que contiene el texto del nombre.
@@ -188,7 +188,7 @@ def verificar_nombre_valido(boton:dict):
 
 def guardar_nombres_usuarios(nombre_registrado, nombre_registrado_2, boton_1, boton_2)->list:
     """
-    Guarda los nombres de los jugadores si ambos son válidos.
+    Descripción: Guarda los nombres de los jugadores si ambos son válidos.
 
     Args:
         nombre_registrado (bool): Indica si el primer nombre es válido.
@@ -210,7 +210,7 @@ def guardar_nombres_usuarios(nombre_registrado, nombre_registrado_2, boton_1, bo
 
 def manejador_cerrar_pantalla(datos, boton):
     """
-    Maneja la interacción de cerrar la pantalla al hacer clic en el botón correspondiente.
+    Descripción: Maneja la interacción de cerrar la pantalla al hacer clic en el botón correspondiente.
 
     Args:
         datos (dict): Datos de la configuración del juego, como la pantalla activa y el estado del juego.
@@ -229,7 +229,7 @@ def manejador_cerrar_pantalla(datos, boton):
 
 def manejador_pedir_nombres(datos, boton_1, boton_2, colores):
     """
-    Maneja la interacción de pedir los nombres de los jugadores. Permite escribir y modificar los nombres
+    Descripción: Maneja la interacción de pedir los nombres de los jugadores. Permite escribir y modificar los nombres
     de los jugadores 1 y 2, y valida que ambos sean válidos antes de continuar.
 
     Args:
@@ -273,7 +273,7 @@ def manejador_pedir_nombres(datos, boton_1, boton_2, colores):
 
 def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego, ventana, colores, parametros) -> list:
     """
-    Carga la pantalla inicial del juego, mostrando los botones para ingresar los nombres y comenzar el juego.
+    Descripción: Carga la pantalla inicial del juego, mostrando los botones para ingresar los nombres y comenzar el juego.
 
     Args:
         bandera_principal (bool): Indica si el juego debe comenzar.
@@ -313,7 +313,7 @@ def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego,
 
 def chequear_nombres(jugadores_nombre, empezar_juego, bandera_principal):
     """
-    Verifica si los jugadores tienen nombres válidos antes de comenzar el juego.
+    Descripción: Verifica si los jugadores tienen nombres válidos antes de comenzar el juego.
 
     Args:
         jugadores_nombre (list): Lista con los nombres de los jugadores.
@@ -332,7 +332,7 @@ def chequear_nombres(jugadores_nombre, empezar_juego, bandera_principal):
 
 def iniciar_partida(pantalla_config, elementos_juego, jugadores_nombre, colores):
     """
-    Inicia el juego configurando la pantalla, los elementos gráficos y los jugadores.
+    Descripción: Inicia el juego configurando la pantalla, los elementos gráficos y los jugadores.
 
     Args:
         pantalla_config (dict): Configuración de la pantalla, como la superficie y colores.

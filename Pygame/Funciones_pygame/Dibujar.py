@@ -100,7 +100,7 @@ def rellenar_superficie(pantalla:dict):
     pantalla["ventana"].fill(pantalla["color_ventana"])
 
 def dibujar_texto_centralizado(input:dict,colores:dict):#!
-    """Descripción: Dibuja el texto centralizado 
+    """Descripción: Dibuja el texto centralizado dentro de un cuadrado.
 
     Args:
         input (dict): Diccionario donde se obtendran los datos.
