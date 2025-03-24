@@ -143,6 +143,7 @@ def mostrar_pantalla_inicio(boton:dict,boton_2:dict,boton_3:dict,pantalla_config
     dibujar_texto_centralizado(boton, colores)
     dibujar_texto_centralizado(boton_2, colores)
     dibujar_texto_centralizado(boton_3, colores)
+
     actualizar()
 
 def verificar_existencia_de_nombres(datos:dict, boton:dict, boton_1:dict, boton_2:dict, colores:dict):
@@ -305,7 +306,7 @@ def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego,
 
     boton_advertencia = crear_cuadrado(ventana, colores["blanco"], (900, 296), (365, 60), ("Arial", 20), "Presione ENTER, luego de los nombres.")
 
-    boton_limite = crear_cuadrado(ventana, colores["blanco"], (474,53), (365, 60), ("Arial", 20), "EL mínimo de caracteres es de 3.")
+    boton_limite = crear_cuadrado(ventana, colores["blanco"], (900,365), (365, 60), ("Arial", 20), "EL mínimo de caracteres es de 3.")
 
     boton_nombre_uno = crear_boton(ventana, ("Arial", 20), colores, (1115, 27), (175, 60), escribir_teclado, None, "")
     boton_nombre_dos = crear_boton(ventana, ("Arial", 20), colores, (1115, 101), (175, 60), escribir_teclado, None, "")
@@ -367,9 +368,9 @@ def programa_principal(bandera_principal:bool, empezar_juego:bool, nuevo_boton_j
             bandera_principal = False
             empezar_juego = False
             # region coordenadas
-        # elif evento.type == pygame.MOUSEMOTION:
-        #     x,y = evento.pos
-        #     print(x,y) #Saber que cordenadas son en la pantalla
+        elif evento.type == pygame.MOUSEMOTION:
+            x,y = evento.pos
+            print(x,y) #Saber que cordenadas son en la pantalla
         # endregion
 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
