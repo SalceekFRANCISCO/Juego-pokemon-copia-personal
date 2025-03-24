@@ -151,7 +151,7 @@ def crear_listas_parametros(cantidad_rondas,pantalla_config,listas,colores,matri
     return lista
 
 
-def crear_listas_parametros(cantidad_rondas:int, pantalla_config:dict, listas:dict, colores:dict, matriz:list[list]) -> list:
+def crear_lista_parametros(cantidad_rondas:int, pantalla_config:dict, listas:dict, colores:dict, matriz:list[list]) -> list:
     """
     Descripción: Crea y devuelve una lista con parámetros que se utilizaran más adelante.
 
@@ -167,12 +167,7 @@ def crear_listas_parametros(cantidad_rondas:int, pantalla_config:dict, listas:di
     """
     lista = []
     parametros_jugar = [cantidad_rondas, matriz, listas, pantalla_config, colores]
-    parametros_boton_nombre_uno = [pantalla_config, ("Arial", 20), colores["negro"], (795, 50), None]
-    parametros_boton_nombre_dos = [pantalla_config, ("Arial", 20), colores["negro"], (797, 629), None]
-
     lista.append(parametros_jugar)
-    lista.append(parametros_boton_nombre_uno)
-    lista.append(parametros_boton_nombre_dos)
 
     return lista
 
@@ -206,3 +201,4 @@ def verificar_botones_musicales(lista_botones, evento):
     for boton in lista_botones:
         if boton["rectangulo"].collidepoint(evento.pos):
             boton["accion"]()
+

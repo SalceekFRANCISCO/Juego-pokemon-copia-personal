@@ -117,4 +117,4 @@ def actualizar_datos(pantalla_config:dict,elementos_juego:dict,jugadores,colores
     # pygame.time.delay(1000)
     # clock.tick(1)
     # time.sleep(10) 
-    time.sleep(10) 
+    time.sleep(3) 

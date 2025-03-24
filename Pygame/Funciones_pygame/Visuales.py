@@ -129,7 +129,7 @@ def mostrar_cronometro(pantalla:dict, cronometro_activo:bool, tiempo_inicial:int
 
         dibujar(tiempo_final, dibujar_texto)
 
-def mostrar_pantalla_inicio(boton:dict, pantalla_config:dict, colores:dict):
+def mostrar_pantalla_inicio(boton:dict,boton_2:dict,boton_3:dict,pantalla_config:dict, colores:dict):
     """
     Descripción: Muestra la pantalla de inicio con el botón centrado.
 
@@ -138,8 +138,11 @@ def mostrar_pantalla_inicio(boton:dict, pantalla_config:dict, colores:dict):
         pantalla_config (dict): Configuración de la pantalla, como la superficie y los colores.
         colores (dict): Diccionario de colores para los elementos visuales.
     """
+
     dibujar_fondo(pantalla_config, True)
     dibujar_texto_centralizado(boton, colores)
+    dibujar_texto_centralizado(boton_2, colores)
+    dibujar_texto_centralizado(boton_3, colores)
     actualizar()
 
 def verificar_existencia_de_nombres(datos:dict, boton:dict, boton_1:dict, boton_2:dict, colores:dict):
@@ -251,13 +254,16 @@ def manejador_pedir_nombres(datos, boton_1, boton_2, colores):
     nombre_registrado_2 = None
 
     while datos["primer_pantalla"]:
+
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 datos["primer_pantalla"] = False
                 datos["empezar_juego"] = False
                 datos["bandera_principal"] = False
+
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 detectar_cambio_color(lista_de_botones, evento)
+
             elif evento.type == pygame.KEYDOWN:
                 if boton_1["activo"]:
                     detectar_escritura(boton_1, evento)
@@ -276,7 +282,7 @@ def manejador_pedir_nombres(datos, boton_1, boton_2, colores):
         if lista[0] != False:
             return lista
 
-def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego, ventana, colores, parametros) -> list:
+def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego, ventana, colores) -> list:
     """
     Descripción: Carga la pantalla inicial del juego, mostrando los botones para ingresar los nombres y comenzar el juego.
 
@@ -296,11 +302,17 @@ def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego,
 
     datos = crear_banderas_pantalla_inicial(ventana, primer_pantalla, empezar_juego, bandera_principal)
     boton_comenzar = crear_cuadrado(ventana, colores["blanco"], (825, 189), (200, 60), ("Arial", 20), "COMENZAR")
+
+    boton_advertencia = crear_cuadrado(ventana, colores["blanco"], (900, 296), (365, 60), ("Arial", 20), "Presione ENTER, luego de los nombres.")
+
+    boton_limite = crear_cuadrado(ventana, colores["blanco"], (474,53), (365, 60), ("Arial", 20), "EL mínimo de caracteres es de 3.")
+
     boton_nombre_uno = crear_boton(ventana, ("Arial", 20), colores, (1115, 27), (175, 60), escribir_teclado, None, "")
     boton_nombre_dos = crear_boton(ventana, ("Arial", 20), colores, (1115, 101), (175, 60), escribir_teclado, None, "")
 
+
     while primer_pantalla:
-        mostrar_pantalla_inicio(boton_comenzar, pantalla_config, colores)
+        mostrar_pantalla_inicio(boton_comenzar,boton_advertencia,boton_limite,pantalla_config, colores)
         jugadores_nombre = verificar_existencia_de_nombres(datos, boton_comenzar, boton_nombre_uno, boton_nombre_dos, colores)
 
         primer_pantalla = datos["primer_pantalla"]
@@ -347,3 +359,22 @@ def iniciar_partida(pantalla_config, elementos_juego, jugadores_nombre, colores)
     """
     setear_pantalla(pantalla_config, elementos_juego, jugadores_nombre, colores)
     actualizar()
+
+def programa_principal(bandera_principal:bool, empezar_juego:bool, nuevo_boton_jugar:dict, elementos_juego:dict, jugadores:list, lista_botones_musicales:list):
+    lista = []
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            bandera_principal = False
+            empezar_juego = False
+            # region coordenadas
+        # elif evento.type == pygame.MOUSEMOTION:
+        #     x,y = evento.pos
+        #     print(x,y) #Saber que cordenadas son en la pantalla
+        # endregion
+
+        elif evento.type == pygame.MOUSEBUTTONDOWN:
+            gestionar_interacciones(nuevo_boton_jugar,elementos_juego,jugadores,lista_botones_musicales,evento)
+
+    lista = [bandera_principal,empezar_juego]
+
+    return lista

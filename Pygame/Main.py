@@ -5,15 +5,10 @@ from Logica.Log_1_modulo_principal import *
 #cosas que faltan:
 # mejorar la funcion mostrar cartas
 # echarle una mirada a el modulo de logica
+# arreglar la funcion de crear matriz
+
 # Mimificar el main  #! va queriendo
 # mejorar el dry #! va queriendo
-
-
-# utilizar sets #!OK
-# validar texto largo en textboxs  #!OK
-# renombrar el modulo logica #!OK
-# utilizar eventos propios #! ME HAGO EL BOLUDO OK 
-
 
 #!funciones independientes que funionen en general
 #!funciones que tengan una funcion clara
@@ -58,24 +53,16 @@ while bandera_principal:
 
     empezar_juego = banderas[0]
     bandera_principal = banderas[1]
-    jugadores = [banderas[2],banderas[3]]#! posible set
-    #! evento propio para que comienze juego
+    jugadores = [banderas[2],banderas[3]]
 
     while empezar_juego: 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 bandera_principal = False
                 empezar_juego = False
-            # region coordenadas
-            # elif evento.type == pygame.MOUSEMOTION:
-            #     x,y = evento.pos
-            #     print(x,y) #Saber que cordenadas son en la pantalla
-            #endregion
-                    
+
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 gestionar_interacciones(nuevo_boton_jugar,elementos_juego,jugadores,lista_botones_musicales,evento)
-
-                # verificar_botones_musicales(lista_botones_musicales, evento) #! UNIFICAR CON LA DE ARRIBA
 
         setear_pantalla(configuracion_pantalla,elementos_juego,jugadores,colores)
 
