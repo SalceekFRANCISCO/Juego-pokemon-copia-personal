@@ -129,7 +129,7 @@ def mostrar_cronometro(pantalla:dict, cronometro_activo:bool, tiempo_inicial:int
 
         dibujar(tiempo_final, dibujar_texto)
 
-def mostrar_pantalla_inicio(boton:dict,boton_2:dict,boton_3:dict,pantalla_config:dict, colores:dict):
+def mostrar_pantalla_inicio(boton:dict,boton_2:dict,boton_3:dict,imagen_a,imagen_b,pantalla_config:dict, colores:dict):
     """
     Descripción: Muestra la pantalla de inicio con el botón centrado.
 
@@ -141,8 +141,12 @@ def mostrar_pantalla_inicio(boton:dict,boton_2:dict,boton_3:dict,pantalla_config
 
     dibujar_fondo(pantalla_config, True)
     dibujar_texto_centralizado(boton, colores)
-    dibujar_texto_centralizado(boton_2, colores)
-    dibujar_texto_centralizado(boton_3, colores)
+    
+    dibujar_imagen(imagen_a)
+    dibujar_imagen(imagen_b)
+
+    dibujar_texto(boton_2)
+    dibujar_texto(boton_3)
 
     actualizar()
 
@@ -304,16 +308,18 @@ def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego,
     datos = crear_banderas_pantalla_inicial(ventana, primer_pantalla, empezar_juego, bandera_principal)
     boton_comenzar = crear_cuadrado(ventana, colores["blanco"], (825, 189), (200, 60), ("Arial", 20), "COMENZAR")
 
-    boton_advertencia = crear_cuadrado(ventana, colores["blanco"], (900, 296), (365, 60), ("Arial", 20), "Presione ENTER, luego de los nombres.")
+    advertencia = generar_texto_renderizado(pantalla_config,("Arial", 18),"Pres. ENTER, luego de los nombres",colores["negro"],(350,83),None)
+    minimo = generar_texto_renderizado(pantalla_config,("Arial", 19),"El mínimo de caracteres es de 3",colores["negro"],(800,85),None)
 
-    boton_limite = crear_cuadrado(ventana, colores["blanco"], (900,365), (365, 60), ("Arial", 20), "EL mínimo de caracteres es de 3.")
+    imagen_a = crear_diccionario_imagen(ventana,"Poke_fotos\caja_dialogo_invertida.png",(330,12),(365, 260))
+    imagen_b = crear_diccionario_imagen(ventana,"Poke_fotos\caja_dialogo.png",(740,12),(365, 260))
 
     boton_nombre_uno = crear_boton(ventana, ("Arial", 20), colores, (1115, 27), (175, 60), escribir_teclado, None, "")
     boton_nombre_dos = crear_boton(ventana, ("Arial", 20), colores, (1115, 101), (175, 60), escribir_teclado, None, "")
 
-
     while primer_pantalla:
-        mostrar_pantalla_inicio(boton_comenzar,boton_advertencia,boton_limite,pantalla_config, colores)
+        mostrar_pantalla_inicio(boton_comenzar,advertencia,minimo,imagen_a,imagen_b, pantalla_config, colores)
+
         jugadores_nombre = verificar_existencia_de_nombres(datos, boton_comenzar, boton_nombre_uno, boton_nombre_dos, colores)
 
         primer_pantalla = datos["primer_pantalla"]
@@ -368,10 +374,10 @@ def programa_principal(bandera_principal:bool, empezar_juego:bool, nuevo_boton_j
             bandera_principal = False
             empezar_juego = False
             # region coordenadas
-        elif evento.type == pygame.MOUSEMOTION:
-            x,y = evento.pos
-            print(x,y) #Saber que cordenadas son en la pantalla
-        # endregion
+        # elif evento.type == pygame.MOUSEMOTION:
+        #     x,y = evento.pos
+        #     print(x,y) #Saber que cordenadas son en la pantalla
+        # # endregion
 
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             gestionar_interacciones(nuevo_boton_jugar,elementos_juego,jugadores,lista_botones_musicales,evento)
