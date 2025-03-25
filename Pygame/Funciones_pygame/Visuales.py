@@ -27,7 +27,7 @@ def setear_pantalla(pantalla_config, elementos_juego, jugadores, colores):
     
     dibujar_cartas(pantalla_config["carta_1"],pantalla_config["carta_2"])
 
-def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_poke_imagen, coordenas_imagen):#!
+def mostrar_cartas(diccionario, pantalla, colores, coordenadas_primer_texto,coordenadas_segundo_texto, escala_poke_imagen, coordenas_imagen):
     """
     Descripción: Muestra los datos de un Pokémon junto con su imagen en pantalla.
 
@@ -39,14 +39,14 @@ def mostrar_cartas(diccionario, pantalla, colores, coordenadas_texto, escala_pok
         escala_poke_imagen (tuple): Escala (ancho, alto) de la imagen.
         coordenas_imagen (tuple): Coordenadas (x, y) de la imagen.
     """
-    y = coordenadas_texto[1]
+    y = coordenadas_primer_texto[1]
 
-    for clave, atributo in diccionario.items():
+    for clave, atributo in diccionario.items():#591
         clave_del_pokemon = f"{clave}: "
         atributo_del_pokemon = f" {atributo}"
         y += 40
-        texto_a = generar_texto_renderizado(pantalla, ("Arial", 20), clave_del_pokemon, colores["negro"], (coordenadas_texto[0], y), colores["dorado"])
-        texto_b = generar_texto_renderizado(pantalla, ("Arial", 20), atributo_del_pokemon, colores["negro"], (591, y), colores["verde"])
+        texto_a = generar_texto_renderizado(pantalla, ("Arial", 20), clave_del_pokemon, colores["negro"], (coordenadas_primer_texto[0], y), colores["dorado"])
+        texto_b = generar_texto_renderizado(pantalla, ("Arial", 20), atributo_del_pokemon, colores["negro"], (coordenadas_segundo_texto[0], y), colores["verde"])
 
         if clave != "poke-foto":
             dibujar_texto(texto_a)

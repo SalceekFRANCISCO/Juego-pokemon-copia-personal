@@ -57,8 +57,8 @@ def cargar_cartas(listas:dict, pantalla:dict, colores:dict):
     cartas_jugador_1 = listas["cartas_jugadores"][0]
     cartas_jugador_2 = listas["cartas_jugadores"][1]
 
-    mostrar_cartas(cartas_jugador_1, pantalla, colores, (450,0),(150,100),(645,80))#! necesitan la ventana
-    mostrar_cartas(cartas_jugador_2, pantalla, colores, (450,390),(150,100),(645,500))#! necesitan la ventana
+    mostrar_cartas(cartas_jugador_1, pantalla, colores, (450,0),(591,0),(150,100),(645,80))#! necesitan la ventana
+    mostrar_cartas(cartas_jugador_2, pantalla, colores, (450,390),(591,390),(150,100),(645,500))#! necesitan la ventana
 
 def Determinar_algun_jugador_sin_cartas(listas:list)->bool:
     jugador_sin_cartas = False
