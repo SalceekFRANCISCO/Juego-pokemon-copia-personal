@@ -53,5 +53,40 @@
         "nombre_jugador": "michi",
         "fecha_victoria": "25/03/2025",
         "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "ger",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "ric",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 129
+    },
+    {
+        "nombre_jugador": "ric",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 132
+    },
+    {
+        "nombre_jugador": "ric",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 131
+    },
+    {
+        "nombre_jugador": "ric",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "ric",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 127
+    },
+    {
+        "nombre_jugador": "ric",
+        "fecha_victoria": "30/03/2025",
+        "puntaje_obtenido": 128
     }
 ]
