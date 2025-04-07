@@ -46,7 +46,16 @@ def crear_json(path_json: str) -> list:
 
     return estadisticas
 
-def crear_diccionario_estadisticas(jugador, puntaje):
+def crear_diccionario_estadisticas(jugador, puntaje)->dict:
+    """Descripción: Crea el diccionario de las estadísticas. 
+
+    Args:
+        jugador (str): El nombre del jugador que gano.
+        puntaje (str): El puntaje de cada jugador.
+
+    Returns:
+        dict: Diccionario con los datos finales para ser guardados.
+    """
     estadistica = {
         "nombre_jugador" : jugador,
         "fecha_victoria":  datetime.now().strftime("%d/%m/%Y"),
@@ -54,7 +63,15 @@ def crear_diccionario_estadisticas(jugador, puntaje):
     }
     return estadistica
 
-def verificar_existencia_archivo_json(path_json):
+def verificar_existencia_archivo_json(path_json)->bool:
+    """Descripción: Verifica que ya exista un archivo Json.
+
+    Args:
+        path_json (_type_): Ruta del archivo Json.
+
+    Returns:
+        bool: si hay existencia o no de un archivo Json.
+    """
     existe = True
     try:
         with open(path_json, "r"):
