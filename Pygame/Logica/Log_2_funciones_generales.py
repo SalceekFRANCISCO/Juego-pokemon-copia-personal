@@ -201,7 +201,17 @@ def determinar_ganador_partida(jugadores,listas:dict) -> str:
 
     return ganador
 
-def calcular_puntaje(listas, jugadores, jugador_ganador):
+def calcular_puntaje(listas, jugadores, jugador_ganador)->int:
+    """Descripcion: Calcula el puntaje de cada jugador.
+
+    Args:
+        listas (dict): diccionario con las listas guardadas.
+        jugadores (list): Los nombres de ambos jugadores.
+        jugador_ganador (str): El jugador ganador.
+
+    Returns:
+        int: El puntaje del jugador ganador
+    """
     
     if jugador_ganador == jugadores[0]:#!jugadores 
         puntaje = len(listas["lista_jugador_uno"])
