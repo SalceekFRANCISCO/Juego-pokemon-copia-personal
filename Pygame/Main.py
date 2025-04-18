@@ -1,7 +1,6 @@
 import pygame
 from Logica.Log_1_modulo_principal import *
 
-#el pan esta duro
 pygame.init() 
 
 elementos_ventana = inicializar_elementos_ventana()

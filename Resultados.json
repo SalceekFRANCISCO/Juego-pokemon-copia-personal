@@ -88,5 +88,15 @@
         "nombre_jugador": "ric",
         "fecha_victoria": "30/03/2025",
         "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "aleksis",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "Empate",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 125
     }
 ]
