@@ -109,8 +109,8 @@ def dibujar_texto_centralizado(input:dict,colores:dict):#!
     superficie = renderizar_texto(input["fuente"],input["texto"],colores["negro"],None)#renderizar texto
     input["texto_escrito"] = superficie
     
-    rectangulo_texto = superficie.get_rect(center=input["cuadrado"].center)#se obtiene el medio
-    input["posicion"] = rectangulo_texto.topleft
+    rectangulo_texto = superficie.get_rect(center=input["cuadrado"].center)#se genera un rectangulo en el medio
+    input["posicion"] = rectangulo_texto.topleft#obtiene coordenadas de la izquierda
     
     dibujar(input,dibujar_cuadrado)#dibujar cuadrado
     
