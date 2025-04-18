@@ -16,11 +16,11 @@ def mezclar_mazo_cartas(listas:list):
         indice_random_a = random.randint(0,len(listas["lista_cartas"])-1)
         indice_random_b = random.randint(0,len(listas["lista_cartas"])-1)
 
-        diccionario_a = listas["lista_cartas"][indice_random_a]
-        diccionario_b = listas["lista_cartas"][indice_random_b]
+        diccionario_a = listas["lista_cartas"][indice_random_a]#5
+        diccionario_b = listas["lista_cartas"][indice_random_b]#10
 
-        listas["lista_cartas"][indice_random_a] = diccionario_b 
-        listas["lista_cartas"][indice_random_b] = diccionario_a 
+        listas["lista_cartas"][indice_random_a] = diccionario_b#10 
+        listas["lista_cartas"][indice_random_b] = diccionario_a#5 
 
         contador += 1
 
@@ -55,16 +55,23 @@ def agregar_cartas(resultado:str,listas):  #Terminada
     listas["cartas_meza"] += listas["cartas_jugadores"]
     
     if resultado == "1":
+        agregar_cartas_a_jugador(listas,True)
+
+    elif resultado == "2":
+        agregar_cartas_a_jugador(listas,None,True)
+    
+    listas["cartas_jugadores"].clear()
+
+def agregar_cartas_a_jugador(listas,jugador_1=None,jugador_2=None):
+    if jugador_1 != None:
         for carta in listas["cartas_meza"]:
             listas["lista_jugador_uno"].insert(0, carta)
         listas["cartas_meza"].clear()
 
-    elif resultado == "2":
+    elif jugador_2 != None:
         for carta in listas["cartas_meza"]:
             listas["lista_jugador_dos"].insert(0, carta)
         listas["cartas_meza"].clear()
-    
-    listas["cartas_jugadores"].clear()
 
 def repartir_cartas(listas):
     """Divide la lista de cartas en dos listas iguales.

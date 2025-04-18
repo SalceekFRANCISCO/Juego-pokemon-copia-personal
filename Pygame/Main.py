@@ -10,13 +10,14 @@ fondo = elementos_ventana[1]
 fondo_2 = elementos_ventana[2]
 
 matriz_jerarquias_mezcladas = crear_matriz_jerarquias()
+ordenar_matriz(matriz_jerarquias_mezcladas)
 
 colores = crear_diccionario_colores()
 
 configuracion_pantalla = crear_datos_pantalla(ventana,fondo,fondo_2,colores)
 
 listas = guardar_cartas(configuracion_pantalla,crear_diccionario_listas)
-activar_cartas(listas,matriz_jerarquias_mezcladas)
+activar_cartas(listas)
 
 parametros = crear_lista_parametros(5,configuracion_pantalla,listas,colores,matriz_jerarquias_mezcladas)
 

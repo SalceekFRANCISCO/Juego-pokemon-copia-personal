@@ -570,3 +570,14 @@ def manejador_eventos_pantalla (datos,boton):
 
 #     dibujar_texto(input)
 #     dibujar_cuadrado(input)
+
+
+# if resultado == "1":
+    #     for carta in listas["cartas_meza"]:
+    #         listas["lista_jugador_uno"].insert(0, carta)
+    #     listas["cartas_meza"].clear()
+
+    # elif resultado == "2":
+    #     for carta in listas["cartas_meza"]:
+    #         listas["lista_jugador_dos"].insert(0, carta)
+    #     listas["cartas_meza"].clear()

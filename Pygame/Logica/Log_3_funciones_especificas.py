@@ -106,7 +106,7 @@ def comparar_elementos(matriz: list[list], elemento_1: str, elemento_2: str) -> 
     fila_elemento_2 = buscar_elementos_en_matriz(matriz, elemento_2)
 
     derrota_elemento_1 = buscar_elementos_en_lista(fila_elemento_2[1], elemento_1)
-    derrota_elemento_2 = buscar_elementos_en_lista(fila_elemento_1[1], elemento_2)
+    derrota_elemento_2 = buscar_elementos_en_lista(fila_elemento_1[1], elemento_2)#si eleemnto 2 esta en fila_elemento_1, perdio eelemento 2
 
     if derrota_elemento_1 == True:
         ganador = elemento_2

@@ -15,17 +15,14 @@ def guardar_cartas(pantalla:dict,funcion)->dict:
     
     return listas
 
-def activar_cartas(listas:dict,matriz_jerarquias_mezcladas:list[list]):
-    """Descripcion: mezcla, reparte cartas y ordena la matriz de jerarquias
+def activar_cartas(listas:dict):
+    """Descripcion: mezcla y reparte cartas.
 
     Args:
         listas (dict): mazos de los jugadores
-        matriz_jerarquias_mezcladas (_type_): Matriz de jerarquias
     """
-
     mezclar_mazo_cartas(listas)
     repartir_cartas(listas)
-    ordenar_matriz(matriz_jerarquias_mezcladas)
 
 def comparar_atributos(listas:dict,jerarquias: dict,atributo) -> str: 
     """Descripción: Sortea un atributo al azar y dependiendo el atributo sorteado compara o determina que carta fue la ganadora.
@@ -49,8 +46,6 @@ def comparar_atributos(listas:dict,jerarquias: dict,atributo) -> str:
 
         elemento_ganador = comparar_elementos(jerarquias, elemento_1, elemento_2)
         
-        # mostrar_elemento_ganador(elemento_ganador)
-
         resultado = determinar_resultado(elemento_ganador, elemento_1, elemento_2)
 
     else:
@@ -172,32 +167,26 @@ def guardar_atributos(lista_cartas: list[dict]) -> set:
 
     return set_atributos
 
-def determinar_ganador_partida(jugadores,listas:dict) -> str:
-    """Determina el ganador de la partida comparando la cantidad de cartas que cada jugador posee. 
+def determinar_ganador_partida(jugadores:list,listas:dict) -> str:
+    """Descripción: Determina el ganador de la partida comparando la cantidad de cartas que cada jugador posee. 
     El que posea mas cartas, sera el ganador
 
     Args:
-        lista_jugador_uno (list[dict]): Representa el mazo de cartas del jugador 1
-        lista_jugador_dos (list[list]): Representa el mazo de cartas del jugador 2
-        jugador_1 (str): Nombre del jugador 1
-        jugador_2 (str): Nombre del jugador 2
+       jugadores (list): Los nombres de ambos jugadores.
+       listas (dict): diccionario con las listas guardadas.
 
     Returns:
         str: Ganador de la partida o si hubo un empate.
     """
-    
     if len(listas["lista_jugador_uno"]) > len(listas["lista_jugador_dos"]):
         ganador = jugadores[0]#!jugadores 
-        # print(f"El ganador de la partida es: {jugador_1}")
 
 
     elif len(listas["lista_jugador_uno"]) < len(listas["lista_jugador_dos"]):
         ganador = jugadores[1]#!jugadores 
-        # print(f"El ganador de la partida es: {jugador_2}")
 
     else: 
         ganador = "Empate"
-        # print("Hubo un empate")
 
     return ganador
 
@@ -213,10 +202,10 @@ def calcular_puntaje(listas, jugadores, jugador_ganador)->int:
         int: El puntaje del jugador ganador
     """
     
-    if jugador_ganador == jugadores[0]:#!jugadores 
+    if jugador_ganador == jugadores[0]:
         puntaje = len(listas["lista_jugador_uno"])
     
-    elif jugador_ganador == jugadores[1]:#!jugadores 
+    elif jugador_ganador == jugadores[1]:
         puntaje = len(listas["lista_jugador_dos"])
     
     elif jugador_ganador == "Empate":
@@ -245,25 +234,3 @@ def obtener_datos(pantalla:dict)->list[dict]:
         nueva_lista.append(diccionario_pokemon)
         
     return nueva_lista
-
-
-###############PRUEBA
-
-# def guardar_atributos(lista_cartas: list[dict]) -> list: 
-#     """Guarda en una lista las llaves (atributos) del primer elemento de una lista de diccionarios 
-#     recibida por parametro exeptuando el nombre.
-
-#     Args:
-#         lista_cartas (list[dict]): lista de diccionarios recibida por parametro.
-
-#     Returns:
-#         list: lista con los atributos o claves de los diccionarios
-#     """
-#     lista_atributos = []
-#     diccionario = lista_cartas[0]
-
-#     for atributo in diccionario.keys():
-#         if atributo != "poke-nombre" and atributo != "poke-foto" :
-#             lista_atributos.append(atributo)
-
-#     return lista_atributos

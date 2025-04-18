@@ -16,6 +16,7 @@ def jugar(parametros:list,elementos_juego:dict,jugadores:list):
     listas = parametros[2]
     pantalla_config = parametros[3]
     colores = parametros[4]
+
     cronometro_activo = True 
     tiempo_inicial = pygame.time.get_ticks()  
 
@@ -48,13 +49,13 @@ def jugar(parametros:list,elementos_juego:dict,jugadores:list):
     guardar_resultados_finales(jugadores,ganador_partida,listas,pantalla_config)
 
 def mostrar_cartas_mesa(pantalla:dict,colores:dict,resultado:str,listas:dict):
-    """Descripción: 
+    """Descripción: Mostrar las cartas de la meza. 
 
     Args:
-        pantalla (dict): _description_
-        colores (dict): _description_
-        resultado (str): _description_
-        listas (dict): _description_
+        pantalla (dict): Las configuraciones de la pantalla.
+        colores (dict): Diccionario con los colores.
+        resultado (str): El parametro que servira para determinar si hubo o no empate.
+        listas (dict): diccionario con las listas guardadas.
     """
     mostrar_texto(pantalla,("Arial", 18),"CARTAS MESA:",colores["negro"],(910,156),None)
     cartas_en_la_meza = "0"
@@ -82,7 +83,7 @@ def cargar_cartas(listas:dict, pantalla:dict, colores:dict):
     mostrar_cartas(cartas_jugador_2, pantalla, colores, (450,390),(591,390),(150,100),(645,500))
 
 def Determinar_algun_jugador_sin_cartas(listas:list)->bool:
-    """Descripción: Dterminar si algún jugador se quedo sin cartas.
+    """Descripción: Determinar si algún jugador se quedo sin cartas.
 
     Args:
         listas (dict): diccionario con las listas guardadas.

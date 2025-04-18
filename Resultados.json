@@ -113,5 +113,20 @@
         "nombre_jugador": "parker",
         "fecha_victoria": "18/04/2025",
         "puntaje_obtenido": 128
+    },
+    {
+        "nombre_jugador": "ooo",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 130
+    },
+    {
+        "nombre_jugador": "ooo",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 127
+    },
+    {
+        "nombre_jugador": "ppp",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 126
     }
 ]
