@@ -8,8 +8,12 @@ def inicializar_elementos_ventana()->list:
         list: Elementos de la ventana principal
     """
     
-    ANCHO_VENTANA = 1300
-    ALTO_VENTANA = 700
+    #ANCHO_VENTANA = 1300
+    #ALTO_VENTANA = 700
+
+    ANCHO_VENTANA = 1270
+    ALTO_VENTANA = 690
+
     lista = []
 
     pygame.init()
