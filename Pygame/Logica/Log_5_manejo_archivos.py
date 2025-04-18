@@ -21,32 +21,32 @@ def leer_csv(path:str)->list:
 
     return lista
 
-def crear_json(path_json: str) -> list:
-    """Crea un archivo json. Verifica si existe el archivo. Si no existe lo crea. 
-    Tambien inicializa una lista vacia.
+# def crear_json(path_json: str) -> list:
+#     """Crea un archivo json. Verifica si existe el archivo. Si no existe lo crea. 
+#     Tambien inicializa una lista vacia.
 
-    Args:
-        path_json (str): ruta al archivo json
+#     Args:
+#         path_json (str): ruta al archivo json
 
-    Returns:
-        list: lista vacia donde se ira completando con diccionarios.
-    """
+#     Returns:
+#         list: lista vacia donde se ira completando con diccionarios.
+#     """
     
-    estadisticas = []
+#     estadisticas = []
 
-    try:
-        with open(path_json, "r"):
-            pass
+#     try:
+#         with open(path_json, "r"):
+#             pass
 
-    except FileNotFoundError:
+#     except FileNotFoundError:
 
-        with open(path_json, "w") as archivo:  
-            json.dump(estadisticas, archivo, indent=4)  
-            print("El archivo resultados.json se ha creado satisfactoriamente")
+#         with open(path_json, "w") as archivo:  
+#             json.dump(estadisticas, archivo, indent=4)  
+#             print("El archivo resultados.json se ha creado satisfactoriamente")
 
-    return estadisticas
+#     return estadisticas
 
-def crear_diccionario_estadisticas(jugador, puntaje)->dict:
+def crear_diccionario_estadisticas(jugador:str, puntaje:str)->dict:
     """Descripción: Crea el diccionario de las estadísticas. 
 
     Args:
@@ -63,11 +63,11 @@ def crear_diccionario_estadisticas(jugador, puntaje)->dict:
     }
     return estadistica
 
-def verificar_existencia_archivo_json(path_json)->bool:
+def verificar_existencia_archivo_json(path_json:str)->bool:
     """Descripción: Verifica que ya exista un archivo Json.
 
     Args:
-        path_json (_type_): Ruta del archivo Json.
+        path_json (str): Ruta del archivo Json.
 
     Returns:
         bool: si hay existencia o no de un archivo Json.
@@ -83,7 +83,7 @@ def verificar_existencia_archivo_json(path_json)->bool:
 
     return existe
 
-def guardar_resultados(pantalla:dict ,puntaje: int, jugador: str):#! PATH JSON
+def guardar_resultados(pantalla:dict ,puntaje: int, jugador: str):
     """Descripcion: Guarda las estadisticas del jugador ganador
 
     Args:
