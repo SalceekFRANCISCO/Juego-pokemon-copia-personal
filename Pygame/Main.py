@@ -49,4 +49,3 @@ while bandera_principal:
         actualizar()
 
     pygame.quit()
-    pygame.quit()

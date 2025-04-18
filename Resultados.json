@@ -98,5 +98,15 @@
         "nombre_jugador": "Empate",
         "fecha_victoria": "18/04/2025",
         "puntaje_obtenido": 125
+    },
+    {
+        "nombre_jugador": "loi",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "loi",
+        "fecha_victoria": "18/04/2025",
+        "puntaje_obtenido": 133
     }
 ]
