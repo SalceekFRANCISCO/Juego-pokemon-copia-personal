@@ -39,7 +39,7 @@ while bandera_principal:
     jugadores = [banderas[2],banderas[3]]
     
     while empezar_juego and bandera_principal:
-        juego = programa_principal(bandera_principal,empezar_juego,nuevo_boton_jugar, elementos_juego, jugadores, lista_botones_musicales)
+        juego = manejador_eventos_principal(bandera_principal,empezar_juego,nuevo_boton_jugar, elementos_juego, jugadores, lista_botones_musicales)
 
         empezar_juego = juego[0]
         bandera_principal = juego[1]

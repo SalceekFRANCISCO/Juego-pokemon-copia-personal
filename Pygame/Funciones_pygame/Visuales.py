@@ -335,7 +335,7 @@ def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego,
 
     return lista
 
-def chequear_nombres(jugadores_nombre, empezar_juego, bandera_principal):
+def chequear_nombres(jugadores_nombre, empezar_juego, bandera_principal)->list:
     """
     Descripción: Verifica si los jugadores tienen nombres válidos antes de comenzar el juego.
 
@@ -367,7 +367,20 @@ def iniciar_partida(pantalla_config, elementos_juego, jugadores_nombre, colores)
     setear_pantalla(pantalla_config, elementos_juego, jugadores_nombre, colores)
     actualizar()
 
-def programa_principal(bandera_principal:bool, empezar_juego:bool, nuevo_boton_jugar:dict, elementos_juego:dict, jugadores:list, lista_botones_musicales:list):
+def manejador_eventos_principal(bandera_principal:bool, empezar_juego:bool, nuevo_boton_jugar:dict, elementos_juego:dict, jugadores:list, lista_botones_musicales:list)->list:
+    """Descripción: Detecta los eventos que seran ejecutados
+
+    Args:
+        bandera_principal (bool): la bandera principal del juego
+        empezar_juego (bool): la bandera para empezar a funcionar el juego
+        nuevo_boton_jugar (dict): El boton para empezar a jugar.
+        elementos_juego (dict): diccionario con todos los datos para jugar.
+        jugadores (list): _description_
+        lista_botones_musicales (list): _description_
+
+    Returns:
+        _type_: _description_
+    """
     lista = []
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:

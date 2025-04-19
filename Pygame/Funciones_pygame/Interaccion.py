@@ -37,10 +37,10 @@ def inicializar_elementos_ventana()->list:
     return lista
 
 def crear_matriz_jerarquias()-> list[list]:
-    """Descripción:
+    """Descripción: Crea la matriz jerarquias desordenada y la retorna
 
     Returns:
-        list[list]: _description_
+        list[list]: la matriz jerarquias desordenada
     """
 
     matriz_jerarquias_mezclada = [["Agua", ("Fuego", "Tierra")],
@@ -131,14 +131,15 @@ def detectar_escritura(boton:dict,evento):
     """
     boton["accion"](boton,evento)
 
-def crear_listas_parametros(cantidad_rondas,pantalla_config,listas,colores,matriz)-> list:
+def crear_listas_parametros(cantidad_rondas:int,pantalla_config:dict,listas:list,colores:list,matriz:list[list])-> list:
     """Descripción:
 
     Args:
-        pantalla_config (_type_): _description_
-        listas (_type_): _description_
-        colores (_type_): _description_
-        matriz (_type_): _description_
+        cantidad_rondas(_int_): La cantidad de rondas para jugar.
+        pantalla_config (dict): Diccionario con los datos necesarios para el juego.
+        listas (list): Diccionario con los datos 
+        colores (list): Diccionario con los datos de colores.
+        matriz (list[list]): Matriz con las jerarquias.
 
     Returns:
         list: _description_
@@ -149,8 +150,8 @@ def crear_listas_parametros(cantidad_rondas,pantalla_config,listas,colores,matri
     parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
 
     lista.append(parametros_jugar)
-    lista.append(parametros_boton_nombre_uno)
-    lista.append(parametros_boton_nombre_dos)
+    # lista.append(parametros_boton_nombre_uno)
+    # lista.append(parametros_boton_nombre_dos)
 
     return lista
 
@@ -174,7 +175,6 @@ def crear_lista_parametros(cantidad_rondas:int, pantalla_config:dict, listas:dic
     lista.append(parametros_jugar)
 
     return lista
-
 
 def gestionar_interacciones(boton_jugar:dict,elementos_juego:list,jugadores:list,lista_botones_musicales:list,evento):
     """Descripción: Verifica las funciones que deben activarse.
