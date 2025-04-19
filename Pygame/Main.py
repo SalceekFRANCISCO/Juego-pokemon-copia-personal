@@ -25,7 +25,7 @@ nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),ju
 lista_botones_musicales = crear_lista_botones_musicales(ventana)
 
 elementos_juego = crear_datos_juego(ventana,colores,nuevo_boton_jugar,lista_botones_musicales)
-
+#aaaa
 cargar_musica("Musica\Atrapalos Ya!.mp3")
 
 bandera_principal = True
