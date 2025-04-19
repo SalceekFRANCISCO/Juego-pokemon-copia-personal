@@ -131,30 +131,31 @@ def detectar_escritura(boton:dict,evento):
     """
     boton["accion"](boton,evento)
 
-def crear_listas_parametros(cantidad_rondas:int,pantalla_config:dict,listas:list,colores:list,matriz:list[list])-> list:
-    """Descripción:
+# region "222"
+# def crear_listas_parametros(cantidad_rondas:int,pantalla_config:dict,listas:list,colores:list,matriz:list[list])-> list:
+#     """Descripción:
 
-    Args:
-        cantidad_rondas(_int_): La cantidad de rondas para jugar.
-        pantalla_config (dict): Diccionario con los datos necesarios para el juego.
-        listas (list): Diccionario con los datos 
-        colores (list): Diccionario con los datos de colores.
-        matriz (list[list]): Matriz con las jerarquias.
+#     Args:
+#         cantidad_rondas(_int_): La cantidad de rondas para jugar.
+#         pantalla_config (dict): Diccionario con los datos necesarios para el juego.
+#         listas (list): Diccionario con los datos 
+#         colores (list): Diccionario con los datos de colores.
+#         matriz (list[list]): Matriz con las jerarquias.
 
-    Returns:
-        list: _description_
-    """
-    lista = []
-    parametros_jugar = [cantidad_rondas,matriz,listas,pantalla_config,colores]
-    parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
-    parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
+#     Returns:
+#         list: _description_
+#     """
+#     lista = []
+#     parametros_jugar = [cantidad_rondas,matriz,listas,pantalla_config,colores]
+#     parametros_boton_nombre_uno = [pantalla_config,("Arial",20),colores["negro"],(795,50),None]
+#     parametros_boton_nombre_dos = [pantalla_config,("Arial",20),colores["negro"],(797,629),None]
 
-    lista.append(parametros_jugar)
-    # lista.append(parametros_boton_nombre_uno)
-    # lista.append(parametros_boton_nombre_dos)
+#     lista.append(parametros_jugar)
+#     # lista.append(parametros_boton_nombre_uno)
+#     # lista.append(parametros_boton_nombre_dos)
 
-    return lista
-
+#     return lista
+#endregion
 
 def crear_lista_parametros(cantidad_rondas:int, pantalla_config:dict, listas:dict, colores:dict, matriz:list[list]) -> list:
     """
