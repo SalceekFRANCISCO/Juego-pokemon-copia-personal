@@ -205,4 +205,4 @@ def actualizar_datos(pantalla_config:dict,elementos_juego:dict,jugadores:list,co
     # pygame.time.delay(1000)
     # clock.tick(1)
     # time.sleep(10) 
-    time.sleep(3) 
+    time.sleep(6) 
