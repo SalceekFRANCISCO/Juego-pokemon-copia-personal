@@ -153,5 +153,15 @@
         "nombre_jugador": "kkk",
         "fecha_victoria": "20/04/2025",
         "puntaje_obtenido": 124
+    },
+    {
+        "nombre_jugador": "frank",
+        "fecha_victoria": "20/04/2025",
+        "puntaje_obtenido": 124
+    },
+    {
+        "nombre_jugador": "Empate",
+        "fecha_victoria": "20/04/2025",
+        "puntaje_obtenido": 125
     }
 ]
