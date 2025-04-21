@@ -41,12 +41,13 @@ def obtener_cartas_cada_jugador(listas:list):
         listas["cartas_jugadores"].append(carta_jugador_1)
         listas["cartas_jugadores"].append(carta_jugador_2)
 
-def agregar_cartas(resultado:str,listas):  #Terminada
+def agregar_cartas(resultado:str,listas:dict):  #Terminada
     """Descripción: Agrega las cartas de los jugadores y las suma al pilon de la mesa, si gano alguno de los jugadores.
     Las cartas de la mesa se sumaran a su mazo, de lo contrario las cartas permaneceran en la mesa. 
 
     Args:
         resultado (str): El Jugador que resulto ganador
+        listas (dict): El diccionario donde sacamos los datos.
         lista_jugador_uno (list[dict]): Cartas del primer jugador
         lista_jugador_dos (list[dict]): Cartas del segundo jugador
         cartas_meza (list[dict]): Las cartas de la meza

@@ -104,5 +104,6 @@ def guardar_resultados(pantalla:dict ,puntaje: int, jugador: str):#! PATH JSON
         
     estadisticas.append(nueva_estadistica)
     
-    with open(pantalla["path_json"], "w") as archivo:      
+    with open(pantalla["path_json"], "w") as archivo: #aca se crea el Json     
         json.dump(estadisticas, archivo, indent=4)
+
