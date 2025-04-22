@@ -18,5 +18,15 @@
         "nombre_jugador": "ppp",
         "fecha_victoria": "22/04/2025",
         "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "ppp",
+        "fecha_victoria": "22/04/2025",
+        "puntaje_obtenido": 124
+    },
+    {
+        "nombre_jugador": "\u00f1\u00f1\u00f1",
+        "fecha_victoria": "22/04/2025",
+        "puntaje_obtenido": 129
     }
 ]
