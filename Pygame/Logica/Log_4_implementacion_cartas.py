@@ -41,7 +41,7 @@ def obtener_cartas_cada_jugador(listas:list):
         listas["cartas_jugadores"].append(carta_jugador_1)
         listas["cartas_jugadores"].append(carta_jugador_2)
 
-def agregar_cartas(resultado:str,listas:dict):  #Terminada
+def agregar_cartas(resultado:str,listas:dict):
     """Descripción: Agrega las cartas de los jugadores y las suma al pilon de la mesa, si gano alguno de los jugadores.
     Las cartas de la mesa se sumaran a su mazo, de lo contrario las cartas permaneceran en la mesa. 
 
@@ -70,7 +70,7 @@ def recorrer_lista_cartas(listas:dict,llave:str):
         listas[llave].insert(0, carta)
     listas["cartas_meza"].clear()
 
-def repartir_cartas(listas):
+def repartir_cartas(listas:dict):
     """Divide la lista de cartas en dos listas iguales.
 
     Args:
