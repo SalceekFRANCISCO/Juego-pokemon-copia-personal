@@ -8,7 +8,7 @@ def guardar_cartas(pantalla:dict,funcion)->dict:
         funcion (_type_): la funcion para crear el diccionario de listas
 
     Returns:
-        dict: _description_
+        dict: Un diccionario con listas.
     """
     listas = funcion()
     listas["lista_cartas"] = obtener_datos(pantalla)#!path csv
