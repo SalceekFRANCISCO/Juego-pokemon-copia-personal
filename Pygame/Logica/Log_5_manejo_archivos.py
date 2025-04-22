@@ -21,31 +21,6 @@ def leer_csv(path:str)->list:
 
     return lista
 
-# def crear_json(path_json: str) -> list:
-#     """Crea un archivo json. Verifica si existe el archivo. Si no existe lo crea. 
-#     Tambien inicializa una lista vacia.
-
-#     Args:
-#         path_json (str): ruta al archivo json
-
-#     Returns:
-#         list: lista vacia donde se ira completando con diccionarios.
-#     """
-    
-#     estadisticas = []
-
-#     try:
-#         with open(path_json, "r"):
-#             pass
-
-#     except FileNotFoundError:
-
-#         with open(path_json, "w") as archivo:  
-#             json.dump(estadisticas, archivo, indent=4)  
-#             print("El archivo resultados.json se ha creado satisfactoriamente")
-
-#     return estadisticas
-
 def crear_diccionario_estadisticas(jugador, puntaje)->dict:
     """Descripción: Crea el diccionario de las estadísticas. 
 
@@ -108,11 +83,11 @@ def guardar_resultados(pantalla:dict ,puntaje: int, jugador: str):#! PATH JSON
         json.dump(estadisticas, archivo, indent=4)
 
 
-#############################################
-
-# NUEVA VERSION
+# region #############################################
+#     crear_json(pantalla, estadisticas)
 
 # def crear_json(pantalla:dict, estadisticas:list) -> list:
 
 #     with open(pantalla["path_json"], "w") as archivo:  
 #         json.dump(estadisticas, archivo, indent=4)  
+#endregion

@@ -48,24 +48,27 @@ def agregar_cartas(resultado:str,listas:dict):  #Terminada
     Args:
         resultado (str): El Jugador que resulto ganador
         listas (dict): El diccionario donde sacamos los datos.
-        lista_jugador_uno (list[dict]): Cartas del primer jugador
-        lista_jugador_dos (list[dict]): Cartas del segundo jugador
-        cartas_meza (list[dict]): Las cartas de la meza
-        cartas_jugadores (list[dict]): Las cartas de los jugadores
     """
     listas["cartas_meza"] += listas["cartas_jugadores"]
     
     if resultado == "1":
-        for carta in listas["cartas_meza"]:
-            listas["lista_jugador_uno"].insert(0, carta)
-        listas["cartas_meza"].clear()
+        recorrer_lista_cartas(listas,"lista_jugador_uno")
 
     elif resultado == "2":
-        for carta in listas["cartas_meza"]:
-            listas["lista_jugador_dos"].insert(0, carta)
-        listas["cartas_meza"].clear()
+        recorrer_lista_cartas(listas,"lista_jugador_dos")
     
     listas["cartas_jugadores"].clear()
+
+def recorrer_lista_cartas(listas:dict,llave:str):
+    """Descripcion: Recorre la lista y agrega sus elementos a otra lista.
+
+    Args:
+        listas (dict): El diccionario donde sacamos los datos.
+        llave (str): La lista del jugador al que le agregaremos los datos
+    """
+    for carta in listas["cartas_meza"]:
+        listas[llave].insert(0, carta)
+    listas["cartas_meza"].clear()
 
 def repartir_cartas(listas):
     """Divide la lista de cartas en dos listas iguales.
