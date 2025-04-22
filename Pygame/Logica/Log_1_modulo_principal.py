@@ -51,10 +51,10 @@ def mostrar_cartas_mesa(pantalla:dict,colores:dict,resultado:str,listas:dict):
     """Descripción: 
 
     Args:
-        pantalla (dict): _description_
-        colores (dict): _description_
-        resultado (str): _description_
-        listas (dict): _description_
+        pantalla (dict): diccionario con datos
+        colores (dict): diccionario con colores
+        resultado (str): el resultado
+        listas (dict): diccionario de listas
     """
     mostrar_texto(pantalla,("Arial", 18),"CARTAS MESA:",colores["negro"],(910,156),None)
     cartas_en_la_meza = "0"
