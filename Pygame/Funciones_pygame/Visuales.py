@@ -379,7 +379,7 @@ def manejador_eventos_principal(bandera_principal:bool, empezar_juego:bool, nuev
         lista_botones_musicales (list): _description_
 
     Returns:
-        _type_: _description_
+        list: _description_
     """
     lista = []
     for evento in pygame.event.get():

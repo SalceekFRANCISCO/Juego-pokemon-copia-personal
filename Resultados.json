@@ -1,17 +1,22 @@
 [
     {
-        "nombre_jugador": "Empate",
-        "fecha_victoria": "21/04/2025",
-        "puntaje_obtenido": 125
-    },
-    {
-        "nombre_jugador": "kkk",
+        "nombre_jugador": "ddd",
         "fecha_victoria": "22/04/2025",
         "puntaje_obtenido": 126
     },
     {
-        "nombre_jugador": "mario",
+        "nombre_jugador": "ricard",
         "fecha_victoria": "22/04/2025",
-        "puntaje_obtenido": 128
+        "puntaje_obtenido": 126
+    },
+    {
+        "nombre_jugador": "ricard",
+        "fecha_victoria": "22/04/2025",
+        "puntaje_obtenido": 127
+    },
+    {
+        "nombre_jugador": "ppp",
+        "fecha_victoria": "22/04/2025",
+        "puntaje_obtenido": 126
     }
 ]
