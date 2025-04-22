@@ -206,7 +206,7 @@ def crear_cuadrado(ventana, color: tuple, posicion: tuple, dimensiones: tuple, f
     cuadrado["color_actual"] = color
     cuadrado["cuadrado"] = pygame.Rect(posicion[0], posicion[1], dimensiones[0], dimensiones[1])
 
-    if fuente is not None:#porque use esto?
+    if fuente is not None:
         cuadrado["fuente"] = crear_fuente(fuente[0], fuente[1])
 
     if texto is not None:
