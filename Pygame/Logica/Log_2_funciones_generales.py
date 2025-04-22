@@ -15,17 +15,15 @@ def guardar_cartas(pantalla:dict,funcion)->dict:
     
     return listas
 
-def activar_cartas(listas:dict,matriz_jerarquias_mezcladas:list[list]):
-    """Descripcion: mezcla, reparte cartas y ordena la matriz de jerarquias
+def activar_cartas(listas:dict):
+    """Descripcion: mezcla y reparte el mazo de cartas.
 
     Args:
         listas (dict): mazos de los jugadores
-        matriz_jerarquias_mezcladas (_type_): Matriz de jerarquias
     """
 
     mezclar_mazo_cartas(listas)
     repartir_cartas(listas)
-    ordenar_matriz(matriz_jerarquias_mezcladas)
 
 def comparar_atributos(listas:dict,jerarquias: dict,atributo) -> str: 
     """Descripción: Sortea un atributo al azar y dependiendo el atributo sorteado compara o determina que carta fue la ganadora.

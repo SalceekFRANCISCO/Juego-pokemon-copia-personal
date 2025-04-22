@@ -28,5 +28,10 @@
         "nombre_jugador": "\u00f1\u00f1\u00f1",
         "fecha_victoria": "22/04/2025",
         "puntaje_obtenido": 129
+    },
+    {
+        "nombre_jugador": "pepe",
+        "fecha_victoria": "22/04/2025",
+        "puntaje_obtenido": 128
     }
 ]
