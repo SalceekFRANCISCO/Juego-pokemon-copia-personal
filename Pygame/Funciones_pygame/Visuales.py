@@ -335,7 +335,7 @@ def cargar_pantalla_inicial(bandera_principal, pantalla_config, elementos_juego,
 
     return lista
 
-def chequear_nombres(jugadores_nombre, empezar_juego, bandera_principal)->list:
+def chequear_nombres(jugadores_nombre:list, empezar_juego:bool, bandera_principal:bool)->list:
     """
     Descripción: Verifica si los jugadores tienen nombres válidos antes de comenzar el juego.
 
