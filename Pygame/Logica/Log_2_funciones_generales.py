@@ -243,25 +243,3 @@ def obtener_datos(pantalla:dict)->list[dict]:
         nueva_lista.append(diccionario_pokemon)
         
     return nueva_lista
-
-
-###############PRUEBA
-
-# def guardar_atributos(lista_cartas: list[dict]) -> list: 
-#     """Guarda en una lista las llaves (atributos) del primer elemento de una lista de diccionarios 
-#     recibida por parametro exeptuando el nombre.
-
-#     Args:
-#         lista_cartas (list[dict]): lista de diccionarios recibida por parametro.
-
-#     Returns:
-#         list: lista con los atributos o claves de los diccionarios
-#     """
-#     lista_atributos = []
-#     diccionario = lista_cartas[0]
-
-#     for atributo in diccionario.keys():
-#         if atributo != "poke-nombre" and atributo != "poke-foto" :
-#             lista_atributos.append(atributo)
-
-#     return lista_atributos
