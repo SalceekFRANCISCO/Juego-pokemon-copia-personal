@@ -148,8 +148,8 @@ def crear_datos_pantalla(ventana, fondo, fondo_2, colores) -> dict:
     lista_cuadrados = crear_lista_cuadrados(ventana, colores)
 
     pokebola = crear_diccionario_imagen(ventana, "Poke_fotos\pokebola.png", (370, 145), (530, 425))
-    carta_1 = crear_cuadrado(ventana, colores["azul_claro"], (450, 26), (340, 245))
-    carta_2 = crear_cuadrado(ventana, colores["rojo"], (450, 415), (340, 245))
+    carta_1 = crear_cuadrado(ventana, colores["rojo"], (450, 26), (340, 245))
+    carta_2 = crear_cuadrado(ventana, colores["azul_claro"], (450, 415), (340, 245))
 
     pantalla = {}
     pantalla["ventana"] = ventana

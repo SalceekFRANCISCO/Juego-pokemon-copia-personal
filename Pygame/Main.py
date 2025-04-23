@@ -19,7 +19,7 @@ configuracion_pantalla = crear_datos_pantalla(ventana,fondo,fondo_2,colores)
 listas = guardar_cartas(configuracion_pantalla,crear_diccionario_listas)
 activar_cartas(listas)
 
-parametros = crear_lista_parametros(4,configuracion_pantalla,listas,colores,matriz_jerarquias_mezcladas)
+parametros = crear_lista_parametros(2,configuracion_pantalla,listas,colores,matriz_jerarquias_mezcladas)
 
 nuevo_boton_jugar = crear_boton(ventana,("Arial",20),colores,(56,50),(200,60),jugar,parametros[0],"JUGAR")
 
